@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "533162287692",
+    "project_id": "click-to-rent",
+    "storage_bucket": "click-to-rent.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533162287692:android:72e34f2d16cac1ecb0cae9",
+        "android_client_info": {
+          "package_name": "com.orange.click_2_rent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533162287692-jbjo66vddd3lh0v9jr6o3inoaeubcpel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLw4foZj-Vr6x4uQ3TWeiZo9vQORuj65M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533162287692-jbjo66vddd3lh0v9jr6o3inoaeubcpel.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:533162287692:android:902f59852bf34732b0cae9",
+        "android_client_info": {
+          "package_name": "com.orange.clicktorent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "533162287692-jbjo66vddd3lh0v9jr6o3inoaeubcpel.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLw4foZj-Vr6x4uQ3TWeiZo9vQORuj65M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "533162287692-jbjo66vddd3lh0v9jr6o3inoaeubcpel.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
