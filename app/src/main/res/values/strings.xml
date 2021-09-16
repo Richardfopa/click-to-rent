@@ -2,6 +2,15 @@
     <string name="app_name">Click-2-rent</string>
     <string name="item_description">description</string>
     <string name="profile_title">Ndikadaniel01@gmail.com</string>
+    <string name="profile_deconnexion">Deconnexion</string>
+    <string name="profile_comment">Liste des commentaires</string>
+    <string name="profile_history">Historique des Prestations</string>
+    <string name="profil_edit">Modifiez le profil</string>
+    <string name="nom_label">Nom</string>
+    <string name="phone_label">Phone Number</string>
+    <string name="email_label">Adresse Email</string>
+    <string name="page_title">Vos informations</string>
+    <string name="edit_button">Modifier</string>
 
     <string-array name="icone">
         <item>edit_profil_icon</item>

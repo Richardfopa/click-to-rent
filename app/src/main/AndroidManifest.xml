@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
+            android:name=".EditProfileActivity"
+            android:exported="true"
+            android:parentActivityName=".ProfileMainActivity"/>
+        <activity
             android:name=".ProfileMainActivity"
             android:exported="true">
             <intent-filter>
