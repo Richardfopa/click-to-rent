@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Click-2-rent</string>
+    <string name="item_description">description</string>
+    <string name="profile_title">Ndikadaniel01@gmail.com</string>
+
+    <string-array name="icone">
+        <item>edit_profil_icon</item>
+        <item>comment_icon</item>
+        <item>history_icon</item>
+    </string-array>
+    <string-array name="description">
+        <item>Modifiez profil</item>
+        <item>Commentaires</item>
+        <item>Historique des prestations</item>
+    </string-array>
 </resources>
