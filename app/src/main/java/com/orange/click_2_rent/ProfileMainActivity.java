@@ -37,4 +37,8 @@ public class ProfileMainActivity extends AppCompatActivity {
 
     public void viewPrestationList(View view) {
     }
+
+    public void showServiceList(View view) {
+
+    }
 }
