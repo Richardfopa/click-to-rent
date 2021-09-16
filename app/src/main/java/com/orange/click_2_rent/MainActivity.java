@@ -1,14 +1,105 @@
 package com.orange.click_2_rent;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
+
+    TabLayout Tablelayout;
+    ViewPager2  Viewpage;
+    MaPageAdapter pagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Tablelayout = findViewById(R.id.maTabLayout);
+        Viewpage = findViewById(R.id.nom_de_page);
+
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setCustomView(R.layout.action_bar_menu);
+
+        //On enleve l'elevation
+
+        getSupportActionBar().setElevation(0);
+
+        FragmentManager mfragment = getSupportFragmentManager();
+        pagerAdapter = new MaPageAdapter(mfragment,getLifecycle());
+        Viewpage.setAdapter(pagerAdapter);
+
+
+       //Recuperation et Affichage des icones
+
+        Tablelayout.getTabAt(0).setIcon(R.drawable.home_repair_service_24);
+        Tablelayout.getTabAt(1).setIcon(R.drawable.restaurant_24);
+        Tablelayout.getTabAt(2).setIcon(R.drawable.local_taxi_24);
+
+        Tablelayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                Viewpage.setCurrentItem(tab.getPosition());
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+        Viewpage.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                Tablelayout.selectTab(Tablelayout.getTabAt(position));
+            }
+        });
+
+    }
+    public boolean onCreateOptionsMenu(Menu menu){
+
+        MenuInflater menuInflater = getMenuInflater();
+        menuInflater.inflate(R.menu.botton_nav_bar,menu);
+        return true;
+    }
+    public boolean onOptionsItemSelected(MenuItem menuItem) {
+
+        switch (menuItem.getItemId()) {
+
+            case R.id.home:
+
+                 Toast.makeText(this, "vous avez selectionnez Home", Toast.LENGTH_SHORT).show();
+                 return true;
+
+            case R.id.Parametres:
+
+                Toast.makeText(this, "Parametres", Toast.LENGTH_SHORT).show();
+                return true;
+
+            case R.id.profil:
+
+                Toast.makeText(this, "Profil", Toast.LENGTH_SHORT).show();
+            case R.id.Rechercher:
+
+                Toast.makeText(this, "Rechercher", Toast.LENGTH_SHORT).show();
+                return true;
+            default:
+                return super.onOptionsItemSelected(menuItem);
+        }
     }
 }

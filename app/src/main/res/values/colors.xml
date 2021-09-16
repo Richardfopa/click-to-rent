@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="menu_tab">#2EB0FE</color>
+    <color name="yes_menu">#70726E</color>
+    <color name="text_selector_tab">#C0C0C0</color>
+    <color name="gris_fonce">#606060</color>
+    <color name="bleu_clair">#DEF3FA</color>
+    <color name="couleur_bleu">#048B9A</color>
+    <color name="color_blue">#2C75FF</color>
+    <color name="bleu_roi">#318CE7</color>
 </resources>
