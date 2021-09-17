@@ -9,15 +9,15 @@ import java.util.*;
 /** @pdOid ade7f29d-6cfb-47e8-a014-3170afe1509f */
 public class Client {
    /** @pdOid 90b4d57f-c88d-4022-a1bd-f84e629ba7fb */
-   private int idClient;
+   private String idClient;
    /** @pdOid 8663c700-2e65-476e-9db4-1283be16bc75 */
    private String nom;
    /** @pdOid 4346754e-a58e-4793-82ef-e60c224fec53 */
-   private Number telphone;
+   private String telphone;
    /** @pdOid b1def15a-68e9-4682-bab9-1f1c6ffffab8 */
    private String email;
 
-   public int getIdClient() {
+   public String getIdClient() {
       return idClient;
    }
 
@@ -29,11 +29,11 @@ public class Client {
       this.nom = nom;
    }
 
-   public Number getTelphone() {
+   public String getTelphone() {
       return telphone;
    }
 
-   public void setTelphone(Number telphone) {
+   public void setTelphone(String telphone) {
       this.telphone = telphone;
    }
 
@@ -75,6 +75,14 @@ public class Client {
    private int photoProfil;
 
    public Client() {
+   }
+
+   public Client(String idClient, String nom, String telphone, String email, String motDePasse) {
+      this.idClient = idClient;
+      this.nom = nom;
+      this.telphone = telphone;
+      this.email = email;
+      this.motDePasse = motDePasse;
    }
 
    /** @pdRoleInfo migr=no name=Photo assc=association8 mult=1..1 */
