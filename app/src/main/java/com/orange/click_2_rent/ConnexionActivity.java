@@ -43,6 +43,8 @@ public class ConnexionActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, "Connexion par facebook", Snackbar.LENGTH_LONG)
                         .setAction("Action", null).show();
+                Intent intent = new Intent(view.getContext(),PremiereConnectionActivity.class);
+                startActivity(intent);
             }
         });
     }

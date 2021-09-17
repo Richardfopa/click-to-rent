@@ -9,4 +9,12 @@
     <string name="input_connexion">input connexion</string>
     <string name="btn_se_connecter">Se connecter</string>
     <string name="password">Mot de passe</string>
+    <string name="signin">Connexion</string>
+    <string name="password_confirm">"Confirmez "</string>
+    <string name="lorem">lorem</string>
+    <string name="confirm_user_info">Modifier vos infos</string>
+    <string name="username">username</string>
+    <string name="username_description">Description du nom d\'utilisateur</string>
+    <string name="btn_confirmer_infos">Confirmer</string>
+    <string name="btn_parcourir_photo">Parcourir</string>
 </resources>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ConnexionmdpActivity">
+    tools:context=".PremiereConnectionActivity">
 
     <ScrollView
         android:id="@+id/scrollView_connecter"
@@ -39,16 +39,16 @@
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edittextusername_con"
+                android:id="@+id/edittextmotdepasse_con_first"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="@string/password"
-                app:boxCornerRadiusBottomEnd="10dp"
-                app:boxCornerRadiusBottomStart="10dp"
-                app:boxCornerRadiusTopEnd="10dp"
-                app:boxCornerRadiusTopStart="10dp"
+                app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
+                app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
+                app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
+                app:boxCornerRadiusTopStart="@dimen/box_input_radius"
                 app:boxStrokeColor="@color/theme_color"
                 app:boxStrokeErrorColor="@color/black"
                 app:hintTextColor="@color/theme_color"
@@ -68,12 +68,48 @@
                     android:singleLine="true"
                     android:textColor="@color/theme_color"
                     android:textColorHint="@color/theme_color"
+                    android:textSize="@dimen/text_input_size"
+                    app:startIconDrawable="@drawable/ic_key_24"
+                    tools:ignore="EditableContentDescCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edittextmotdepasse_confirm"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/password_confirm"
+                app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
+                app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
+                app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
+                app:boxCornerRadiusTopStart="@dimen/box_input_radius"
+                app:boxStrokeColor="@color/theme_color"
+                app:boxStrokeErrorColor="@color/black"
+                app:hintTextColor="@color/theme_color"
+                app:startIconDrawable="@drawable/ic_key_24"
+                app:startIconTint="@color/theme_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/Edittext_passwd_confirm"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:contentDescription="@string/input_connexion"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:inputType="textPassword"
+                    android:maxLines="@integer/material_motion_duration_long_2"
+                    android:shadowRadius="20"
+                    android:singleLine="true"
+                    android:textColor="@color/theme_color"
+                    android:textColorHint="@color/theme_color"
+                    android:textSize="@dimen/text_input_size"
                     app:startIconDrawable="@drawable/ic_key_24"
                     tools:ignore="EditableContentDescCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/btn_con_valider"
+                android:id="@+id/btn_con_valider_mot_de_passe"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
