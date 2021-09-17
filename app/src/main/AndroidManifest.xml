@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.orange.click_2_rent">
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+<!--    <uses-permission android:name="android.permission.GE" />-->
+
 
     <application
         android:allowBackup="true"
@@ -10,17 +15,38 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
+
             android:name=".ajout_service"
             android:exported="true" />
+
+            android:name=".AddUserActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".PremiereConnectionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ConnexionmdpActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ConnexionActivity"
+            android:exported="true"/>
+
+
+
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>
