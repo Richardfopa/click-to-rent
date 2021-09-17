@@ -7,7 +7,7 @@
     <string name="profile_history">Historique des Clients</string>
     <string name="profil_edit">Modifiez le profil</string>
     <string name="nom_label">Nom</string>
-    <string name="phone_label">Phone Number</string>
+    <string name="phone_label">Téléphone Mobile</string>
     <string name="email_label">Adresse Email</string>
     <string name="page_title">Vos informations</string>
     <string name="edit_button">Modifier</string>
@@ -16,8 +16,6 @@
     <string name="civilite">civilite</string>
     <string name="adresse">Adresse</string>
     <string name="ville">Ville</string>
-    <string-array name="gender_array">
-        <item>Homme</item>
-        <item>Femme</item>
-    </string-array>
+    <string name="item_historique_description">Service Rendu</string>
+    <string name="item_historique_note">Note</string>
 </resources>

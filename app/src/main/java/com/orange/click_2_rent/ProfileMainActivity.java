@@ -7,8 +7,7 @@ import android.content.Intent;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
+
 
 
 public class ProfileMainActivity extends AppCompatActivity {
@@ -34,5 +33,10 @@ public class ProfileMainActivity extends AppCompatActivity {
 
     public void showServiceList(View view) {
 
+    }
+
+    public void showHistoriqueClient(View view) {
+        Intent intent = new Intent(this, HistoryListActivity.class);
+        startActivity(intent);
     }
 }

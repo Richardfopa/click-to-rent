@@ -135,7 +135,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:onClick="showHistoriqueClient">
 
             <ImageView
                 android:id="@+id/imageView28"
@@ -184,17 +185,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/outline_logout_black_24" />
 
-            <TextView
-                android:id="@+id/textView16"
+            <Button
+                android:id="@+id/deconnexion_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:text="@string/profile_deconnexion"
-                android:textColor="#20A6FE"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView30"
                 app:layout_constraintStart_toEndOf="@+id/imageView30"
-                app:layout_constraintTop_toTopOf="@+id/imageView30" />
+                app:layout_constraintTop_toTopOf="@+id/imageView30"
+                />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </LinearLayout>

@@ -10,9 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
+            android:name=".HistoryListActivity"
+            android:exported="true" />
+        <activity
             android:name=".EditProfileActivity"
             android:exported="true"
-            android:parentActivityName=".ProfileMainActivity"/>
+            android:parentActivityName=".ProfileMainActivity" />
         <activity
             android:name=".ProfileMainActivity"
             android:exported="true">
