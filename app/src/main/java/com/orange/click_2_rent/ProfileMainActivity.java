@@ -1,17 +1,15 @@
 package com.orange.click_2_rent;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.DividerItemDecoration;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
 
 import android.content.Intent;
-import android.gesture.GestureOverlayView;
+
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ListView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 
-import java.util.ArrayList;
 
 public class ProfileMainActivity extends AppCompatActivity {
 
@@ -19,11 +17,9 @@ public class ProfileMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gestion_profile);
-        //création des données
 
 
 
-        
     }
 
 
@@ -35,8 +31,6 @@ public class ProfileMainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void viewPrestationList(View view) {
-    }
 
     public void showServiceList(View view) {
 
