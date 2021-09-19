@@ -73,8 +73,8 @@ public class ConnexionActivity extends AppCompatActivity {
         emailbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Connexion par google", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(view.getContext(),AddUserActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -88,14 +88,6 @@ public class ConnexionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-    }
-
-    private void signIn() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
     }
 
     @Override
@@ -123,7 +115,7 @@ public class ConnexionActivity extends AppCompatActivity {
                 Client client = new Client(personId,personName,personFamilyName,personEmail,personPhoto.toString());
                 Log.d("Nom sur google :", personName);
                 Log.d("Person given name :", personGivenName);
-                Log.d("person email :", client.toString());
+                Log.d("client::::", client.toString());
 
             }
         }

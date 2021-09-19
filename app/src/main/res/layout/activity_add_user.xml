@@ -116,7 +116,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/name_hint"
+                android:hint="@string/username"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
                 app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
@@ -133,6 +133,7 @@
                     android:layout_marginTop="30dp"
                     android:contentDescription="@string/input_connexion"
                     android:fontFamily="@font/roboto_slab_bold"
+                    android:hint="richardfopa"
                     android:inputType="textWebEmailAddress"
                     android:maxLength="50"
                     android:shadowRadius="20"
@@ -173,7 +174,7 @@
                         <Button
                             android:id="@+id/btn_con_parcourir_user"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:layout_marginTop="20dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/roboto_slab_bold"
@@ -190,6 +191,31 @@
             </com.google.android.material.card.MaterialCardView>
 
 
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Inscrivez vous en tant que :" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/radioButton2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prestataire" />
+
+                <RadioButton
+                    android:id="@+id/radioButton3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Client" />
+            </RadioGroup>
+
             <Button
                 android:id="@+id/btn_con_valider"
                 android:layout_width="match_parent"
@@ -200,7 +226,7 @@
                 android:text="@string/btn_confirmer_infos"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/theme_color"
-                app:cornerRadius="20dp"
+                app:cornerRadius="6dp"
                 app:strokeColor="@color/background_grise"
                 app:strokeWidth="@dimen/border_button"
                 tools:ignore="TextContrastCheck" />
