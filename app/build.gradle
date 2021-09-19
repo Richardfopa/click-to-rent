@@ -30,6 +30,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    compileSdkVersion 31
+    buildToolsVersion '31.0.0'
 }
 
 apply plugin: 'com.android.application'
@@ -55,7 +57,7 @@ dependencies {
 
     // Required only if Facebook login support is required
     // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
-//    implementation 'com.facebook.android:facebook-android-sdk:8.x'
+//    implementation 'com.facebook.android:facebook-android-sdk:11.2git .0'
 
     // Add the dependency for the Firebase SDK for Google Analytics
     // When using the BoM, don't specify versions in Firebase dependencies

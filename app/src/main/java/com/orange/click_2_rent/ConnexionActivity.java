@@ -41,21 +41,7 @@ public class ConnexionActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
 
-        // Configure Google Sign In
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                //.requestIdToken("AIzaSyDFM-lBnKipOYBVhx4y7Cs7GqwZZrv3BU0")
-                .requestEmail()
-                .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
-
-        // [END config_signin]
-
-        // [START initialize_auth]
-        // Initialize Firebase Auth
-        mAuth = FirebaseAuth.getInstance();
-        Log.d("AUTH",mAuth.toString());
-        // [END initialize_auth]
 
         ImageView fab = findViewById(R.id.img_view_google);
 
@@ -64,6 +50,21 @@ public class ConnexionActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Configure Google Sign In
+                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                        //.requestIdToken("AIzaSyDFM-lBnKipOYBVhx4y7Cs7GqwZZrv3BU0")
+                        .requestEmail()
+                        .build();
+
+                mGoogleSignInClient = GoogleSignIn.getClient(view.getContext(), gso);
+
+                // [END config_signin]
+
+                // [START initialize_auth]
+                // Initialize Firebase Auth
+                mAuth = FirebaseAuth.getInstance();
+                Log.d("AUTH",mAuth.toString());
+                // [END initialize_auth]
                 //                Intent
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
                 startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
@@ -103,21 +104,18 @@ public class ConnexionActivity extends AppCompatActivity {
             // donc il n'est pas connecter
         }else{
             //Il est connecte
-            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-            if (acct != null) {
-                String personName = acct.getDisplayName();
-                String personGivenName = acct.getGivenName();
-                String personFamilyName = acct.getFamilyName();
-                String personEmail = acct.getEmail();
-                String personId = acct.getId();
-                String tel = acct.getIdToken();
-                Uri personPhoto = acct.getPhotoUrl();
-                Client client = new Client(personId,personName,personFamilyName,personEmail,personPhoto.toString());
+                String personName = currentUser.getDisplayName();
+                String personGivenName = currentUser.toString();
+                String personFamilyName = currentUser.getTenantId();
+                String personEmail = currentUser.getEmail();
+//                String personId = currentUser.get;
+                String tel = currentUser.getPhoneNumber();
+                Uri personPhoto = currentUser.getPhotoUrl();
+                Client client = new Client(tel,personName,personFamilyName,personEmail,personPhoto.toString());
                 Log.d("Nom sur google :", personName);
                 Log.d("Person given name :", personGivenName);
                 Log.d("client::::", client.toString());
 
-            }
         }
     }
 
@@ -150,7 +148,8 @@ public class ConnexionActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            sentUIUser(user);
+                            Log.d("USERS",user.toString());
+                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
