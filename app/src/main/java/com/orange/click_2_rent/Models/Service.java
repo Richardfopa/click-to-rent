@@ -1,73 +1,128 @@
-package com.orange.click_2_rent.Models; /***********************************************************************
- * Module:  Service.java
- * Author:  Mannschaft
- * Purpose: Defines the Class Service
+package com.orange.click_2_rent.Models;
+/***********************************************************************
+ * Author:  Team click-2-rent
+ * Purpose: Defines the Class Categorie
  ***********************************************************************/
+
+import com.firebase.ui.auth.data.model.User;
 
 import java.util.*;
 
-/** @pdOid bc0e8760-6093-4821-a026-2c8244a33989 */
+
 public class Service {
-   /** @pdOid d46f314f-95ec-4303-b145-327b38791874 */
-   private int id;
-   /** @pdOid b5b2c7c3-ef14-4a9c-99ac-0ca846875220 */
+
+   private String id;
    private Boolean status;
-   /** @pdOid e84c2e4a-7c0c-4da1-b571-a0957ace0e49 */
    private String description;
-   /** @pdOid eee5ade6-c392-4d2f-bfb1-09eba0f09a28 */
    private int photoService;
-   
-   /** @pdRoleInfo migr=no name=Photo assc=association9 coll=java.util.Collection impl=java.util.HashSet mult=1..* */
-   public ArrayList<Photo> contient;
-   
-   
-   /** @pdGenerated default getter */
-   public ArrayList<Photo> getContient() {
-      if (contient == null)
-         contient = new ArrayList<Photo>();
-      return contient;
+   private String categorie;
+   private Date AddDate;
+   private String nom_prestataire;
+   private ArrayList<Photo> photos;
+   private ArrayList<Users> clients;
+   private ArrayList<Commentaire> commentaire;
+   private ArrayList<Integer> note;
+
+   public Service() {
    }
-   
-   /** @pdGenerated default iterator getter */
-   public Iterator getIteratorContient() {
-      if (contient == null)
-         contient = new ArrayList<Photo>();
-      return contient.iterator();
+
+   public String getId() {
+      return id;
    }
-   
-   /** @pdGenerated default setter
-     * @param newContient */
-   public void setContient(ArrayList<Photo> newContient) {
-      removeAllContient();
-      for (Iterator iter = newContient.iterator(); iter.hasNext();)
-         addContient((Photo)iter.next());
+
+   public Service(String id, Boolean status, String description, int photoService,
+                  String categorie, String nom_prestataire ){
+      this.id = id;
+      this.status = status;
+      this.description = description;
+      this.photoService = photoService;
+      this.categorie = categorie;
+      AddDate = new Date();
+      this.nom_prestataire = nom_prestataire;
    }
-   
-   /** @pdGenerated default add
-     * @param newPhoto */
-   public void addContient(Photo newPhoto) {
-      if (newPhoto == null)
-         return;
-      if (this.contient == null)
-         this.contient = new ArrayList<Photo>();
-      if (!this.contient.contains(newPhoto))
-         this.contient.add(newPhoto);
+
+   public Boolean getStatus() {
+      return status;
    }
-   
-   /** @pdGenerated default remove
-     * @param oldPhoto */
-   public void removeContient(Photo oldPhoto) {
-      if (oldPhoto == null)
-         return;
-      if (this.contient != null)
-         if (this.contient.contains(oldPhoto))
-            this.contient.remove(oldPhoto);
+
+   public void setStatus(Boolean status) {
+      this.status = status;
    }
-   
-   /** @pdGenerated default removeAll */
-   public void removeAllContient() {
-      if (contient != null)
-         contient.clear();
+
+   public String getDescription() {
+      return description;
+   }
+
+   public void setDescription(String description) {
+      this.description = description;
+   }
+
+   public int getPhotoService() {
+      return photoService;
+   }
+
+   public void setPhotoService(int photoService) {
+      this.photoService = photoService;
+   }
+
+   public String getCategorie() {
+      return categorie;
+   }
+
+   public void setCategorie(String categorie) {
+      this.categorie = categorie;
+   }
+
+   public Date getAddDate() {
+      return AddDate;
+   }
+
+   public String getNom_prestataire() {
+      return nom_prestataire;
+   }
+
+   public void setNom_prestataire(String nom_prestataire) {
+      this.nom_prestataire = nom_prestataire;
+   }
+
+   public ArrayList<Photo> getPhotos() {
+      if( photos == null);
+         photos = new ArrayList<Photo>();
+      return photos;
+   }
+
+   public void addPhotos(Photo photo) {
+      this.photos.add(photo);
+   }
+
+   public ArrayList<Users> getClients() {
+      if (clients == null);
+         clients = new ArrayList<Users>();
+      return clients;
+   }
+
+   public void addClients(Users clients) {
+      this.clients.add(clients);
+   }
+
+   public ArrayList<Commentaire> getCommentaire() {
+      if (commentaire == null);
+         commentaire = new ArrayList<Commentaire>();
+      return commentaire;
+   }
+
+   public void addCommentaire(Commentaire commentaire) {
+      this.commentaire.add(commentaire);
+   }
+
+   public ArrayList<Integer> getNote() {
+      if (note == null);
+         note=new ArrayList<Integer>();
+      return note;
+   }
+
+   public void setNote(Integer note) {
+      this.note.add(note);
    }
 
    @Override
@@ -77,7 +132,7 @@ public class Service {
               ", status=" + status +
               ", description='" + description + '\'' +
               ", photoService=" + photoService +
-              ", contient=" + contient +
+              ", contient=" + photos +
               '}';
    }
 }

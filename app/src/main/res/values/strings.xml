@@ -1,11 +1,10 @@
 <resources>
-<<<<<<< HEAD
+
     <string name="app_name">Click-2-rent</string>
     <string name="label">Saisissez le titre de votre service</string>
     <string name="select_category">Catégorie</string>
     <string name="description">Décrivez brièvement votre service Svp</string>
-=======
-    <string name="app_name">Click 2 rent</string>
+
     <string name="email_con">Email :</string>
     <string name="email_hint">email:</string>
     <string name="bt_conn_valider">Valider</string>

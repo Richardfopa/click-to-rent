@@ -18,7 +18,7 @@
 
             android:name=".ajout_service"
             android:exported="true" />
-
+        <activity
             android:name=".AddUserActivity"
             android:exported="true" />
 

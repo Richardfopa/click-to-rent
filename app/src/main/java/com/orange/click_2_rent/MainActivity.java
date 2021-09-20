@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         btnChangement.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(MainActivity.this, ajout_service.class);
+                Intent i = new Intent(MainActivity.this, AddUserActivity.class);
                 startActivity(i);
             }
         });
