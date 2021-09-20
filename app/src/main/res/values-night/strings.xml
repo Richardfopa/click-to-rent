@@ -17,4 +17,5 @@
     <string name="username_description">Description du nom d\'utilisateur</string>
     <string name="btn_confirmer_infos">Confirmer</string>
     <string name="btn_parcourir_photo">Parcourir</string>
+    <string name="telephone">telephone</string>
 </resources>

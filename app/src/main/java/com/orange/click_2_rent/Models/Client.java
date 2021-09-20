@@ -4,10 +4,14 @@ package com.orange.click_2_rent.Models; /***************************************
  * Purpose: Defines the Class Client
  ***********************************************************************/
 
+import com.google.firebase.Timestamp;
+
+import java.io.Serializable;
+import java.lang.reflect.Array;
 import java.util.*;
 
 /** @pdOid ade7f29d-6cfb-47e8-a014-3170afe1509f */
-public class Client {
+public class Client implements Serializable {
    /** @pdOid 90b4d57f-c88d-4022-a1bd-f84e629ba7fb */
    private String idClient;
    /** @pdOid 8663c700-2e65-476e-9db4-1283be16bc75 */
@@ -17,56 +21,15 @@ public class Client {
    /** @pdOid b1def15a-68e9-4682-bab9-1f1c6ffffab8 */
    private String email;
 
-   public String getIdClient() {
-      return idClient;
+   private String datedarrive;
+   private String datedesorti;
+
+   public String getDatedarrive() {
+      return datedarrive;
    }
 
-   public String getNom() {
-      return nom;
-   }
-
-   public void setNom(String nom) {
-      this.nom = nom;
-   }
-
-   public String getTelphone() {
-      return telphone;
-   }
-
-   public void setTelphone(String telphone) {
-      this.telphone = telphone;
-   }
-
-   public String getEmail() {
-      return email;
-   }
-
-   public void setEmail(String email) {
-      this.email = email;
-   }
-
-   public String getMotDePasse() {
-      return motDePasse;
-   }
-
-   public void setMotDePasse(String motDePasse) {
-      this.motDePasse = motDePasse;
-   }
-
-   public int getPhotoProfil() {
-      return photoProfil;
-   }
-
-   public void setPhotoProfil(int photoProfil) {
-      this.photoProfil = photoProfil;
-   }
-
-   public Photo getA_auplus() {
-      return a_auplus;
-   }
-
-   public void setA_auplus(Photo a_auplus) {
-      this.a_auplus = a_auplus;
+   public String getDatedesorti() {
+      return datedesorti;
    }
 
    /** @pdOid 760c8c14-ed70-42cb-ab05-760ea5426120 */
@@ -83,6 +46,8 @@ public class Client {
       this.telphone = telphone;
       this.email = email;
       this.motDePasse = motDePasse;
+      this.datedarrive = String.valueOf((new Timestamp(new Date())));
+      this.datedesorti = String.valueOf((new Timestamp(new Date())));
    }
 
    /** @pdRoleInfo migr=no name=Photo assc=association8 mult=1..1 */
@@ -142,7 +107,60 @@ public class Client {
          demande = new ArrayList<Service>();
       return demande;
    }
-   
+
+   public String getIdClient() {
+      return idClient;
+   }
+
+   public String getNom() {
+      return nom;
+   }
+
+   public void setNom(String nom) {
+      this.nom = nom;
+   }
+
+   public String getTelphone() {
+      return telphone;
+   }
+
+   public void setTelphone(String telphone) {
+      this.telphone = telphone;
+   }
+
+   public String getEmail() {
+      return email;
+   }
+
+   public void setEmail(String email) {
+      this.email = email;
+   }
+
+   public String getMotDePasse() {
+      return motDePasse;
+   }
+
+   public void setMotDePasse(String motDePasse) {
+      this.motDePasse = motDePasse;
+   }
+
+   public int getPhotoProfil() {
+      return photoProfil;
+   }
+
+   public void setPhotoProfil(int photoProfil) {
+      this.photoProfil = photoProfil;
+   }
+
+   public Photo getA_auplus() {
+      return a_auplus;
+   }
+
+   public void setA_auplus(Photo a_auplus) {
+      this.a_auplus = a_auplus;
+   }
+
+
    /** @pdGenerated default iterator getter */
    public Iterator getIteratorDemande() {
       if (demande == null)
@@ -152,7 +170,7 @@ public class Client {
    
    /** @pdGenerated default setter
      * @param newDemande */
-   public void setDemande(Collection<Service> newDemande) {
+   public void setDemande(ArrayList<Service> newDemande) {
       removeAllDemande();
       for (Iterator iter = newDemande.iterator(); iter.hasNext();)
          addDemande((Service)iter.next());
@@ -195,7 +213,7 @@ public class Client {
               ", motDePasse='" + motDePasse + '\'' +
               ", photoProfil=" + photoProfil +
               ", a_auplus=" + a_auplus +
-              ", demande=" + demande.toString() +
+//              ", demande=" + demande.toString() +
               '}';
    }
 }

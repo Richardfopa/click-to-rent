@@ -145,6 +145,43 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:id="@+id/edit_numero_update"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:hint="@string/telephone"
+                app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
+                app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
+                app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
+                app:boxCornerRadiusTopStart="@dimen/box_input_radius"
+                app:boxStrokeColor="@color/theme_color"
+                app:boxStrokeErrorColor="@color/black"
+                app:expandedHintEnabled="true"
+                app:hintTextColor="@color/theme_color"
+                app:startIconTint="@color/theme_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textinoutedittext_telephone_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:contentDescription="@string/input_connexion"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:hint="+237 653 36 47 48"
+                    android:inputType="phone"
+                    android:maxLength="50"
+                    android:shadowRadius="20"
+                    android:singleLine="true"
+                    android:textColor="@color/theme_color"
+                    android:textColorHint="@color/theme_color"
+                    android:textSize="@dimen/text_input_size"
+                    tools:ignore="EditableContentDescCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card"
                 style="@style/style_card"
@@ -203,13 +240,13 @@
                 android:orientation="horizontal">
 
                 <RadioButton
-                    android:id="@+id/radioButton2"
+                    android:id="@+id/rb_prestation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Prestataire" />
 
                 <RadioButton
-                    android:id="@+id/radioButton3"
+                    android:id="@+id/rb_client"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checked="true"
