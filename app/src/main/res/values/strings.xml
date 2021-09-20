@@ -51,5 +51,8 @@
     <string name="ville">Ville</string>
     <string name="item_historique_description">Service Rendu</string>
     <string name="item_historique_note">Note</string>
+    <string name="description_prestation">Designer 3D</string>
+    <string name="intitule">Faites vos montages graphiques</string>
+    <string name="date_du_jour">19/11/2021</string>
 
 </resources>

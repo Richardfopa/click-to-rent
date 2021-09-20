@@ -1,5 +1,6 @@
 package com.orange.click_2_rent;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,8 @@ public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.SpecialV
             @Override
             public void onClick(View view) {
 
+                Intent intent = new Intent(view.getContext(),PrestationsActivity.class);
+                view.getContext().startActivity(intent);
             }
         });
 

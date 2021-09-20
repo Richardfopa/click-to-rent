@@ -2,14 +2,17 @@ package com.orange.click_2_rent;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -67,7 +70,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
+                CardView card = Viewpage.findViewById(R.id.monCadre);
                 Viewpage.setCurrentItem(tab.getPosition());
+                card.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent intent = new Intent(view.getContext(),PrestationsActivity.class);
+                        startActivity(intent);
+                    }
+                });
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {

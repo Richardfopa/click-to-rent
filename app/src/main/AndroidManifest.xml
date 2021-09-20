@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.orange.click_2_rent">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--    <uses-permission android:name="android.permission.GE" />-->
-
 
     <application
         android:name="androidx.multidex.MultiDexApplication"
@@ -17,6 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
+        <activity
+            android:name=".PrestationsActivity"
+            android:exported="true" />
         <activity
             android:name=".ajout_service"
             android:exported="true" />
@@ -32,10 +32,7 @@
         <activity
             android:name=".ConnexionActivity"
             android:exported="true" />
-
-
-        <activity
-            android:name=".MainActivity">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -51,7 +48,7 @@
             android:parentActivityName=".ProfileMainActivity" />
         <activity
             android:name=".ProfileMainActivity"
-            android:exported="true"/>
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -10,7 +10,7 @@
         android:clipChildren="false"
         app:cardPreventCornerOverlap="true"
         app:cardUseCompatPadding="true"
-        app:cardElevation="6sp"
+        app:cardElevation="1sp"
         android:id="@+id/monCadre"
         android:layout_margin="2sp">
 
