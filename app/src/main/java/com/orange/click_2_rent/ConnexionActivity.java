@@ -50,20 +50,8 @@ public class ConnexionActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Configure Google Sign In
-                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        //.requestIdToken("AIzaSyDFM-lBnKipOYBVhx4y7Cs7GqwZZrv3BU0")
-                        .requestEmail()
-                        .build();
 
-                mGoogleSignInClient = GoogleSignIn.getClient(view.getContext(), gso);
-
-                // [END config_signin]
-
-                // [START initialize_auth]
-                // Initialize Firebase Auth
-                mAuth = FirebaseAuth.getInstance();
-                Log.d("AUTH",mAuth.toString());
+                Log.d("AUTH:RICH",mAuth.toString());
                 // [END initialize_auth]
                 //                Intent
                 Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -89,6 +77,20 @@ public class ConnexionActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        // Configure Google Sign In
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("AIzaSyDFM-lBnKipOYBVhx4y7Cs7GqwZZrv3BU0")
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        // [END config_signin]
+
+        // [START initialize_auth]
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
     }
 
     @Override

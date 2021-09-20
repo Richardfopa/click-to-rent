@@ -110,7 +110,7 @@
         android:layout_marginTop="50dp"
         app:layout_constraintStart_toStartOf="@+id/scrollView2"
         app:layout_constraintTop_toBottomOf="@+id/scrollView2"
-        app:srcCompat="@drawable/google" />
+        android:src="@drawable/google" />
 
     <ImageView
         android:id="@+id/img_view_facebook"
