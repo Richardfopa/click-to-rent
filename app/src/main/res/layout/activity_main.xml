@@ -61,6 +61,11 @@
         app:elevation="10sp"
         app:fabSize="normal"
         app:rippleColor="@color/couleur_bleu"
-        tools:ignore="SpeakableTextPresentCheck" />
+        tools:ignore="SpeakableTextPresentCheck,VectorDrawableCompat" />
+
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+
+
+

@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">Click-2-rent</string>
+    <string name="app_name">Click 2 rent</string>
     <string name="service">Prestation serv.</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="prestation">prestations</string>
     <string name="restauration">Restaurants</string>
@@ -9,4 +8,48 @@
     <string name="Atitre">Click to rent</string>
     <string name="titre">Techniciens Batiment</string>
     <string name="info">Informatique</string>
+
+    <string name="label">Saisissez le titre de votre service</string>
+    <string name="select_category">Catégorie</string>
+    <string name="description">Décrivez brièvement votre service Svp</string>
+
+    <string name="email_con">Email :</string>
+    <string name="email_hint">email:</string>
+    <string name="bt_conn_valider">Valider</string>
+    <string name="textview_connecter_vous_via">Creer votre compte via </string>
+    <string name="facebook">Facebook</string>
+    <string name="google">google</string>
+    <string name="input_connexion">input connexion</string>
+    <string name="btn_se_connecter">Se connecter</string>
+    <string name="password">Mot de passe</string>
+    <string name="signin">Connexion</string>
+    <string name="password_confirm">Confirmez</string>
+    <string name="sign_up_con" translatable="false">Sign Up</string>
+    <string name="lorem">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam asperiores delectus dolor dolore expedita explicabo hic in, officia pariatur possimus praesentium provident quaerat quasi suscipit tenetur totam unde vitae? Distinctio.</string>
+    <string name="confirm_user_info">Confirmer vos infos</string>
+    <string name="username">username</string>
+    <string name="name_hint">richard fopa</string>
+    <string name="username_description">Description du nom d\'utilisateur</string>
+    <string name="btn_confirmer_infos">Confirmer</string>
+    <string name="btn_parcourir_photo">Parcourir</string>
+
+    <string name="item_description">description</string>
+    <string name="profile_title">Ndikadaniel01@gmail.com</string>
+    <string name="profile_deconnexion">Deconnexion</string>
+    <string name="profile_comment">Liste des commentaires</string>
+    <string name="profile_history">Historique des Clients</string>
+    <string name="profil_edit">Modifiez le profil</string>
+    <string name="nom_label">Nom</string>
+    <string name="phone_label">Téléphone Mobile</string>
+    <string name="email_label">Adresse Email</string>
+    <string name="page_title">Vos informations</string>
+    <string name="edit_button">Modifier</string>
+    <string name="profile_service_list">Liste des services</string>
+    <string name="sexe">sexe</string>
+    <string name="civilite">civilite</string>
+    <string name="adresse">Adresse</string>
+    <string name="ville">Ville</string>
+    <string name="item_historique_description">Service Rendu</string>
+    <string name="item_historique_note">Note</string>
+
 </resources>

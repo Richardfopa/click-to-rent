@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:circularflow_defaultRadius="50dp"
+    tools:context=".ConnexionActivity">
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:foregroundGravity="center"
+        android:paddingLeft="16dp"
+        android:paddingTop="16dp"
+        android:paddingRight="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingBottom="16dp">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:gravity="center"
+                android:text="@string/sign_up_con"
+                android:textColor="#039BE5"
+                android:textSize="50sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edittextusername_con"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/email_hint"
+                app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
+                app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
+                app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
+                app:boxCornerRadiusTopStart="@dimen/box_input_radius"
+                app:boxStrokeColor="@color/theme_color"
+                app:boxStrokeErrorColor="@color/black"
+                app:hintTextColor="@color/theme_color"
+                app:startIconDrawable="@drawable/ic_mail"
+                app:startIconTint="@color/theme_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:contentDescription="@string/input_connexion"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:inputType="textWebEmailAddress"
+                    android:shadowRadius="20"
+                    android:singleLine="true"
+                    android:textColor="@color/theme_color"
+                    android:textColorHint="@color/theme_color"
+                    android:textSize="@dimen/text_input_size"
+                    app:startIconDrawable="@drawable/ic_mail"
+                    tools:ignore="EditableContentDescCheck" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/btn_con_valider"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:shadowRadius="1"
+                android:text="@string/bt_conn_valider"
+                android:textColor="@color/white"
+                app:backgroundTint="@color/theme_color"
+                app:cornerRadius="20dp"
+                app:strokeColor="@color/background_grise"
+                app:strokeWidth="@dimen/border_button"
+                tools:ignore="TextContrastCheck" />
+
+            <TextView
+                android:id="@+id/text_media_con"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:gravity="center"
+                android:text="@string/textview_connecter_vous_via"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ImageView
+        android:id="@+id/img_view_google"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginLeft="100dp"
+        android:layout_marginTop="50dp"
+        app:layout_constraintStart_toStartOf="@+id/scrollView2"
+        app:layout_constraintTop_toBottomOf="@+id/scrollView2"
+        app:srcCompat="@drawable/google" />
+
+    <ImageView
+        android:id="@+id/img_view_facebook"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="100dp"
+        android:layout_marginRight="100dp"
+        app:layout_constraintEnd_toEndOf="@+id/scrollView2"
+        app:layout_constraintTop_toTopOf="@+id/img_view_google"
+        app:srcCompat="@drawable/facebook" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
