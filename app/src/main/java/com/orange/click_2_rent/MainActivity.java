@@ -3,6 +3,7 @@ package com.orange.click_2_rent;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
+
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
@@ -11,22 +12,44 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.tabs.TabLayout;
+
+
+
 
 public class MainActivity extends AppCompatActivity {
 
     TabLayout Tablelayout;
     ViewPager2  Viewpage;
     MaPageAdapter pagerAdapter;
+    public static final String CLE_POSITION_CoURANTE = "com.orange.click_2_rent";
+    public static int positionCourante;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        if(savedInstanceState!=null){
+            positionCourante = savedInstanceState.getInt(CLE_POSITION_CoURANTE,0);
+
+            return;
+        }
+
+        //getSupportFragmentManager().beginTransaction()
+          //      .add(R.id.principal,new Fragment1(),Fragment1.class.getSimpleName())
+          //      .commit();
+
+
         Tablelayout = findViewById(R.id.maTabLayout);
         Viewpage = findViewById(R.id.nom_de_page);
+
+        //Recuperation et Affichage des icones
+
+       // Tablelayout.getTabAt(0).setIcon(R.drawable.home_repair_service_24);
+        //Tablelayout.getTabAt(1).setIcon(R.drawable.restaurant_24);
+        // Tablelayout.getTabAt(2).setIcon(R.drawable.local_taxi_24);
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_menu);
@@ -39,12 +62,6 @@ public class MainActivity extends AppCompatActivity {
         pagerAdapter = new MaPageAdapter(mfragment,getLifecycle());
         Viewpage.setAdapter(pagerAdapter);
 
-
-       //Recuperation et Affichage des icones
-
-        Tablelayout.getTabAt(0).setIcon(R.drawable.home_repair_service_24);
-        Tablelayout.getTabAt(1).setIcon(R.drawable.restaurant_24);
-        Tablelayout.getTabAt(2).setIcon(R.drawable.local_taxi_24);
 
         Tablelayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -101,5 +118,7 @@ public class MainActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
+
+
     }
 }

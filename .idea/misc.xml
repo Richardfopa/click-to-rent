@@ -8,11 +8,17 @@
         <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/drawable/local_taxi_24.xml" value="0.1" />
         <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/drawable/restaurant_24.xml" value="0.1" />
         <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/drawable/services.xml" value="0.1" />
+        <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout-v21/menu_recyclerviewcontainer.xml" value="0.33" />
         <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/action_bar_menu.xml" value="0.25" />
-        <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/activity_affichage_menu.xml" value="0.25" />
+        <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/fragment_1.xml" value="0.25" />
         <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/fragment_2.xml" value="0.19375" />
         <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/fragment_3.xml" value="0.209375" />
+        <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/menu_recyclerviewcontainer.xml" value="0.33" />
+        <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/myrecyclermenu.xml" value="0.22" />
+        <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/recycler_vue_profil.xml" value="0.209375" />
+        <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/layout/specialite_menu.xml" value="0.24858757062146894" />
         <entry key="..\:/Users/Mannschaft/AndroidStudioProjects/Mon projet clone/click-to-rent/app/src/main/res/menu/botton_nav_bar.xml" value="0.19375" />
       </map>
     </option>

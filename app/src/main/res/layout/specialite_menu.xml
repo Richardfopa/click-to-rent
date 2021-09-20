@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+    <androidx.cardview.widget.CardView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:clickable="true"
+        app:cardCornerRadius="10sp"
+        android:clipChildren="false"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="6sp"
+        android:id="@+id/monCadre"
+        android:layout_margin="2sp">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="2sp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/monImageProfil"
+                android:layout_width="200sp"
+                android:layout_height="200sp"
+                android:layout_margin="2sp"
+                android:layout_gravity="center"
+                android:scaleType="fitCenter"
+                 />
+
+            <TextView
+                android:id="@+id/monTitre"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:text="@string/info" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>

@@ -21,5 +21,6 @@
         android:id="@+id/profil"
         android:title="Profile"
         app:showAsAction="never"
-        android:icon="@drawable/person_24"/>
+        android:icon="@drawable/person_24"
+        />
 </menu>
