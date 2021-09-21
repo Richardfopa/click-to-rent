@@ -19,10 +19,15 @@ public class Categorie {
    public Categorie(String nom, String description) {
       this.nom = nom;
       this.description = description;
+      this.serviceTab = new ArrayList<Service>();
    }
 
    public String getNom() {
       return nom;
+   }
+
+   public String getId() {
+      return id;
    }
 
    public void setNom(String nom) {
@@ -37,8 +42,9 @@ public class Categorie {
       this.description = description;
    }
 
-
-   
+   public ArrayList<Service> getServiceTab() {
+      return serviceTab;
+   }
 
    public void modifer() {
       // TODO: implement
@@ -46,17 +52,20 @@ public class Categorie {
    
 
    public void ajouterService(Service service) {
+
       this.serviceTab.add(service);
+
    }
 
    public void supprimer(Service service) {
+
       this.serviceTab.remove(service);
    }
 
    @Override
    public String toString() {
       return "Categorie{" +
-              "id=" + id +
+
               ", nom='" + nom + '\'' +
               ", description='" + description + '\'' +
               '}';

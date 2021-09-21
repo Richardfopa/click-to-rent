@@ -7,23 +7,41 @@ package com.orange.click_2_rent.Models;
 import java.util.*;
 
 public class Users {
-
-    private String idUser;
     private String nom;
     private Number telphone;
     private String email;
     private Photo photoClient;
+    private String adresse;
+    private String ville;
     private ArrayList<Service> mesServices;
     private ArrayList<Service> servicesDemande;
     private ArrayList<Commentaire> mesCommentaires;
     private String motDePasse;
-    public ArrayList<Service> demande;
     private int photoProfil;
+    private String id;
+
+    public Users(String nom, Number telphone, String email, String motDePasse) {
+        this.nom = nom;
+        this.telphone = telphone;
+        this.email = email;
+        this.motDePasse = motDePasse;
+        this.mesServices=new ArrayList<Service>();
+        this.servicesDemande=new ArrayList<Service>();
+        this.mesCommentaires=new ArrayList<Commentaire>();
+        FirebasesUtil.addUser(this);
+    }
 
     public Users() {
     }
 
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public ArrayList<Service> getMesServices() {
         if (mesServices == null);
@@ -55,15 +73,16 @@ public class Users {
         this.mesCommentaires.add(comment);
     }
 
-    public String getIdUser() {
-        return idUser;
-    }
-
     public String getNom() {
         return nom;
     }
 
+
+
+
     public void setNom(String nom) {
+
+
         this.nom = nom;
     }
 
@@ -108,29 +127,47 @@ public class Users {
     }
 
 
-    public ArrayList<Service> getDemande() {
-        if (demande == null)
-            demande = new ArrayList<Service>();
-        return demande;
+    public String getAdresse() {
+        return adresse;
     }
 
-    public Iterator getIteratorDemande() {
-        if (demande == null)
-            demande = new ArrayList<Service>();
-        return demande.iterator();
+    public void setAdresse(String adresse) {
+        this.adresse = adresse;
     }
+
+    public String getVille() {
+        return ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
+
+    //Ajouter les services demandé d'un utilisateur
+    public void addMesService(Service service){
+        this.mesServices.add(service);
+    }
+
+    public void addServiceDemande(Service service){
+        this.servicesDemande.add(service);
+    }
+
+    public void addCommentaire(Commentaire comment){
+        this.mesCommentaires.add(comment);
+    }
+
+
 
     @Override
     public String toString() {
         return "Users{" +
-                "idUsers=" + idUser +
                 ", nom='" + nom + '\'' +
                 ", telphone=" + telphone +
                 ", email='" + email + '\'' +
                 ", motDePasse='" + motDePasse + '\'' +
                 ", photoProfil=" + photoProfil +
                 ", photoClient=" + photoClient +
-                ", demande=" + demande.toString() +
                 '}';
     }
 }

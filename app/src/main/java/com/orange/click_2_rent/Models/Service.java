@@ -30,9 +30,8 @@ public class Service {
       return id;
    }
 
-   public Service(String id, Boolean status, String description, int photoService,
+   public Service( Boolean status, String description, int photoService,
                   String categorie, String nom_prestataire ){
-      this.id = id;
       this.status = status;
       this.description = description;
       this.photoService = photoService;
@@ -92,6 +91,7 @@ public class Service {
    }
 
    public void addPhotos(Photo photo) {
+
       this.photos.add(photo);
    }
 
@@ -102,6 +102,7 @@ public class Service {
    }
 
    public void addClients(Users clients) {
+
       this.clients.add(clients);
    }
 
@@ -112,6 +113,7 @@ public class Service {
    }
 
    public void addCommentaire(Commentaire commentaire) {
+
       this.commentaire.add(commentaire);
    }
 
@@ -122,6 +124,7 @@ public class Service {
    }
 
    public void setNote(Integer note) {
+
       this.note.add(note);
    }
 

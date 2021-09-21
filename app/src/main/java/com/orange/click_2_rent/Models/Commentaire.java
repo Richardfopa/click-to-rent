@@ -3,29 +3,25 @@ package com.orange.click_2_rent.Models;
 import java.util.Date;
 
 public class Commentaire {
-
-    private String idComment;
+    private String id;
     private Date addDate;
     private Users author;
     private String comment;
 
-    public Commentaire(){
+    public Commentaire() {
 
     }
 
-    public Commentaire(String idComment, Users author, String comment) {
-        this.idComment = idComment;
+    public Commentaire(Users author, String comment) {
+
         this.addDate = new Date();
         this.author = author;
         this.comment = comment;
     }
 
-    public String getIdComment() {
-        return idComment;
-    }
 
-    public void setIdComment(String idComment) {
-        this.idComment = idComment;
+    public String getId() {
+        return id;
     }
 
     public Date getAddDate() {

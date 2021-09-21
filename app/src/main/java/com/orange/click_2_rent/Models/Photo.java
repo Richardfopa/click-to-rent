@@ -9,35 +9,39 @@ import java.util.*;
 
 public class Photo {
 
-   private String idPhoto;
+   private String id;
 
-   private String nomPhoto;
+   private String urlPhoto;
 
    public String getIdPhoto() {
-      return idPhoto;
+      return id;
    }
 
-   public Photo(String idPhoto, String nomPhoto) {
-      this.idPhoto = idPhoto;
-      this.nomPhoto = nomPhoto;
+   public Photo(String urlPhoto) {
+      this.urlPhoto = urlPhoto;
+   }
+
+   public String getId() {
+      return id;
+   }
+
+   public String getUrlPhoto() {
+      return urlPhoto;
    }
 
    public Photo() {
    }
 
-   public String getNomPhoto() {
-      return nomPhoto;
-   }
 
-   public void setNomPhoto(String nomPhoto) {
-      this.nomPhoto = nomPhoto;
+   public void setUrlPhoto(String nomPhoto) {
+      this.urlPhoto = nomPhoto;
    }
 
    @Override
    public String toString() {
       return "Photo{" +
-              "idPhoto=" + idPhoto +
-              ", nomPhoto='" + nomPhoto + '\'' +
+              "idPhoto=" + id +
+              ", urlPhoto='" + urlPhoto + '\'' +
               '}';
    }
 }
