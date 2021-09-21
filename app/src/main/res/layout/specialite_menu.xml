@@ -26,6 +26,7 @@
                 android:layout_height="200sp"
                 android:layout_margin="2sp"
                 android:layout_gravity="center"
+                android:clickable="true"
                 android:scaleType="fitCenter"
                  />
 

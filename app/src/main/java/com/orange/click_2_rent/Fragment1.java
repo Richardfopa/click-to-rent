@@ -77,7 +77,7 @@ public class Fragment1 extends Fragment {
         maListeRecyler.setLayoutManager(new GridLayoutManager(getContext(),2));
 
         //initializeData();
-        maListeRecyler.setAdapter(new SpecialAdapter(initializeData()));
+        maListeRecyler.setAdapter(new SpecialAdapter(initializeData(),getContext()));
 
         return vue;
 

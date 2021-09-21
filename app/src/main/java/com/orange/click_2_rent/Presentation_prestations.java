@@ -5,9 +5,9 @@ public class Presentation_prestations {
     int image_profil_prestation;
     String titre_prestation;
     String miniDescription;
-    int date_prestation;
+    String date_prestation;
 
-    public Presentation_prestations(int image_profil_prestation, String titre_prestation, String miniDescription, int date_prestation) {
+    public Presentation_prestations(int image_profil_prestation, String titre_prestation, String miniDescription, String date_prestation) {
 
         this.image_profil_prestation = image_profil_prestation;
         this.titre_prestation = titre_prestation;
@@ -30,7 +30,7 @@ public class Presentation_prestations {
         return miniDescription;
     }
 
-    public int getDate_prestation() {
+    public String getDate_prestation() {
 
         return date_prestation;
     }

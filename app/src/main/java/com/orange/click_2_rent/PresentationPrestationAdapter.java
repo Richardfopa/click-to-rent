@@ -41,13 +41,6 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
         holder.mMinidescription.setText(liste_prestations.getMiniDescription());
         holder.mDateDescription.setText(liste_prestations.getDate_prestation());
 
-        holder.mCadreVue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-            }
-        });
     }
 
     @Override
