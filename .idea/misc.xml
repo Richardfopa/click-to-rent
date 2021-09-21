@@ -6,8 +6,9 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/drawable/divider.xml" value="0.19814814814814816" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/drawable/recyclerview_divider.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/action_bar_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_ajout_service.xml" value="0.215625" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_connexion.xml" value="0.215625" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_connexion.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_history_list.xml" value="0.1859375" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_liste_services.xml" value="0.215625" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/gestion_profile.xml" value="0.25" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/historique_client_item.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/list_item.xml" value="0.18" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/nos_prestations_affichage.xml" value="0.33" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/profile_item.xml" value="0.30173775671406006" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/menu/botton_nav_bar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/menu/gender_menu.xml" value="0.20416666666666666" />
