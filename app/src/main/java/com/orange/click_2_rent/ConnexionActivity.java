@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+
+import android.widget.Button;
+
 import android.widget.ImageView;
 
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -20,6 +23,9 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+
+import com.google.android.material.snackbar.Snackbar;
+
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -126,47 +132,36 @@ public class ConnexionActivity extends AppCompatActivity {
 
         Button emailbtn = findViewById(R.id.btn_con_valider);
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Configure Google Sign In
-                GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                        //.requestIdToken("AIzaSyDFM-lBnKipOYBVhx4y7Cs7GqwZZrv3BU0")
-                        .requestEmail()
-                        .build();
+        fab.setOnClickListener(view -> {
+            // Configure Google Sign In
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    //.requestIdToken("AIzaSyDFM-lBnKipOYBVhx4y7Cs7GqwZZrv3BU0")
+                    .requestEmail()
+                    .build();
 
-                mGoogleSignInClient = GoogleSignIn.getClient(view.getContext(), gso);
+            mGoogleSignInClient = GoogleSignIn.getClient(view.getContext(), gso);
 
-                // [END config_signin]
+            // [END config_signin]
 
-                // [START initialize_auth]
-                // Initialize Firebase Auth
-                mAuth = FirebaseAuth.getInstance();
-                Log.d("AUTH",mAuth.toString());
-                // [END initialize_auth]
-                //                Intent
-                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
-            }
+            // [START initialize_auth]
+            // Initialize Firebase Auth
+            mAuth = FirebaseAuth.getInstance();
+            Log.d("AUTH",mAuth.toString());
+            // [END initialize_auth]
+            //                Intent
+            Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
         });
 
-        emailbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Connexion par google", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        emailbtn.setOnClickListener(view -> Snackbar.make(view, "Connexion par google", Snackbar.LENGTH_LONG)
+                .setAction("Action", null).show());
 
         ImageView fab_face = findViewById(R.id.img_view_facebook);
-        fab_face.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Connexion par facebook", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Intent intent = new Intent(view.getContext(),PremiereConnectionActivity.class);
-                startActivity(intent);
-            }
+        fab_face.setOnClickListener(view -> {
+            Snackbar.make(view, "Connexion par facebook", Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
+            Intent intent = new Intent(view.getContext(),PremiereConnectionActivity.class);
+            startActivity(intent);
         });
 
         // Initialize Firebase Auth

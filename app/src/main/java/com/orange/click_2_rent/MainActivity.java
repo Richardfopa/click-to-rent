@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.botton_nav_bar,menu);
         return true;
+
     }
     public boolean onOptionsItemSelected(MenuItem menuItem) {
 
@@ -116,7 +117,8 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.profil:
-
+                Intent profilIntent = new Intent(this, ConnexionActivity.class);
+                startActivity(profilIntent);
                 Toast.makeText(this, "Profil", Toast.LENGTH_SHORT).show();
             case R.id.Rechercher:
 

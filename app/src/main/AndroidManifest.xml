@@ -7,7 +7,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
-        android:name="androidx.multidex.MultiDexApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -22,7 +21,12 @@
             android:exported="true"
             android:parentActivityName=".MainActivity"/>
         <activity
-            android:name=".ajout_service"
+            android:name=".ListeServicesActivity"
+            android:exported="true"
+            android:label="@string/title_activity_liste_services"
+            android:theme="@style/Theme.Click2rent.NoActionBar" />
+        <activity
+            android:name=".AddServiceActivity"
             android:exported="true" />
         <activity
             android:name=".AddUserActivity"
@@ -46,6 +50,7 @@
         <activity
             android:name=".HistoryListActivity"
             android:exported="true" />
+
         <activity
             android:name=".EditProfileActivity"
             android:exported="true"
@@ -53,6 +58,7 @@
         <activity
             android:name=".ProfileMainActivity"
             android:exported="true" />
+
 
         <meta-data
             android:name="preloaded_fonts"
