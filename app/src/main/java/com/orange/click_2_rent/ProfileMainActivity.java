@@ -43,7 +43,8 @@ public class ProfileMainActivity extends AppCompatActivity {
 
 
     public void showServiceList(View view) {
-
+        Intent profileIntent = new Intent(this, ListeServicesActivity.class);
+        startActivity(profileIntent);
     }
 
     public void showHistoriqueClient(View view) {

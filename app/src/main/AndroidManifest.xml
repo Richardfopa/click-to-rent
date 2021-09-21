@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+
     package="com.orange.click_2_rent">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -33,9 +34,7 @@
         <activity
             android:name=".ConnexionActivity"
             android:exported="true" />
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -45,13 +44,16 @@
         <activity
             android:name=".HistoryListActivity"
             android:exported="true" />
+
         <activity
             android:name=".EditProfileActivity"
             android:exported="true"
             android:parentActivityName=".ProfileMainActivity" />
         <activity
             android:name=".ProfileMainActivity"
-            android:exported="true" />
+
+            android:exported="true"/>
+
 
         <meta-data
             android:name="preloaded_fonts"
