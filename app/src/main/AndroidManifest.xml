@@ -5,8 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <!--    <uses-permission android:name="android.permission.GE" />-->
-
 
     <application
         android:allowBackup="true"
@@ -16,7 +14,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
-            android:name=".ajout_service"
+            android:name=".ListeServicesActivity"
+            android:exported="true"
+            android:label="@string/title_activity_liste_services"
+            android:theme="@style/Theme.Click2rent.NoActionBar" />
+        <activity
+            android:name=".AddServiceActivity"
             android:exported="true" />
         <activity
             android:name=".AddUserActivity"
@@ -30,8 +33,6 @@
         <activity
             android:name=".ConnexionActivity"
             android:exported="true" />
-
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -50,8 +51,7 @@
             android:parentActivityName=".ProfileMainActivity" />
         <activity
             android:name=".ProfileMainActivity"
-            android:exported="true"/>
-
+            android:exported="true" />
 
         <meta-data
             android:name="preloaded_fonts"

@@ -111,7 +111,9 @@ public class Client {
    public void ajoutercommentaire() {
       // TODO: implement
    }
-   
+   public void voirCommentaire(){
+
+   }
    /** @pdOid 108a8c4d-421c-4df9-8257-300f643184ca */
    public void voirHistorique() {
       // TODO: implement

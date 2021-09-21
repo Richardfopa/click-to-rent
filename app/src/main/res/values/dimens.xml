@@ -3,4 +3,5 @@
     <dimen name="border_button">4dp</dimen>
     <dimen name="text_input_size">16sp</dimen>
     <dimen name="box_input_radius">6dp</dimen>
+    <dimen name="fab_margin">16dp</dimen>
 </resources>
