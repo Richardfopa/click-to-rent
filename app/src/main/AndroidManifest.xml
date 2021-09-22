@@ -23,9 +23,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".Demmarrage"
-            android:exported="true" />
+
         <activity
             android:name=".Activity2"
             android:exported="true" />
@@ -39,12 +37,16 @@
         <activity
             android:name=".AddUserActivity"
             android:exported="true" >
+            android:name=".AjoutServiceActivity"
+            android:exported="true"
+            android:label="Prestation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".PremiereConnectionActivity"
             android:exported="true" />
@@ -53,19 +55,13 @@
             android:exported="true" />
         <activity
             android:name=".ConnexionActivity"
-            android:exported="true" />
-<<<<<<< HEAD
-
+            android:exported="true"
+            android:label="Welcome"/>
 
 
         <activity
-            android:name=".MainActivity"/>
-=======
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
->>>>>>> 03e68ba37cd2f64231337c6a4a63f68c5fbdfaa8
-
+            android:name=".MainActivity"
+            android:exported="true" />
         <activity
             android:name=".HistoryListActivity"
             android:exported="true" />

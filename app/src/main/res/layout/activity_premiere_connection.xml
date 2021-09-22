@@ -40,10 +40,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edittextmotdepasse_con_first"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                style="@style/StyleTextInputLayout"
                 android:hint="@string/password"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
@@ -75,10 +72,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edittextmotdepasse_confirm"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                style="@style/StyleTextInputLayout"
                 android:hint="@string/password_confirm"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
