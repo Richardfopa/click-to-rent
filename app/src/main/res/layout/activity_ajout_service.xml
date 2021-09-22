@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -28,25 +28,25 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
+                android:fontFamily="@font/roboto_slab_bold"
                 android:gravity="center"
                 android:maxLines="4"
-                android:text="Remplir le formulaire pour ajouter un service"
+                android:text="@string/add_service_FORM"
                 android:textSize="24sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/outlinedTextField"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:id="@+id/txt_title_service"
+                style="@style/StyleTextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:hint="@string/label"
+                android:hint="Titre"
+                app:errorContentDescription="Entrer un titre valide"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                app:expandedHintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title_add_service">
@@ -54,83 +54,157 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:hint="Plombier"
                     android:singleLine="true" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textInputLayout"
+                android:id="@+id/txt_category_service"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
                 android:hint="@string/select_category"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                app:expandedHintEnabled="false"
+                app:hintTextColor="@color/theme_color"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/outlinedTextField">
+                app:layout_constraintTop_toBottomOf="@+id/txt_title_service">
 
                 <AutoCompleteTextView
                     android:id="@+id/category"
 
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:hint="Plombier"
                     android:inputType="none" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
 
-
-            <LinearLayout
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_add_photo_service"
+                style="@style/style_card"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp">
 
-                <TextView
-                    android:id="@+id/tv_parcourir_image"
-                    android:layout_width="250dp"
+                <LinearLayout
+                    android:id="@+id/linear_layout_horizontal_add_service"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="     Ajoutez une image" />
+                    android:gravity="center|center_vertical"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/button_parcourir_image"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Parcourir"
-                    android:textAllCaps="false"
-                    />
-            </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
 
+                        <TextView
+                            android:id="@+id/textphoto_add_service"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:paddingLeft="4dp"
+                            android:paddingTop="4dp"
+                            android:text="@string/choisir_votre_photo_de_profil"
+                            android:textSize="12dp"
+                            tools:ignore="HardcodedText" />
 
+                        <ImageView
+                            android:id="@+id/image_add_service_photo_item"
+                            android:layout_width="match_parent"
+                            android:layout_height="100sp"
+                            android:layout_weight="10"
+                            app:srcCompat="@drawable/ic_baseline_image_24"
+                            tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
+                        <Button
+                            android:id="@+id/btn_con_parcourir_photoservice"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_slab_bold"
+                            android:shadowRadius="1"
+                            android:text="@string/btn_parcourir_photo"
+                            android:textColor="@color/white"
+                            app:backgroundTint="@color/theme_color"
+                            app:strokeColor="@color/background_grise"
+                            app:strokeWidth="@dimen/border_button"
+                            tools:ignore="TextContrastCheck" />
+                    </LinearLayout>
 
-            <LinearLayout
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/textdoc_add_service"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:paddingLeft="4dp"
+                            android:paddingTop="4dp"
+                            android:text="@string/textdoc"
+                            android:textSize="12dp"
+                            tools:ignore="HardcodedText" />
+
+                        <ImageView
+                            android:id="@+id/image_add_service_document_item"
+                            android:layout_width="match_parent"
+                            android:layout_height="100sp"
+                            android:layout_weight="10"
+                            app:srcCompat="@drawable/ic_baseline_image_24"
+                            tools:ignore="ImageContrastCheck,ImageContrastCheck" />
+
+                        <Button
+                            android:id="@+id/btn_con_parcourir_docu_user"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_slab_bold"
+                            android:shadowRadius="1"
+                            android:text="@string/btn_parcourir_photo"
+                            android:textColor="@color/white"
+                            app:backgroundTint="@color/theme_color"
+                            app:strokeColor="@color/background_grise"
+                            app:strokeWidth="@dimen/border_button"
+                            tools:ignore="TextContrastCheck" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_doc_add_service"
+                style="@style/style_card"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="horizontal">
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp">
 
-                <TextView
-                    android:id="@+id/tv_add_reference"
-                    android:layout_width="250dp"
+                <LinearLayout
+                    android:id="@+id/linear_layout_horizontal_add_document_service"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="     Ajoutez une réference" />
+                    android:gravity="center|center_vertical"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btn_reference"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Parcourir"
-                    android:textAllCaps="false" />
-            </LinearLayout>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -138,12 +212,11 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:hint="@string/description"
+                android:layout_marginTop="8dp"
+                android:hint="Description"
+                app:counterMaxLength="100"
+                app:errorEnabled="true"
+                app:expandedHintEnabled="false"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/cardView_reference">
@@ -151,9 +224,23 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:hint="@string/description"
+                    android:inputType="textMultiLine"
+                    android:lines="3"
                     android:maxLines="4" />
 
             </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/title_error_add_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="4dp"
+                android:textColor="@android:color/holo_red_light" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -165,19 +252,21 @@
                 app:layout_constraintStart_toStartOf="parent">
 
                 <Button
-                    android:id="@+id/button2"
+                    android:id="@+id/cancel_add_service"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:fontFamily="@font/roboto_slab_bold"
                     android:text="Annuler"
                     android:textAllCaps="false" />
 
                 <Button
-                    android:id="@+id/button3"
+                    android:id="@+id/confirm_add_service"
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:backgroundTint="@color/white"
+                    android:fontFamily="@font/roboto_slab_bold"
                     android:text="Valider"
                     android:textAllCaps="false"
                     android:textColor="@color/purple_500" />

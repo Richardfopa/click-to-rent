@@ -6,13 +6,19 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreSettings;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.orange.click_2_rent.Models.Client;
+
+import java.util.Map;
 
 public class FireBaseUtils {
 
@@ -21,7 +27,9 @@ public class FireBaseUtils {
     public static final String CLIENT_COLLECTION = "users";
     public static final String PRESTATAIRES_COLLECTION = "prestataire";
     public static final String SERVICE_COLLECTION = "service";
-
+    private static Object objet;
+    private static Context context;
+    private static Map<String, Object> map;
 
 
     public void setup() {
@@ -46,14 +54,13 @@ public class FireBaseUtils {
         return mRefCollection;
     }
 
-    public static void addUser(Client client, Context context){
-        getReferenceFirestore(CLIENT_COLLECTION)
-                .add(client)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+    public static void addUser(String collectionName, Map<String, Object> documentName, Context context){
+        getReferenceFirestore(collectionName).document()
+                .set(documentName)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("SUCCES","Insertion reussi !");
-                        Toast.makeText(context,"Insertion reussi :", Toast.LENGTH_LONG).show();
+                    public void onSuccess(Void unused) {
+                        Log.d("Creation","Creation et insertion reussi");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -91,6 +98,62 @@ public class FireBaseUtils {
 //                    }
 //                });
         // [END get_all_users]
+    }
+
+    public void getAllDoc(String collectionName) {
+        // [START get_all_users]
+        getReferenceFirestore(collectionName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                Log.d("ALLDOC", document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.w("ALLDOC", "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+        // [END get_all_users]
+    }
+
+    public void setDocument(String collectionName, String documentId, Map<String, Object> data){
+        getReferenceFirestore(collectionName).document(documentId)
+                .set(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error writing document", e);
+                    }
+                });
+        // [END set_document]
+
+    }
+    public void updateDocument(String collectionName, String documentId, Map<String, Object> data){
+        getReferenceFirestore(collectionName).document(documentId)
+                .set(data)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d("TAG", "DocumentSnapshot successfully written!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG", "Error writing document", e);
+                    }
+                });
+        // [END set_document]
+
     }
 
 }

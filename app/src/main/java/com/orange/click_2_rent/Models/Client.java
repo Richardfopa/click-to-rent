@@ -5,111 +5,49 @@ package com.orange.click_2_rent.Models; /***************************************
  ***********************************************************************/
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.IgnoreExtraProperties;
+import com.google.type.DateTime;
 
-import java.io.Serializable;
-import java.lang.reflect.Array;
 import java.util.*;
 
-/** @pdOid ade7f29d-6cfb-47e8-a014-3170afe1509f */
-public class Client implements Serializable {
-   /** @pdOid 90b4d57f-c88d-4022-a1bd-f84e629ba7fb */
-   private String idClient;
-   /** @pdOid 8663c700-2e65-476e-9db4-1283be16bc75 */
-   private String nom;
-   /** @pdOid 4346754e-a58e-4793-82ef-e60c224fec53 */
-   private String telphone;
-   /** @pdOid b1def15a-68e9-4682-bab9-1f1c6ffffab8 */
-   private String email;
 
-   private String datedarrive;
-   private String datedesorti;
+@IgnoreExtraProperties
+public class Client {
 
-   public String getDatedarrive() {
-      return datedarrive;
-   }
+   public String idClient;
+   public String nom;
+   public String telphone;
+   public String email;
+   public Timestamp datedarrive;
+   public Timestamp datedesorti;
+   public String motDePasse;
+   public String typeclient;
+   public int photoProfil;
+   public Photo a_auplus;
+   public ArrayList<Service> demande;
 
-   public String getDatedesorti() {
-      return datedesorti;
-   }
 
-   /** @pdOid 760c8c14-ed70-42cb-ab05-760ea5426120 */
-   private String motDePasse;
-   /** @pdOid 66a06010-59dd-4b74-9165-319f2a829d21 */
-   private int photoProfil;
 
    public Client() {
    }
 
-   public Client(String idClient, String nom, String telphone, String email, String motDePasse) {
-      this.idClient = idClient;
+   public Client(String nom, String telphone, String email, String motDePasse,String type) {
+//      this.idClient = idClient;
       this.nom = nom;
       this.telphone = telphone;
       this.email = email;
+      this.typeclient = type;
       this.motDePasse = motDePasse;
-      this.datedarrive = String.valueOf((new Timestamp(new Date())));
-      this.datedesorti = String.valueOf((new Timestamp(new Date())));
-   }
-
-   /** @pdRoleInfo migr=no name=Photo assc=association8 mult=1..1 */
-   public Photo a_auplus;
-   /** @pdRoleInfo migr=no name=Service assc=association5 coll=java.util.Collection impl=java.util.HashSet mult=0..* */
-   public ArrayList<Service> demande;
-   
-   /** @pdOid 87b05549-5f4a-4ae4-9d05-9b1e522335b6 */
-   public void seConnecter() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 01759749-1bdb-4904-a5c6-3d7f371a37ec */
-   public void deConnecter() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 5ae9a724-306f-4a57-ba2d-c7f1a4779680 */
-   public void consulterService() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 87eb4c5e-afc0-412f-bbdb-096033f2c2b5 */
-   public void contacterPrestataire() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 437d6534-ef57-43b3-8740-6041d8b58d3d */
-   public void creerCompte() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 574092bb-e73f-476d-b9ca-d639464feacf */
-   public void ajoutercommentaire() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 108a8c4d-421c-4df9-8257-300f643184ca */
-   public void voirHistorique() {
-      // TODO: implement
-   }
-   
-   /** @pdOid d2799075-45d4-42c3-9b98-4d8aadfd6a30 */
-   public void afficherProfil() {
-      // TODO: implement
-   }
-   
-   /** @pdOid 1d874d92-efe1-46a0-956d-78d803c02267 */
-   public void rechercher() {
-      // TODO: implement
-   }
-   
-   
-   /** @pdGenerated default getter */
-   public ArrayList<Service> getDemande() {
-      if (demande == null)
-         demande = new ArrayList<Service>();
-      return demande;
+      this.datedarrive = new Timestamp(new Date());
+      this.datedesorti = null;
    }
 
    public String getIdClient() {
       return idClient;
+   }
+
+   public void setIdClient(String idClient) {
+      this.idClient = idClient;
    }
 
    public String getNom() {
@@ -134,6 +72,14 @@ public class Client implements Serializable {
 
    public void setEmail(String email) {
       this.email = email;
+   }
+
+   public void setDatedarrive(Timestamp datedarrive) {
+      this.datedarrive = datedarrive;
+   }
+
+   public void setDatedesorti(Timestamp datedesorti) {
+      this.datedesorti = datedesorti;
    }
 
    public String getMotDePasse() {
@@ -161,23 +107,56 @@ public class Client implements Serializable {
    }
 
 
-   /** @pdGenerated default iterator getter */
-   public Iterator getIteratorDemande() {
+   public String getTypeclient() {
+      return typeclient;
+   }
+
+   public void setTypeclient(String typeclient) {
+      this.typeclient = typeclient;
+   }
+
+/*  public void setIdClient(String idClient) {
+//      this.idClient = idClient;
+//   }
+
+//   public void setDatedarrive(String datedarrive) {
+//      this.datedarrive = datedarrive;
+//   }
+//
+//   public void setDatedesorti(String datedesorti) {
+//      this.datedesorti = datedesorti;
+/   }*/
+
+
+   public Timestamp getDatedarrive() {
+      return datedarrive;
+   }
+
+   public Timestamp getDatedesorti() {
+      return datedesorti;
+   }
+
+   public ArrayList<Service> getDemande() {
       if (demande == null)
          demande = new ArrayList<Service>();
-      return demande.iterator();
+      return demande;
    }
-   
-   /** @pdGenerated default setter
-     * @param newDemande */
+
+
+
+//   public Iterator getIteratorDemande() {
+//      if (demande == null)
+//         demande = new ArrayList<Service>();
+//      return demande.iterator();
+//   }
+
    public void setDemande(ArrayList<Service> newDemande) {
       removeAllDemande();
       for (Iterator iter = newDemande.iterator(); iter.hasNext();)
          addDemande((Service)iter.next());
    }
    
-   /** @pdGenerated default add
-     * @param newService */
+
    public void addDemande(Service newService) {
       if (newService == null)
          return;
@@ -186,9 +165,7 @@ public class Client implements Serializable {
       if (!this.demande.contains(newService))
          this.demande.add(newService);
    }
-   
-   /** @pdGenerated default remove
-     * @param oldService */
+
    public void removeDemande(Service oldService) {
       if (oldService == null)
          return;
@@ -196,12 +173,47 @@ public class Client implements Serializable {
          if (this.demande.contains(oldService))
             this.demande.remove(oldService);
    }
-   
-   /** @pdGenerated default removeAll */
+
    public void removeAllDemande() {
       if (demande != null)
          demande.clear();
    }
+
+   public void seConnecter() {
+      // TODO: implement
+   }
+   public void deConnecter() {
+      // TODO: implement
+   }
+
+   public void consulterService() {
+      // TODO: implement
+   }
+
+   public void contacterPrestataire() {
+      // TODO: implement
+   }
+
+   public void creerCompte() {
+      // TODO: implement
+   }
+
+   public void ajoutercommentaire() {
+      // TODO: implement
+   }
+
+   public void voirHistorique() {
+      // TODO: implement
+   }
+
+   public void afficherProfil() {
+      // TODO: implement
+   }
+
+   public void rechercher() {
+      // TODO: implement
+   }
+
 
    @Override
    public String toString() {

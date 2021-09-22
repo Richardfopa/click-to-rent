@@ -18,4 +18,8 @@
     <string name="btn_confirmer_infos">Confirmer</string>
     <string name="btn_parcourir_photo">Parcourir</string>
     <string name="telephone">telephone</string>
+    <string name="votreadresse">Votre adresse</string>
+    <string name="add_service_FORM">Remplir le formulaire pour ajouter un service</string>
+    <string name="choisir_votre_photo_de_profil">Choisir une photo descriptive de votre travail</string>
+    <string name="textdoc">Faites une capture d\'ecran de votre CV</string>
 </resources>

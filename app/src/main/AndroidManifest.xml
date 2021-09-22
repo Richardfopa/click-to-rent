@@ -18,17 +18,23 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
-            android:name=".ajout_service"
-            android:exported="true" />
-        <activity
-            android:name=".AddUserActivity"
-            android:exported="true" >
+            android:name=".AjoutServiceActivity"
+            android:exported="true"
+            android:label="Prestation">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".AddUserActivity"
+            android:exported="true"
+            android:label=" Devenez membre"
+            android:visibleToInstantApps="false"/>
+
         <activity
             android:name=".PremiereConnectionActivity"
             android:exported="true" />
@@ -37,8 +43,8 @@
             android:exported="true" />
         <activity
             android:name=".ConnexionActivity"
-            android:exported="true" />
-
+            android:exported="true"
+            android:label="Welcome"/>
 
 
         <activity

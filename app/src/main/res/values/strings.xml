@@ -52,5 +52,9 @@
     <string name="item_historique_description">Service Rendu</string>
     <string name="item_historique_note">Note</string>
     <string name="telephone">telephone</string>
+    <string name="votreadresse">Votre adresse</string>
+    <string name="add_service_FORM">Ajouter votre service</string>
+    <string name="choisir_votre_photo_de_profil">Photo descriptive de votre travail</string>
+    <string name="textdoc">Faites une capture d\'ecran de votre CV</string>
 
 </resources>

@@ -1,5 +1,7 @@
 package com.orange.click_2_rent;
 
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -12,7 +14,12 @@ import android.view.View;
 import android.widget.Adapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.firebase.ui.auth.AuthUI;
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
+import com.firebase.ui.auth.IdpResponse;
+import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -22,6 +29,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -29,58 +37,29 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.orange.click_2_rent.Models.Client;
 
-public class ConnexionActivity extends AppCompatActivity {
+import java.util.Arrays;
+import java.util.List;
+
+public class ConnexionActivity extends AppCompatActivity implements View.OnClickListener {
 
     private GoogleSignInClient mGoogleSignInClient;
     private static final int GOOGLE_SIGN_IN = 1000;
     private FirebaseAuth mAuth;
-    private static final String TAG = "GOOGLE AUTH";
-
+    private static final String TAG = "GOOGLE_AUTH";
+    ImageView mgoogle;
+    Button memailbtn;
+    ImageView mfacebook;
+    TextInputLayout mtxtemail;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
 
-
-
-        ImageView fab = findViewById(R.id.img_view_google);
-
-        Button emailbtn = findViewById(R.id.btn_con_valider);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Log.d("AUTH:RICH",mAuth.toString());
-                // [END initialize_auth]
-                //                Intent
-                Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-                startActivityForResult(signInIntent, GOOGLE_SIGN_IN);
-            }
-        });
-
-        emailbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(),AddUserActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        ImageView fab_face = findViewById(R.id.img_view_facebook);
-        fab_face.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Connexion par facebook", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-                Intent intent = new Intent(view.getContext(),PremiereConnectionActivity.class);
-                startActivity(intent);
-            }
-        });
+        setVariableFromLayout();
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("AIzaSyDFM-lBnKipOYBVhx4y7Cs7GqwZZrv3BU0")
+                .requestIdToken("533162287692-jbjo66vddd3lh0v9jr6o3inoaeubcpel.apps.googleusercontent.com")
                 .requestEmail()
                 .build();
 
@@ -88,9 +67,26 @@ public class ConnexionActivity extends AppCompatActivity {
 
         // [END config_signin]
 
+        mgoogle.setOnClickListener(this);
+
+        memailbtn.setOnClickListener(this);
+
+        mfacebook.setOnClickListener(this);
+
         // [START initialize_auth]
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+    }
+
+    private void setVariableFromLayout() {
+
+        mgoogle = findViewById(R.id.img_view_google);
+
+        memailbtn = findViewById(R.id.btn_con_valider);
+
+        mfacebook = findViewById(R.id.img_view_facebook);
+
+        mtxtemail = findViewById(R.id.edittextusername_con);
     }
 
     @Override
@@ -113,31 +109,80 @@ public class ConnexionActivity extends AppCompatActivity {
 //                String personId = currentUser.get;
                 String tel = currentUser.getPhoneNumber();
                 Uri personPhoto = currentUser.getPhotoUrl();
-                Client client = new Client(tel,personName,personFamilyName,personEmail,personPhoto.toString());
+                Client client = new Client(tel,
+                        personName,
+                        personFamilyName,
+                        personEmail,
+                        personPhoto.toString());
                 Log.d("Nom sur google :", personName);
                 Log.d("Person given name :", personGivenName);
                 Log.d("client::::", client.toString());
 
+                startActivity(new Intent(this,MainActivity.class));
+
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == GOOGLE_SIGN_IN && resultCode == RESULT_OK){
-            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-            try {
-                // Google Sign In was successful, authenticate with Firebase
-                GoogleSignInAccount account = task.getResult(ApiException.class);
-                Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
-                firebaseAuthWithGoogle(account.getIdToken());
-            } catch (ApiException e) {
-                // Google Sign In failed, update UI appropriately
-                Log.w(TAG, "Google sign in failed", e);
+    // See: https://developer.android.com/training/basics/intents/result
+    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+            new FirebaseAuthUIActivityResultContract(),
+            new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
+                @Override
+                public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
+                    onSignInResult(result);
+                }
             }
-        }
+    );
 
+    public void createSignInIntent() {
+        // [START auth_fui_create_intent]
+        // Choose authentication providers
+        List<AuthUI.IdpConfig> providers = Arrays.asList(
+                new AuthUI.IdpConfig.EmailBuilder().build(),
+                new AuthUI.IdpConfig.PhoneBuilder().build(),
+                new AuthUI.IdpConfig.GoogleBuilder().build());
+
+        // Create and launch sign-in intent
+        Intent signInIntent = AuthUI.getInstance()
+                .createSignInIntentBuilder()
+                .setAvailableProviders(providers)
+                .build();
+        signInLauncher.launch(signInIntent);
+        // [END auth_fui_create_intent]
     }
+
+    private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
+        IdpResponse response = result.getIdpResponse();
+        if (result.getResultCode() == RESULT_OK) {
+            // Successfully signed in
+            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+            Log.d(TAG,user.getEmail());
+            // ...
+        } else {
+            // Sign in failed. If response is null the user canceled the
+            // sign-in flow using the back button. Otherwise check
+            // response.getError().getErrorCode() and handle the error.
+            // ...
+        }
+    }
+
+//    @Override
+//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        if (requestCode == GOOGLE_SIGN_IN){
+//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+//            try {
+//                // Google Sign In was successful, authenticate with Firebase
+//                GoogleSignInAccount account = task.getResult(ApiException.class);
+//                Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId() +"IdToken :"+ account.getIdToken()+ " data "+data.getData());
+//                firebaseAuthWithGoogle(account.getIdToken());
+//            } catch (ApiException e) {
+//                // Google Sign In failed, update UI appropriately
+//                Log.w(TAG, "Google sign in failed "+data.getData(), e);
+//            }
+//        }
+//
+//    }
 
     private void firebaseAuthWithGoogle(String idToken) {
 
@@ -150,7 +195,7 @@ public class ConnexionActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            Log.d("USERS",user.toString());
+                            Log.d(TAG,user.toString());
                             updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
@@ -162,12 +207,20 @@ public class ConnexionActivity extends AppCompatActivity {
 
     }
 
-    private void sentUIUser(FirebaseUser user) {
-        if (user != null){
-            GoogleSignInAccount acct = GoogleSignIn.getLastSignedInAccount(this);
-            Client client = new Client(acct.getId(),acct.getIdToken(),acct.getEmail(),acct.getDisplayName(), acct.getFamilyName());
-            Log.d("CLIENT",client.toString());
-            Intent intent = new Intent(this, AddUserActivity.class);
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.img_view_google:
+                Log.d("AUTH:RICH",mAuth.toString());
+                // [END initialize_auth]
+                //                Intent
+                createSignInIntent();
+                break;
+            case R.id.img_view_facebook:
+                break;
+            case R.id.btn_con_valider:
+                break;
         }
     }
 }
