@@ -3,6 +3,7 @@ package com.orange.click_2_rent;
 
 import static android.content.ContentValues.TAG;
 
+import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import android.widget.Button;
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
+import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
 import com.firebase.ui.auth.IdpResponse;
 import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -27,19 +29,23 @@ import java.util.List;
 
 public class ConnexionActivity extends AppCompatActivity {
 
-
-    private static final int RC_SIGN_IN = 123;
     private FirebaseAuth mAuth;
     private Button button;
 
+    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
+            new FirebaseAuthUIActivityResultContract(),
+            new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
+                @Override
+                public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
+                    onSignInResult(result);
+                }
+            }
+    );
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
-        button = findViewById(R.id.btn_con_valider);
-        button.setOnClickListener(View ->{
-            startSignIn();
-        });
+        startSignIn();
 
     }
     private void startSignIn() {
@@ -49,12 +55,13 @@ public class ConnexionActivity extends AppCompatActivity {
                 new AuthUI.IdpConfig.GoogleBuilder().build());
 
         // Create and launch sign-in intent
-    startActivityForResult(AuthUI.getInstance()
+    Intent signInItent = AuthUI.getInstance()
             .createSignInIntentBuilder()
             .setTheme(R.style.ThemeClick2rent)
             .setAvailableProviders(providers)
             .setIsSmartLockEnabled(false, true)
-            .build(), RC_SIGN_IN);
+            .build();
+    signInLauncher.launch(signInItent);
     }
 
 
