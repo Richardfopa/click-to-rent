@@ -21,7 +21,7 @@
     <style name="style_card">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">4dp</item>
+        <item name="android:layout_margin">8dp</item>
         <item name="android:padding">4dp</item>
         <item name="android:radius">4sp</item>
         <item name="android:shadowColor">@color/cardview_shadow_start_color</item>
