@@ -15,7 +15,7 @@
 
     <string name="email_con">Email :</string>
     <string name="email_hint">email:</string>
-    <string name="bt_conn_valider">Valider</string>
+    <string name="bt_conn_valider">Se connecter</string>
     <string name="textview_connecter_vous_via">Creer votre compte via </string>
     <string name="facebook">Facebook</string>
     <string name="google">google</string>
@@ -60,5 +60,8 @@
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="sign_in_cancelled">Connexion annulée</string>
+    <string name="no_internet_connection">Aucune Connexion Internet</string>
+    <string name="unknown_error">Erreur Inconnue</string>
 
 </resources>
