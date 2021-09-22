@@ -1,5 +1,7 @@
 package com.orange.click_2_rent;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,10 +17,14 @@ import java.util.List;
 public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.SpecialViewHolder>{
 
     List<Specialite> mesSpecialites;
+    Context context;
 
-    public SpecialAdapter(List<Specialite> mesSpecialites) {
+
+    public SpecialAdapter(List<Specialite> mesSpecialites,Context context) {
 
         this.mesSpecialites = mesSpecialites;
+        this.context = context;
+
     }
 
     @NonNull
@@ -37,10 +43,11 @@ public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.SpecialV
         holder.myImagePP.setImageResource(sp.getImageDesc());
         holder.myDescription.setText(sp.getNomDesc());
 
-        holder.myCard.setOnClickListener(new View.OnClickListener() {
+        holder.myImagePP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(context,PrestationsActivity.class);
+                context.startActivity(intent);
             }
         });
 

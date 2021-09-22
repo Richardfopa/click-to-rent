@@ -16,18 +16,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="8dp">
 
 
             <TextView
                 android:id="@+id/tv_title_add_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_margin="8dp"
                 android:gravity="center"
                 android:maxLines="4"
                 android:text="Remplir le formulaire pour ajouter un service"
@@ -41,11 +37,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_margin="8dp"
                 android:hint="@string/label"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -63,11 +55,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_margin="8dp"
                 android:hint="@string/select_category"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -83,54 +71,100 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card"
+                style="@style/style_card"
+                android:layout_height="match_parent">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_parcourir_image"
-                    android:layout_width="250dp"
+                <LinearLayout
+                    android:id="@+id/linear_layout_horizontal"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="     Ajoutez une image" />
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/button_parcourir_image"
-                    android:layout_width="200dp"
+                    <ImageView
+                        android:id="@+id/image_user_item"
+                        android:layout_width="100sp"
+                        android:layout_height="100sp"
+                        android:layout_weight="1"
+                        tools:ignore="ImageContrastCheck,ImageContrastCheck" />
+
+                    <LinearLayout
+                        android:id="@+id/linear_layout"
+                        style="@style/style_linear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:padding="4dp">
+
+                        <Button
+                            android:id="@+id/btn_parcourir_service"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_slab_bold"
+                            android:shadowRadius="1"
+                            android:text="Ajouter photo"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
+
+                            app:strokeColor="@color/background_grise"
+                            app:strokeWidth="@dimen/border_button"
+                            tools:ignore="TextContrastCheck" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/card_ref"
+                style="@style/style_card"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/linear_layout_horizontal_ref"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Parcourir"
-                    android:textAllCaps="false"
-                    />
-            </LinearLayout>
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:id="@+id/image_ref_item"
+                        android:layout_width="100sp"
+                        android:layout_height="100sp"
+                        android:layout_weight="1"
+                        tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
+                    <LinearLayout
+                        android:id="@+id/linear_layout_ref"
+                        style="@style/style_linear"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="10"
+                        android:padding="4dp">
 
+                        <Button
+                            android:id="@+id/btn_ref"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="20dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/roboto_slab_bold"
+                            android:shadowRadius="1"
+                            android:text="Ajouter reference"
+                            android:textAllCaps="false"
+                            android:textColor="@color/white"
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:orientation="horizontal">
+                            app:strokeColor="@color/background_grise"
+                            app:strokeWidth="@dimen/border_button"
+                            tools:ignore="TextContrastCheck" />
+                    </LinearLayout>
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv_add_reference"
-                    android:layout_width="250dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:hint="     Ajoutez une réference" />
-
-                <Button
-                    android:id="@+id/btn_reference"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="Parcourir"
-                    android:textAllCaps="false" />
-            </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
 
 
             <com.google.android.material.textfield.TextInputLayout
@@ -138,11 +172,7 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_margin="8dp"
                 android:hint="@string/description"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -158,7 +188,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="16dp"
+                android:layout_margin="8dp"
                 android:padding="16dp"
 
                 app:layout_constraintEnd_toEndOf="parent"
@@ -170,6 +200,8 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
                     android:text="Annuler"
+                    android:textColor="@color/purple_500"
+                    android:backgroundTint="@color/white"
                     android:textAllCaps="false" />
 
                 <Button
@@ -177,10 +209,10 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:backgroundTint="@color/white"
+
                     android:text="Valider"
                     android:textAllCaps="false"
-                    android:textColor="@color/purple_500" />
+                     />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

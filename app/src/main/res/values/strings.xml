@@ -1,4 +1,6 @@
 <resources>
+
+
     <string name="app_name">Click 2 rent</string>
     <string name="service">Prestation serv.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -8,6 +10,7 @@
     <string name="Atitre">Click to rent</string>
     <string name="titre">Techniciens Batiment</string>
     <string name="info">Informatique</string>
+
 
     <string name="label">Saisissez le titre de votre service</string>
     <string name="select_category">Catégorie</string>
@@ -51,6 +54,13 @@
     <string name="ville">Ville</string>
     <string name="item_historique_description">Service Rendu</string>
     <string name="item_historique_note">Note</string>
+<<<<<<< HEAD
     <string name="telephone">telephone</string>
+=======
+    <string name="description_prestation">Designer 3D</string>
+    <string name="intitule">Faites vos montages graphiques</string>
+    <string name="date_du_jour">19/11/2021</string>
+    <string name="ajoutez_une_photo">Ajoutez une photo</string>
+>>>>>>> 03e68ba37cd2f64231337c6a4a63f68c5fbdfaa8
 
 </resources>
