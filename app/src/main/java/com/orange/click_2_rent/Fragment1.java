@@ -1,18 +1,15 @@
 package com.orange.click_2_rent;
 
-import android.content.Intent;
+
 import android.os.Bundle;
 
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,12 +71,14 @@ public class Fragment1 extends Fragment {
                              Bundle savedInstanceState) {
         
         // Inflate the layout for this fragment
+
         View vue = inflater.inflate(R.layout.fragment_1, container, false);
         maListeRecyler = vue.findViewById(R.id.idRecyclerAffichage);
         maListeRecyler.setLayoutManager(new GridLayoutManager(getContext(),2));
 
         //initializeData();
-        maListeRecyler.setAdapter(new SpecialAdapter(initializeData()));
+        maListeRecyler.setAdapter(new SpecialAdapter(initializeData(),getContext()));
+
         return vue;
 
     }
@@ -88,14 +87,14 @@ public class Fragment1 extends Fragment {
 
         specialiteArrayList = new ArrayList<>();
 
-        specialiteArrayList.add(new Specialite(R.drawable.femme,"Maconnerie et plomberie"));
-        specialiteArrayList.add(new Specialite(R.drawable.femme,"Informatiques et Communication"));
-        specialiteArrayList.add(new Specialite(R.drawable.femme,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.femme,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.femme,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.femme,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.femme,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.femme,"myImage"));
+        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"Maconnerie et plomberie"));
+        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"Informatiques et Communication"));
+        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
+        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
+        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
+        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
+        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
+        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
 
         return specialiteArrayList;
     }

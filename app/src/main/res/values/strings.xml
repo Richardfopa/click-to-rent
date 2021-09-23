@@ -51,6 +51,11 @@
     <string name="ville">Ville</string>
     <string name="item_historique_description">Service Rendu</string>
     <string name="item_historique_note">Note</string>
+
+    <string name="description_prestation">Designer 3D</string>
+    <string name="intitule">Faites vos montages graphiques</string>
+    <string name="date_du_jour">19/11/2021</string>
+
     <string name="title_activity_liste_services">ListeServicesActivity</string>
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
@@ -63,5 +68,6 @@
     <string name="sign_in_cancelled">Connexion annulée</string>
     <string name="no_internet_connection">Aucune Connexion Internet</string>
     <string name="unknown_error">Erreur Inconnue</string>
+
 
 </resources>

@@ -2,6 +2,7 @@ package com.orange.click_2_rent;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.FragmentManager;
 
 import androidx.viewpager2.widget.ViewPager2;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
@@ -23,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     TabLayout Tablelayout;
     ViewPager2  Viewpage;
     MaPageAdapter pagerAdapter;
+    CardView myCardview;
     public static final String CLE_POSITION_CoURANTE = "com.orange.click_2_rent";
     public static int positionCourante;
 
@@ -42,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
           //      .add(R.id.principal,new Fragment1(),Fragment1.class.getSimpleName())
           //      .commit();
 
-
+        myCardview = findViewById(R.id.monCadre);
         Tablelayout = findViewById(R.id.maTabLayout);
         Viewpage = findViewById(R.id.nom_de_page);
 
@@ -51,6 +54,7 @@ public class MainActivity extends AppCompatActivity {
        // Tablelayout.getTabAt(0).setIcon(R.drawable.home_repair_service_24);
         //Tablelayout.getTabAt(1).setIcon(R.drawable.restaurant_24);
         // Tablelayout.getTabAt(2).setIcon(R.drawable.local_taxi_24);
+
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_menu);
@@ -68,7 +72,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
 
+                CardView card = Viewpage.findViewById(R.id.monCadre);
                 Viewpage.setCurrentItem(tab.getPosition());
+
             }
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {

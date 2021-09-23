@@ -25,5 +25,4 @@
         app:strokeWidth="@dimen/border_button"
         tools:ignore="TextContrastCheck" />
 
-
 </androidx.constraintlayout.widget.ConstraintLayout>

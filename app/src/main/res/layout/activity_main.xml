@@ -45,7 +45,8 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/nom_de_page"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70sp">
     </androidx.viewpager2.widget.ViewPager2>
 
 
@@ -55,12 +56,12 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_margin="16sp"
-        android:backgroundTint="@color/couleur_bleu"
+        android:backgroundTint="@color/purple_500"
         android:clickable="true"
         android:src="@drawable/add_24"
         app:elevation="10sp"
         app:fabSize="normal"
-        app:rippleColor="@color/couleur_bleu"
+        app:rippleColor="@color/purple_500"
         tools:ignore="SpeakableTextPresentCheck,VectorDrawableCompat" />
 
 

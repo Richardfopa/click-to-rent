@@ -5,15 +5,11 @@ import static android.content.ContentValues.TAG;
 
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-
-
 
 import com.firebase.ui.auth.AuthUI;
 import com.firebase.ui.auth.ErrorCodes;
@@ -87,6 +83,8 @@ public class ConnexionActivity extends AppCompatActivity {
         }
     }
 
+
     private void showSnackbar(int sign_in_cancelled) {
     }
 }
+

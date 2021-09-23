@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-
     package="com.orange.click_2_rent">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,6 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
+        <activity
+            android:name=".Activity2"
+            android:exported="true" />
+        <activity
+            android:name=".PrestationsActivity"
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
         <activity
             android:name=".ListeServicesActivity"
             android:exported="true"
@@ -51,8 +57,7 @@
             android:parentActivityName=".ProfileMainActivity" />
         <activity
             android:name=".ProfileMainActivity"
-
-            android:exported="true"/>
+            android:exported="true" />
 
 
         <meta-data
