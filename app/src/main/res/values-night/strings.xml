@@ -22,4 +22,5 @@
     <string name="add_service_FORM">Remplir le formulaire pour ajouter un service</string>
     <string name="choisir_votre_photo_de_profil">Choisir une photo descriptive de votre travail</string>
     <string name="textdoc">Faites une capture d\'ecran de votre CV</string>
+    <string name="photo_service">Photo Service</string>
 </resources>

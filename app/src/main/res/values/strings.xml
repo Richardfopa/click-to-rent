@@ -62,12 +62,12 @@
     <string name="intitule">Faites vos montages graphiques</string>
     <string name="date_du_jour">19/11/2021</string>
     <string name="ajoutez_une_photo">Ajoutez une photo</string>
->>>>>>> 03e68ba37cd2f64231337c6a4a63f68c5fbdfaa8
-=======
+
     <string name="votreadresse">Votre adresse</string>
     <string name="add_service_FORM">Ajouter votre service</string>
     <string name="choisir_votre_photo_de_profil">Photo descriptive de votre travail</string>
     <string name="textdoc">Faites une capture d\'ecran de votre CV</string>
->>>>>>> richard
+    <string name="photo_service">Photo Service</string>
+
 
 </resources>

@@ -15,6 +15,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
+            android:name=".SearchActivity"
+            android:exported="true"
+            android:label="Chercher un Service"/>
+        <activity
             android:name=".DemarrageApp"
             android:exported="true">
             <intent-filter>
@@ -23,7 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".Activity2"
             android:exported="true" />
@@ -36,7 +39,7 @@
             android:exported="true" />
         <activity
             android:name=".AddUserActivity"
-            android:exported="true" >
+            android:exported="true">
             android:name=".AjoutServiceActivity"
             android:exported="true"
             android:label="Prestation">
@@ -46,7 +49,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".PremiereConnectionActivity"
             android:exported="true" />
@@ -56,9 +58,7 @@
         <activity
             android:name=".ConnexionActivity"
             android:exported="true"
-            android:label="Welcome"/>
-
-
+            android:label="Welcome" />
         <activity
             android:name=".MainActivity"
             android:exported="true" />
