@@ -4,7 +4,7 @@
     <string name="email_con">Email :</string>
     <string name="email_hint">richardfopa@gmail.com</string>
     <string name="bt_conn_valider">Valider</string>
-    <string name="textview_connecter_vous_via">"Connecter vous via "</string>
+    <string name="textview_creer_compte">"Connecter vous via "</string>
     <string name="google">google</string>
     <string name="input_connexion">input connexion</string>
     <string name="btn_se_connecter">Se connecter</string>

@@ -87,14 +87,12 @@ public class Fragment1 extends Fragment {
 
         specialiteArrayList = new ArrayList<>();
 
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"Maconnerie et plomberie"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"Informatiques et Communication"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
+        specialiteArrayList.add(new Specialite(R.drawable.sanitaire,"Plomberie"));
+        specialiteArrayList.add(new Specialite(R.drawable.electricite,"Electricite"));
+        specialiteArrayList.add(new Specialite(R.drawable.menuserie,"Menuiserie"));
+        specialiteArrayList.add(new Specialite(R.drawable.elect,"Maconnerie"));
+        specialiteArrayList.add(new Specialite(R.drawable.infomatike,"Informatique"));
+        specialiteArrayList.add(new Specialite(R.drawable.autre,"Autres"));
 
         return specialiteArrayList;
     }

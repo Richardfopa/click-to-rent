@@ -18,8 +18,8 @@ import android.widget.Toast;
 import com.google.android.material.tabs.TabLayout;
 
 
-
-
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
+
 
     TabLayout Tablelayout;
     ViewPager2  Viewpage;
@@ -130,11 +131,10 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.profil:
 
-                Toast.makeText(this, "Profil", Toast.LENGTH_SHORT).show();
-            case R.id.Rechercher:
 
-                Toast.makeText(this, "Rechercher", Toast.LENGTH_SHORT).show();
-                return true;
+                Intent intent = new Intent(getApplicationContext(),ConnexionActivity.class);
+                startActivity(intent);
+
             default:
                 return super.onOptionsItemSelected(menuItem);
         }

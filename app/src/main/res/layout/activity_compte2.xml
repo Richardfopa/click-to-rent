@@ -4,27 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddUserActivity">
-
+    app:circularflow_defaultRadius="50dp"
+    tools:context=".CompteActivity">
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:foregroundGravity="center"
         android:paddingLeft="16dp"
         android:paddingTop="16dp"
         android:paddingRight="16dp"
-        android:paddingBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.009">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingBottom="16dp">
@@ -35,18 +33,18 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_slab_bold"
                 android:gravity="center"
-                android:text="@string/confirm_user_info"
+                android:text="@string/create_up_con"
                 android:textColor="#039BE5"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textStyle="bold" />
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edittextusername_con"
+                android:id="@+id/edittextnom_con"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/username"
+                android:hint="@string/nom_hint"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
                 app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
@@ -54,28 +52,28 @@
                 app:boxStrokeColor="@color/theme_color"
                 app:boxStrokeErrorColor="@color/black"
                 app:hintTextColor="@color/theme_color"
+                app:startIconDrawable="@drawable/ic_baseline_account_box_24"
                 app:startIconTint="@color/theme_color">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textinoutedittext_username_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:contentDescription="@string/username_description"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/input_connexion"
                     android:fontFamily="@font/roboto_slab_bold"
-                    android:inputType="text"
-                    android:maxLength="50"
+                    android:inputType="textWebEmailAddress"
                     android:shadowRadius="20"
                     android:singleLine="true"
-                    android:textColor="@color/theme_color"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/theme_color"
                     android:textSize="@dimen/text_input_size"
+                    app:startIconDrawable="@drawable/ic_baseline_account_box_24"
                     tools:ignore="EditableContentDescCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edittextemail_update"
+                android:id="@+id/edittextusername_con"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -88,35 +86,32 @@
                 app:boxStrokeColor="@color/theme_color"
                 app:boxStrokeErrorColor="@color/black"
                 app:hintTextColor="@color/theme_color"
+                app:startIconDrawable="@drawable/ic_mail"
                 app:startIconTint="@color/theme_color">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textinoutedittext_email_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:contentDescription="@string/input_connexion"
-                    android:drawableStart="@drawable/ic_mail"
-                    android:drawableLeft="@drawable/ic_mail"
                     android:fontFamily="@font/roboto_slab_bold"
                     android:inputType="textWebEmailAddress"
-                    android:maxLength="50"
                     android:shadowRadius="20"
                     android:singleLine="true"
-                    android:textColor="@color/theme_color"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/theme_color"
                     android:textSize="@dimen/text_input_size"
+                    app:startIconDrawable="@drawable/ic_mail"
                     tools:ignore="EditableContentDescCheck" />
-
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editname_update"
+                android:id="@+id/edittextpassword_con"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:hint="@string/name_hint"
+                android:hint="@string/password_hint"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
                 app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
@@ -124,71 +119,24 @@
                 app:boxStrokeColor="@color/theme_color"
                 app:boxStrokeErrorColor="@color/black"
                 app:hintTextColor="@color/theme_color"
+                app:startIconDrawable="@drawable/ic_baseline_lock_24"
                 app:startIconTint="@color/theme_color">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textinoutedittext_user_update"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
+                    android:layout_marginTop="20dp"
                     android:contentDescription="@string/input_connexion"
                     android:fontFamily="@font/roboto_slab_bold"
-                    android:inputType="textWebEmailAddress"
-                    android:maxLength="50"
+                    android:inputType="textPassword"
                     android:shadowRadius="20"
                     android:singleLine="true"
-                    android:textColor="@color/theme_color"
+                    android:textColor="@color/black"
                     android:textColorHint="@color/theme_color"
                     android:textSize="@dimen/text_input_size"
+                    app:startIconDrawable="@drawable/ic_baseline_lock_24"
                     tools:ignore="EditableContentDescCheck" />
-
             </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card"
-                style="@style/style_card"
-                android:layout_height="match_parent">
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <ImageView
-                        android:id="@+id/image_user_item"
-                        android:layout_width="100sp"
-                        android:layout_height="100sp"
-                        android:layout_weight="1"
-                        tools:ignore="ImageContrastCheck,ImageContrastCheck" />
-
-                    <LinearLayout
-                        android:id="@+id/linear_layout"
-                        style="@style/style_linear"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="10"
-                        android:padding="4dp">
-
-                        <Button
-                            android:id="@+id/btn_con_parcourir_user"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/roboto_slab_bold"
-                            android:shadowRadius="1"
-                            android:text="@string/btn_parcourir_photo"
-                            android:textColor="@color/white"
-                            app:backgroundTint="@color/theme_color"
-                            app:strokeColor="@color/background_grise"
-                            app:strokeWidth="@dimen/border_button"
-                            tools:ignore="TextContrastCheck" />
-                    </LinearLayout>
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
 
             <Button
                 android:id="@+id/btn_con_valider"
@@ -197,7 +145,7 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/roboto_slab_bold"
                 android:shadowRadius="1"
-                android:text="@string/btn_confirmer_infos"
+                android:text="@string/bt_conn_valider"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/theme_color"
                 app:cornerRadius="20dp"
@@ -205,6 +153,8 @@
                 app:strokeWidth="@dimen/border_button"
                 tools:ignore="TextContrastCheck" />
 
+
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

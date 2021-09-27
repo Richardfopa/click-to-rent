@@ -10,7 +10,7 @@
     android:clipChildren="false"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
-    app:cardElevation="1sp">
+    app:cardElevation="8sp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

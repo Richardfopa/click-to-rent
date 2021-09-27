@@ -28,8 +28,9 @@ public class Users {
         this.mesServices=new ArrayList<Service>();
         this.servicesDemande=new ArrayList<Service>();
         this.mesCommentaires=new ArrayList<Commentaire>();
-        FirebasesUtil.addUser(this);
+
     }
+
 
     public Users() {
     }
@@ -170,4 +171,5 @@ public class Users {
                 ", photoClient=" + photoClient +
                 '}';
     }
+
 }

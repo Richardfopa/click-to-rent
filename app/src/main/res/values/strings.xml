@@ -19,7 +19,7 @@
     <string name="email_con">Email :</string>
     <string name="email_hint">email:</string>
     <string name="bt_conn_valider">Valider</string>
-    <string name="textview_connecter_vous_via">Creer votre compte via </string>
+    <string name="textview_creer_compte">Creer votre compte ici </string>
     <string name="facebook">Facebook</string>
     <string name="google">google</string>
     <string name="input_connexion">input connexion</string>
@@ -58,5 +58,14 @@
     <string name="intitule">Faites vos montages graphiques</string>
     <string name="date_du_jour">19/11/2021</string>
     <string name="ajoutez_une_photo">Ajoutez une photo</string>
+    <string name="password_hint">password</string>
+    <string name="textview_passe_oublier">Mot de passe oublier</string>
+    <string name="create_up_con">Create a new account</string>
+    <string name="nom_hint">name</string>
+    <string name="bt_conn_login">Login</string>
+    <string name="forget_up_con">Reset your password</string>
+    <string name="text_passe_oublier">Cliquez pour renitialiser, vous devez recvoire un mail pour renitialiser votre mot de passe</string>
+    <string name="bt_conn_reset">reset</string>
+    <string name="phone">Telephone</string>
 
 </resources>
