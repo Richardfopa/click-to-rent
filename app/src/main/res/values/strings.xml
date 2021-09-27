@@ -1,4 +1,6 @@
 <resources>
+
+
     <string name="app_name">Click 2 rent</string>
     <string name="service">Prestation serv.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
@@ -9,14 +11,15 @@
     <string name="titre">Techniciens Batiment</string>
     <string name="info">Informatique</string>
 
+
     <string name="label">Saisissez le titre de votre service</string>
     <string name="select_category">Catégorie</string>
     <string name="description">Décrivez brièvement votre service Svp</string>
 
     <string name="email_con">Email :</string>
     <string name="email_hint">email:</string>
-    <string name="bt_conn_valider">Se connecter</string>
-    <string name="textview_connecter_vous_via">Creer votre compte via </string>
+    <string name="bt_conn_valider">Valider</string>
+    <string name="textview_creer_compte">Creer votre compte ici </string>
     <string name="facebook">Facebook</string>
     <string name="google">google</string>
     <string name="input_connexion">input connexion</string>
@@ -51,23 +54,24 @@
     <string name="ville">Ville</string>
     <string name="item_historique_description">Service Rendu</string>
     <string name="item_historique_note">Note</string>
-
     <string name="description_prestation">Designer 3D</string>
     <string name="intitule">Faites vos montages graphiques</string>
     <string name="date_du_jour">19/11/2021</string>
-
-    <string name="title_activity_liste_services">ListeServicesActivity</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
-
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
-    <string name="sign_in_cancelled">Connexion annulée</string>
-    <string name="no_internet_connection">Aucune Connexion Internet</string>
-    <string name="unknown_error">Erreur Inconnue</string>
-
+    <string name="ajoutez_une_photo">Ajoutez une photo</string>
+    <string name="password_hint">password</string>
+    <string name="textview_passe_oublier">Mot de passe oublier</string>
+    <string name="create_up_con">Create a new account</string>
+    <string name="nom_hint">name</string>
+    <string name="bt_conn_login">Login</string>
+    <string name="forget_up_con">Reset your password</string>
+    <string name="text_passe_oublier">Cliquez pour renitialiser, vous devez recvoire un mail pour renitialiser votre mot de passe</string>
+    <string name="bt_conn_reset">reset</string>
+    <string name="phone">Telephone</string>
+    <string name="title_activity_liste_services">Liste des Services</string>
+    <string name="first_fragment_label">first fragment</string>
+    <string name="second_fragment_label">"second fragment "</string>
+    <string name="hello_first_fragment">hello first fragment</string>
+    <string name="next">next</string>
+    <string name="previous">previous</string>
 
 </resources>

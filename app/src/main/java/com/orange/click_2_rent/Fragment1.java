@@ -69,7 +69,7 @@ public class Fragment1 extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        
+
         // Inflate the layout for this fragment
 
         View vue = inflater.inflate(R.layout.fragment_1, container, false);
@@ -87,14 +87,12 @@ public class Fragment1 extends Fragment {
 
         specialiteArrayList = new ArrayList<>();
 
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"Maconnerie et plomberie"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"Informatiques et Communication"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
-        specialiteArrayList.add(new Specialite(R.drawable.techniciens,"myImage"));
+        specialiteArrayList.add(new Specialite(R.drawable.sanitaire,"Plomberie"));
+        specialiteArrayList.add(new Specialite(R.drawable.electricite,"Electricite"));
+        specialiteArrayList.add(new Specialite(R.drawable.menuserie,"Menuiserie"));
+        specialiteArrayList.add(new Specialite(R.drawable.elect,"Maconnerie"));
+        specialiteArrayList.add(new Specialite(R.drawable.infomatike,"Informatique"));
+        specialiteArrayList.add(new Specialite(R.drawable.autre,"Autres"));
 
         return specialiteArrayList;
     }

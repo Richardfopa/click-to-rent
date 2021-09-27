@@ -3,88 +3,97 @@ package com.orange.click_2_rent;
 
 import static android.content.ContentValues.TAG;
 
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
-import com.firebase.ui.auth.AuthUI;
-import com.firebase.ui.auth.ErrorCodes;
-import com.firebase.ui.auth.FirebaseAuthUIActivityResultContract;
-import com.firebase.ui.auth.IdpResponse;
-import com.firebase.ui.auth.data.model.FirebaseAuthUIAuthenticationResult;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 
-
-import java.util.Arrays;
-import java.util.List;
-
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthCredential;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.GoogleAuthProvider;
 
 public class ConnexionActivity extends AppCompatActivity {
 
+    private FirebaseAuth mAuth;
+    private TextInputLayout password;
+    private TextInputLayout email;
+    private Button login;
+    private TextView forget_password;
 
-    private final ActivityResultLauncher<Intent> signInLauncher = registerForActivityResult(
-            new FirebaseAuthUIActivityResultContract(),
-            new ActivityResultCallback<FirebaseAuthUIAuthenticationResult>() {
-                @Override
-                public void onActivityResult(FirebaseAuthUIAuthenticationResult result) {
-                    onSignInResult(result);
-                }
-            }
-    );
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_connexion);
-        startSignIn();
-
-    }
-    private void startSignIn() {
-        // Choose authentication providers
-        List<AuthUI.IdpConfig> providers = Arrays.asList(
-                new AuthUI.IdpConfig.EmailBuilder().build(),
-                new AuthUI.IdpConfig.GoogleBuilder().build());
-
-        // Create and launch sign-in intent
-    Intent signInItent = AuthUI.getInstance()
-            .createSignInIntentBuilder()
-            .setTheme(R.style.ThemeClick2rent)
-            .setAvailableProviders(providers)
-            .setIsSmartLockEnabled(false, true)
-            .build();
-    signInLauncher.launch(signInItent);
-    }
-
-
-    private void onSignInResult(FirebaseAuthUIAuthenticationResult result) {
-        IdpResponse response = result.getIdpResponse();
-
-        if (result.getResultCode() == RESULT_OK) {
-            // Successfully signed in
-            startActivity(new Intent(this, MainActivity.class));
-            finish();
-        } else {
-            // Sign in failed
-            if (response == null) {
-                // User pressed back button
-                showSnackbar(R.string.sign_in_cancelled);
-                return;
+        password = findViewById(R.id.edittextpassword_con);
+        email = findViewById(R.id.edittextusername_con);
+        login = findViewById(R.id.btn_con_login);
+        forget_password = findViewById(R.id.forget_pass);
+        forget_password.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent passe = new Intent(getApplicationContext(),Activity2.class);
+                startActivity(passe);
             }
+        });
 
-            if (response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
-                showSnackbar(R.string.no_internet_connection);
-                return;
+        mAuth = FirebaseAuth.getInstance();
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String txt_email = email.getEditText().getText().toString();
+                String txt_pass = password.getEditText().getText().toString();
+
+                if(TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_pass))
+                {
+                    Toast.makeText(getApplicationContext(), "Veuillez remplir tout les champs", Toast.LENGTH_SHORT).show();
+                }
+
+                else
+                {
+                    mAuth.signInWithEmailAndPassword(txt_email,txt_pass)
+                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if(task.isSuccessful())
+                                    {
+                                        Intent intent1 = new Intent(getApplicationContext(),AddServiceActivity.class);
+                                        intent1.addFlags(intent1.FLAG_ACTIVITY_CLEAR_TASK | intent1.FLAG_ACTIVITY_NEW_TASK);
+                                        startActivity(intent1);
+
+                                    }
+                                    else
+                                    {
+                                        Toast.makeText(getApplicationContext(), "Connexion echouer", Toast.LENGTH_SHORT).show();
+                                    }
+                                }
+                            });
+                }
             }
-
-            showSnackbar(R.string.unknown_error);
-            Log.e(TAG, "Sign-in error: ", response.getError());
-        }
+        });
     }
 
-
-    private void showSnackbar(int sign_in_cancelled) {
+    public void fct_envoie(View view) {
+        Intent intent = new Intent(getApplicationContext(),CompteActivity.class);
+        startActivity(intent);
     }
 }
-

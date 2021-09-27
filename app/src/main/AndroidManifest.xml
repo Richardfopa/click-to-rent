@@ -14,12 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
+            android:name=".DemarrageApp"
+            android:exported="true" />
+        <activity
+            android:name=".CompteActivity"
+            android:exported="true" />
+        <activity
             android:name=".Activity2"
             android:exported="true" />
         <activity
             android:name=".PrestationsActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ListeServicesActivity"
             android:exported="true"
@@ -50,7 +56,6 @@
         <activity
             android:name=".HistoryListActivity"
             android:exported="true" />
-
         <activity
             android:name=".EditProfileActivity"
             android:exported="true"
@@ -58,7 +63,6 @@
         <activity
             android:name=".ProfileMainActivity"
             android:exported="true" />
-
 
         <meta-data
             android:name="preloaded_fonts"

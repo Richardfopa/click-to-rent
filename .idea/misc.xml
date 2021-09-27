@@ -3,16 +3,24 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/drawable/bg_start.xml" value="0.2203125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/drawable/divider.xml" value="0.19814814814814816" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.2203125" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/drawable/ic_baseline_trending_flat_24.xml" value="0.2203125" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/drawable/recyclerview_divider.xml" value="0.2" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/action_bar_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_2.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_ajout_service.xml" value="0.1" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_add_user.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_ajout_service.xml" value="0.25" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_compte.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_connexion.xml" value="0.25" />
-        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_edit_profile.xml" value="0.33" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_connexionmdp.xml" value="0.15833333333333333" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_demarrage_app.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_edit_profile.xml" value="0.1" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_history_list.xml" value="0.1859375" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_liste_services.xml" value="0.215625" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/activity_nos_prestations.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/category_item.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/civilite_item.xml" value="0.22" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/content_liste_services.xml" value="0.33" />
@@ -28,6 +36,7 @@
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/layout/specialite_menu.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/menu/botton_nav_bar.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/menu/gender_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/user/AndroidStudioProjects/click-to-rent/app/src/main/res/menu/searchmenu.xml" value="0.12552083333333333" />
       </map>
     </option>
   </component>

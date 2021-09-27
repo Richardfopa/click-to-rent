@@ -20,7 +20,13 @@ import com.google.android.material.tabs.TabLayout;
 
 
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends AppCompatActivity {
+
+
+    private FirebaseAuth mAuth;
 
     TabLayout Tablelayout;
     ViewPager2  Viewpage;
@@ -30,10 +36,16 @@ public class MainActivity extends AppCompatActivity {
     public static int positionCourante;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        mAuth = FirebaseAuth.getInstance();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+
 
         if(savedInstanceState!=null){
             positionCourante = savedInstanceState.getInt(CLE_POSITION_CoURANTE,0);
@@ -42,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //getSupportFragmentManager().beginTransaction()
-          //      .add(R.id.principal,new Fragment1(),Fragment1.class.getSimpleName())
-          //      .commit();
+        //      .add(R.id.principal,new Fragment1(),Fragment1.class.getSimpleName())
+        //      .commit();
 
         myCardview = findViewById(R.id.monCadre);
         Tablelayout = findViewById(R.id.maTabLayout);
@@ -51,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Recuperation et Affichage des icones
 
-       // Tablelayout.getTabAt(0).setIcon(R.drawable.home_repair_service_24);
+        // Tablelayout.getTabAt(0).setIcon(R.drawable.home_repair_service_24);
         //Tablelayout.getTabAt(1).setIcon(R.drawable.restaurant_24);
         // Tablelayout.getTabAt(2).setIcon(R.drawable.local_taxi_24);
 
@@ -84,6 +96,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
 
+
             }
         });
         Viewpage.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
@@ -100,7 +113,6 @@ public class MainActivity extends AppCompatActivity {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.botton_nav_bar,menu);
         return true;
-
     }
     public boolean onOptionsItemSelected(MenuItem menuItem) {
 
@@ -108,8 +120,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.home:
 
-                 Toast.makeText(this, "vous avez selectionnez Home", Toast.LENGTH_SHORT).show();
-                 return true;
+                Toast.makeText(this, "vous avez selectionnez Home", Toast.LENGTH_SHORT).show();
+                return true;
 
             case R.id.Parametres:
 
@@ -117,17 +129,16 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.profil:
-                Intent profilIntent = new Intent(this, ConnexionActivity.class);
-                startActivity(profilIntent);
-                Toast.makeText(this, "Profil", Toast.LENGTH_SHORT).show();
-            case R.id.Rechercher:
 
-                Toast.makeText(this, "Rechercher", Toast.LENGTH_SHORT).show();
-                return true;
+                Intent intent = new Intent(getApplicationContext(),ConnexionActivity.class);
+                startActivity(intent);
+
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
 
     }
+
+
 
 }
