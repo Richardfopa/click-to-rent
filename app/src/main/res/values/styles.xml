@@ -35,4 +35,10 @@
         <item name="android:padding">4dp</item>
         <!--        <item name="android:layout_weight">2</item>-->
     </style>
+
+    <style name="StyleTextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+    </style>
 </resources>

@@ -15,6 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
+            android:name=".AjoutServiceActivity"
+            android:exported="true" />
+        <activity
+            android:name=".CompteActivity"
+            android:exported="true"
+            android:parentActivityName=".ConnexionActivity" />
+        <activity
             android:name=".DemarrageApp"
             android:exported="true">
             <intent-filter>
@@ -24,18 +31,17 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Demmarrage"
-            android:exported="true" />
-        <activity
             android:name=".Activity2"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".ConnexionActivity" />
         <activity
             android:name=".PrestationsActivity"
             android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ajout_service"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".ajout_service" />
         <activity
             android:name=".AddUserActivity"
             android:exported="true" />
@@ -47,7 +53,8 @@
             android:exported="true" />
         <activity
             android:name=".ConnexionActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

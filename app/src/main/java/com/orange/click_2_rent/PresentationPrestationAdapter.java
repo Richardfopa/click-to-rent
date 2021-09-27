@@ -1,8 +1,12 @@
 package com.orange.click_2_rent;
 
+import static java.lang.String.valueOf;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,16 +14,23 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
+import java.util.List;
 
 
-public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> {
+public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable {
 
     ArrayList<Presentation_prestations> maListe;
+    ArrayList<Presentation_prestations> listeALL = new ArrayList<>();
 
-    public PresentationPrestationAdapter(ArrayList<Presentation_prestations> maListe) {
 
-        this.maListe = maListe;
+    public PresentationPrestationAdapter(ArrayList<Presentation_prestations> MaListe) {
+
+        this.maListe = MaListe;
+        this.listeALL = MaListe;
+
     }
 
     @NonNull
@@ -32,14 +43,14 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PresentationPrestationAdapter.PresentationPrestationViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PresentationPrestationViewHolder holder, int position) {
 
         final Presentation_prestations liste_prestations = this.maListe.get(position);
-
-        holder.mImgProfil.setImageResource(liste_prestations.getImage_profil_prestation());
         holder.mTitredescription.setText(liste_prestations.getTitre_prestation());
         holder.mMinidescription.setText(liste_prestations.getMiniDescription());
-        holder.mDateDescription.setText(liste_prestations.getDate_prestation());
+        holder.mDateDescription.setText(valueOf(liste_prestations.getDate_prestation().toDate()));
+
+        Picasso.with(holder.mImgProfil.getContext()).load(liste_prestations.getPhoto()).into(holder.mImgProfil);
 
     }
 
@@ -48,6 +59,52 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
 
         return maListe.size();
     }
+
+    @Override
+    public Filter getFilter() {
+
+     Filter filter = new Filter() {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            FilterResults filterResults  = new FilterResults();
+
+            if(constraint == null || constraint.length() == 0 ) {
+
+               filterResults.values = listeALL;
+               filterResults.count = listeALL.size();
+
+            }else{
+
+                String searchMax = constraint.toString().toLowerCase();
+                List<Presentation_prestations> prestations = new ArrayList<>();
+
+                for (Presentation_prestations presence :listeALL){
+
+                   if(presence.getMiniDescription().toLowerCase().contains(searchMax) || presence.getTitre_prestation().toLowerCase().contains(searchMax))
+
+                     {
+                         prestations.add(presence);
+                     }
+                }
+                filterResults.values = prestations;
+                filterResults.count = prestations.size();
+            }
+
+            return filterResults;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
+
+            maListe = (ArrayList<Presentation_prestations>) filterResults.values;
+            notifyDataSetChanged();
+        }
+    };
+        return filter;
+    }
+
 
     public class PresentationPrestationViewHolder extends RecyclerView.ViewHolder {
 
@@ -65,6 +122,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
             mMinidescription = itemView.findViewById(R.id.miniDescription);
             mDateDescription = itemView.findViewById(R.id.mDate);
             mCadreVue = itemView.findViewById(R.id.monCadre);
+
 
         }
     }

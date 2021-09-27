@@ -1,141 +1,204 @@
 package com.orange.click_2_rent.Models;
-/***********************************************************************
- * Author:  Team click-2-rent
- * Purpose: Defines the Class Categorie
- ***********************************************************************/
 
-import com.firebase.ui.auth.data.model.User;
+import com.google.firebase.Timestamp;
 
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Date;
 
 public class Service {
 
-   private String id;
-   private Boolean status;
-   private String description;
-   private int photoService;
-   private String categorie;
-   private Date AddDate;
-   private String nom_prestataire;
-   private ArrayList<Photo> photos;
-   private ArrayList<Users> clients;
-   private ArrayList<Commentaire> commentaire;
-   private ArrayList<Integer> note;
+    private String id;
+    private String title;
+    private Boolean status;
+    private String description;
+    private String urlphotoService;
+    private String categorie;
+    private Timestamp AddDate;
+    private String nom_prestataire;
+    private ArrayList<Photo> photos;
+    private ArrayList<Users> clients;
+    private ArrayList<Commentaire> commentaire;
+    private ArrayList<Integer> note;
 
-   public Service() {
-   }
+    public Service() {
+    }
 
-   public String getId() {
-      return id;
-   }
+    public Service(String id,
+                   String title,
+                   Boolean status,
+                   String description,
+                   String urlphotoService,
+                   String categorie,
+                   Timestamp addDate,
+                   String nom_prestataire,
+                   ArrayList<Photo> photos,
+                   ArrayList<Users> clients,
+                   ArrayList<Commentaire> commentaire,
+                   ArrayList<Integer> note) {
+        this.id = id;
+        this.title = title;
+        this.status = status;
+        this.description = description;
+        this.urlphotoService = urlphotoService;
+        this.categorie = categorie;
+        AddDate = addDate;
+        this.nom_prestataire = nom_prestataire;
+        this.photos = photos;
+        this.clients = clients;
+        this.commentaire = commentaire;
+        this.note = note;
+    }
 
-   public Service( Boolean status, String description, int photoService,
-                  String categorie, String nom_prestataire ){
-      this.status = status;
-      this.description = description;
-      this.photoService = photoService;
-      this.categorie = categorie;
-      AddDate = new Date();
-      this.nom_prestataire = nom_prestataire;
-   }
+    public String getId() {
+        return id;
+    }
 
-   public Boolean getStatus() {
-      return status;
-   }
+    public Service( Boolean status, String description, String urlphotoService,
+                    String categorie, String nom_prestataire ){
+        this.status = status;
+        this.description = description;
+        this.urlphotoService = urlphotoService;
+        this.categorie = categorie;
+        AddDate =new Timestamp(new Date());
+        this.nom_prestataire = nom_prestataire;
+    }
 
-   public void setStatus(Boolean status) {
-      this.status = status;
-   }
+    public String getTitle() {
+        return title;
+    }
 
-   public String getDescription() {
-      return description;
-   }
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
-   public void setDescription(String description) {
-      this.description = description;
-   }
+    public Boolean getStatus() {
+        return status;
+    }
 
-   public int getPhotoService() {
-      return photoService;
-   }
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
-   public void setPhotoService(int photoService) {
-      this.photoService = photoService;
-   }
+    public String getDescription() {
+        return description;
+    }
 
-   public String getCategorie() {
-      return categorie;
-   }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-   public void setCategorie(String categorie) {
-      this.categorie = categorie;
-   }
+    public String getPhotoService() {
+        return urlphotoService;
+    }
 
-   public Date getAddDate() {
-      return AddDate;
-   }
+    public void setPhotoService(String photoService) {
+        this.urlphotoService = photoService;
+    }
 
-   public String getNom_prestataire() {
-      return nom_prestataire;
-   }
+    public String getCategorie() {
+        return categorie;
+    }
 
-   public void setNom_prestataire(String nom_prestataire) {
-      this.nom_prestataire = nom_prestataire;
-   }
+    public void setCategorie(String categorie) {
+        this.categorie = categorie;
+    }
 
-   public ArrayList<Photo> getPhotos() {
-      if( photos == null);
-         photos = new ArrayList<Photo>();
-      return photos;
-   }
+    public Timestamp getAddDate() {
+        return AddDate;
+    }
 
-   public void addPhotos(Photo photo) {
+    public String getNom_prestataire() {
+        return nom_prestataire;
+    }
 
-      this.photos.add(photo);
-   }
+    public void setNom_prestataire(String nom_prestataire) {
+        this.nom_prestataire = nom_prestataire;
+    }
 
-   public ArrayList<Users> getClients() {
-      if (clients == null);
-         clients = new ArrayList<Users>();
-      return clients;
-   }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-   public void addClients(Users clients) {
+    public String getUrlphotoService() {
+        return urlphotoService;
+    }
 
-      this.clients.add(clients);
-   }
+    public void setUrlphotoService(String urlphotoService) {
+        this.urlphotoService = urlphotoService;
+    }
 
-   public ArrayList<Commentaire> getCommentaire() {
-      if (commentaire == null);
-         commentaire = new ArrayList<Commentaire>();
-      return commentaire;
-   }
+    public void setAddDate(Timestamp addDate) {
+        AddDate = addDate;
+    }
 
-   public void addCommentaire(Commentaire commentaire) {
+    public void setPhotos(ArrayList<Photo> photos) {
+        this.photos = photos;
+    }
 
-      this.commentaire.add(commentaire);
-   }
+    public void setClients(ArrayList<Users> clients) {
+        this.clients = clients;
+    }
 
-   public ArrayList<Integer> getNote() {
-      if (note == null);
-         note=new ArrayList<Integer>();
-      return note;
-   }
+    public void setCommentaire(ArrayList<Commentaire> commentaire) {
+        this.commentaire = commentaire;
+    }
 
-   public void setNote(Integer note) {
+    public void setNote(ArrayList<Integer> note) {
+        this.note = note;
+    }
 
-      this.note.add(note);
-   }
+    public ArrayList<Photo> getPhotos() {
+        if( photos == null);
+        photos = new ArrayList<Photo>();
+        return photos;
+    }
 
-   @Override
-   public String toString() {
-      return "Service{" +
-              "id=" + id +
-              ", status=" + status +
-              ", description='" + description + '\'' +
-              ", photoService=" + photoService +
-              ", contient=" + photos +
-              '}';
-   }
+    public void addPhotos(Photo photo) {
+
+        this.photos.add(photo);
+    }
+
+    public ArrayList<Users> getClients() {
+        if (clients == null);
+        clients = new ArrayList<Users>();
+        return clients;
+    }
+
+    public void addClients(Users clients) {
+
+        this.clients.add(clients);
+    }
+
+    public ArrayList<Commentaire> getCommentaire() {
+        if (commentaire == null);
+        commentaire = new ArrayList<Commentaire>();
+        return commentaire;
+    }
+
+    public void addCommentaire(Commentaire commentaire) {
+
+        this.commentaire.add(commentaire);
+    }
+
+    public ArrayList<Integer> getNote() {
+        if (note == null);
+        note=new ArrayList<Integer>();
+        return note;
+    }
+
+    public void setNote(Integer note) {
+
+        this.note.add(note);
+    }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "id=" + id +
+                ", status=" + status +
+                ", description='" + description + '\'' +
+                ", photoService=" + urlphotoService +
+                ", contient=" + photos +
+                '}';
+    }
 }

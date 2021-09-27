@@ -24,7 +24,7 @@ public class ajout_service extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_ajout_service);
+        setContentView(R.layout.activity_ajout_service1);
 
         String[] type = new String[] {"Bed-sitter", "Single", "1- Bedroom", "2- Bedroom","3- Bedroom"};
 

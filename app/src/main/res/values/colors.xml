@@ -21,5 +21,6 @@
     <color name="theme_color">#2EB0FE</color>
     <color name="background_grise">#11606060</color>
     <color name="grey">#808080</color>
+    <color name="rouge">#A01C13</color>
 
 </resources>

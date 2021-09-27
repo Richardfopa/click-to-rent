@@ -1,18 +1,41 @@
 package com.orange.click_2_rent;
 
+import com.google.firebase.Timestamp;
 public class Presentation_prestations {
 
     int image_profil_prestation;
     String titre_prestation;
     String miniDescription;
-    String date_prestation;
+    String photo;
+    Timestamp date_prestation;
 
-    public Presentation_prestations(int image_profil_prestation, String titre_prestation, String miniDescription, String date_prestation) {
+    public Presentation_prestations(String titre_prestation, String miniDescription, Timestamp date_prestation) {
+        this.titre_prestation = titre_prestation;
+        this.miniDescription = miniDescription;
+        this.date_prestation = date_prestation;
+    }
+
+    public Presentation_prestations(int image_profil_prestation, String titre_prestation, String miniDescription, Timestamp date_prestation) {
 
         this.image_profil_prestation = image_profil_prestation;
         this.titre_prestation = titre_prestation;
         this.miniDescription = miniDescription;
         this.date_prestation = date_prestation;
+    }
+
+    public Presentation_prestations(String titre_prestation, String miniDescription, Timestamp date_prestation, String photo) {
+        this.titre_prestation = titre_prestation;
+        this.miniDescription = miniDescription;
+        this.date_prestation = date_prestation;
+        this.photo = photo;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 
     public int getImage_profil_prestation() {
@@ -30,7 +53,7 @@ public class Presentation_prestations {
         return miniDescription;
     }
 
-    public String getDate_prestation() {
+    public Timestamp getDate_prestation() {
 
         return date_prestation;
     }

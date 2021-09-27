@@ -130,11 +130,9 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.profil:
 
-                Toast.makeText(this, "Profil", Toast.LENGTH_SHORT).show();
-            case R.id.Rechercher:
+                Intent intent = new Intent(getApplicationContext(),ConnexionActivity.class);
+                startActivity(intent);
 
-                Toast.makeText(this, "Rechercher", Toast.LENGTH_SHORT).show();
-                return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
         }

@@ -12,7 +12,7 @@
         android:id="@+id/maTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/purple_700"
+        android:background="@color/color_blue"
         android:scrollbarSize="25sp"
         android:scrollbarStyle="insideOverlay"
         android:elevation="20sp"
@@ -48,21 +48,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="70sp">
     </androidx.viewpager2.widget.ViewPager2>
-
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/boutonFlottant"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="16sp"
-        android:backgroundTint="@color/purple_500"
-        android:clickable="true"
-        android:src="@drawable/add_24"
-        app:elevation="10sp"
-        app:fabSize="normal"
-        app:rippleColor="@color/purple_500"
-        tools:ignore="SpeakableTextPresentCheck,VectorDrawableCompat" />
 
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
