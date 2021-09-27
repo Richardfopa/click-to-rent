@@ -76,7 +76,7 @@ public class ConnexionActivity extends AppCompatActivity {
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful())
                                     {
-                                        Intent intent1 = new Intent(getApplicationContext(),AddServiceActivity.class);
+                                        Intent intent1 = new Intent(getApplicationContext(),ProfileMainActivity.class);
                                         intent1.addFlags(intent1.FLAG_ACTIVITY_CLEAR_TASK | intent1.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent1);
 

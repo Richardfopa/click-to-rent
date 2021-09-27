@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -25,9 +27,9 @@ public class ProfileMainActivity extends AppCompatActivity {
         setContentView(R.layout.gestion_profile);
         TextView email_title = findViewById(R.id.profile_image_title);
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-        CollectionReference colref = db.collection("users");
-        DocumentReference docref = colref.document();
+        // récuperer l'utilisateur courant
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        email_title.setText(user.getEmail());
 
 
     }

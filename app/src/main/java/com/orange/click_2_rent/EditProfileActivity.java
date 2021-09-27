@@ -8,14 +8,21 @@ import android.view.MenuInflater;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
+
 public class EditProfileActivity extends AppCompatActivity {
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        //récupere l'utilisateur connecté
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
 
         //création du menu pour le genre (sexe)
         String[] gender = new String[]{"Homme", "Femme"};
