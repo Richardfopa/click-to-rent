@@ -1,7 +1,6 @@
 package com.orange.click_2_rent;
 
 
-import static android.content.ContentValues.TAG;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;

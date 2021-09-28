@@ -96,4 +96,5 @@ public class Fragment1 extends Fragment {
 
         return specialiteArrayList;
     }
+
 }

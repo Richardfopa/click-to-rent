@@ -3,7 +3,6 @@ package com.orange.click_2_rent;
 import static java.lang.String.valueOf;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -127,8 +126,6 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
             mMinidescription = itemView.findViewById(R.id.miniDescription);
             mDateDescription = itemView.findViewById(R.id.mDate);
             mCadreVue = itemView.findViewById(R.id.monCadre);
-
-
         }
     }
 }

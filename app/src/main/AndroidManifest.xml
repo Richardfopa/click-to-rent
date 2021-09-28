@@ -43,13 +43,7 @@
             android:exported="true"
             android:parentActivityName=".ajout_service" />
         <activity
-            android:name=".AddUserActivity"
-            android:exported="true" />
-        <activity
             android:name=".PremiereConnectionActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ConnexionmdpActivity"
             android:exported="true" />
         <activity
             android:name=".ConnexionActivity"
@@ -77,5 +71,4 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

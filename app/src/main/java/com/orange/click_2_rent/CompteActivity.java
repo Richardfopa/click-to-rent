@@ -66,14 +66,14 @@ public class CompteActivity extends AppCompatActivity {
 
     }
 
-    private void register(String username, String password, String email)
-    {
+    private void register(String username, String password, String email) {
         auth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
+
                             FirebaseUser firebaseUser = auth.getCurrentUser();
                             String userid = firebaseUser.getUid();
                             HashMap<String, String> hashMap = new HashMap<>();
@@ -100,5 +100,7 @@ public class CompteActivity extends AppCompatActivity {
                         }
                     }
                 });
+        UserRepository.addUser(password);
+
     }
 }

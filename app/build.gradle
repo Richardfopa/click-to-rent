@@ -4,10 +4,10 @@
 
 //Pour gerer les images comme des drawables
 
-android.defaultConfig.vectorDrawables.useSupportLibrary = true
+ android.defaultConfig.vectorDrawables.useSupportLibrary = true
 
 
-android {
+ android {
     compileSdk 31
 
     defaultConfig {
