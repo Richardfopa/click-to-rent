@@ -190,16 +190,10 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
             user.put("service_souscri", client.getDemande());
             user.put("datedesorti", client.getDatedesorti());
             Log.w("REUSSI",client.toString());
-//            FireBaseUtils.addUser(client, view.getContext());
-            final int[] sentData = {0};
 
             FireBaseUtils.addUser(FireBaseUtils.CLIENT_COLLECTION,user,this);
-//            if(sentData[0] == 1){
-                Intent intent = new Intent(view.getContext(), MainActivity.class);
-//                intent.putExtra(user);
-                startActivity(intent);
-//            }
-
+            Intent intent = new Intent(view.getContext(), MainActivity.class);
+            startActivity(intent);
         }
         //Choose profile picture
         if (view.getId() == R.id.btn_con_parcourir_photoservice){

@@ -68,6 +68,21 @@
     <string name="choisir_votre_photo_de_profil">Photo descriptive de votre travail</string>
     <string name="textdoc">Faites une capture d\'ecran de votre CV</string>
     <string name="photo_service">Photo Service</string>
+    <string name="search_hint">service name, or prestataire</string>
+    <string name="app_label">search</string>
+
+    <string name="mValider">Contactez-nous</string>
+    <string name="titreProfil">Maintenance</string>
+    <string name="afficheDetails">Fates vous depannez en quelques click!!!</string>
+
+    <string name="nomdesc">Ismael Ngadji</string>
+    <string name="descriptionDetails">Je suis tres content du service rendu</string>
+
+    <string name="sms">Envoyez un SMS</string>
+    <string name="appel">Appelez</string>
+    <string name="Vnom">Votre Nom</string>
+    <string name="Vnumero">Votre Email</string>
+    <string name="label_title_service">Titre du service</string>
 
 
 </resources>

@@ -45,7 +45,7 @@ public class Users {
 
     public ArrayList<Service> getMesServices() {
         if (mesServices == null);
-            mesServices = new ArrayList<Service>();
+        mesServices = new ArrayList<Service>();
         return mesServices;
     }
 
@@ -55,7 +55,7 @@ public class Users {
 
     public ArrayList<Service> getServicesDemande() {
         if (servicesDemande == null);
-            servicesDemande=new ArrayList<Service>();
+        servicesDemande=new ArrayList<Service>();
         return servicesDemande;
     }
 
@@ -65,7 +65,7 @@ public class Users {
 
     public ArrayList<Commentaire> getMesCommentaires() {
         if (mesCommentaires == null);
-            mesCommentaires=new ArrayList<Commentaire>();
+        mesCommentaires=new ArrayList<Commentaire>();
         return mesCommentaires;
     }
 

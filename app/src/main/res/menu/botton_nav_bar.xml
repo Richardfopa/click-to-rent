@@ -15,8 +15,9 @@
     <item
         android:id="@+id/Rechercher"
         android:title="Search"
-        app:showAsAction="ifRoom"
-        android:icon="@drawable/search_24"/>
+        android:icon="@drawable/search_24"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.widget.SearchView"/>
     <item
         android:id="@+id/profil"
         android:title="Profile"

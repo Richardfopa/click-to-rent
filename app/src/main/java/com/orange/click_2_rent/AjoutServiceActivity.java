@@ -22,6 +22,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.orange.click_2_rent.Firebase.FireBaseUtils;
 import com.orange.click_2_rent.Models.Service;
 
@@ -32,7 +34,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class AjoutServiceActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
-    
+
+    FirebaseStorage storage;
     TextInputLayout mTxtTitleService;
     TextInputLayout mTxtCategorieService;
     ImageView mImgPhotoService;
@@ -67,11 +70,22 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
         //Bouton Annuler
         mbtcancel.setOnClickListener(this);
         //Bouton Choisir photo service
-        mbtChoosePict.setOnClickListener(this);
+        //mbtChoosePict.setOnClickListener(this);
         //Bouton choisir doc service
-        mbtChooseDoc.setOnClickListener(this);
+        //mbtChooseDoc.setOnClickListener(this);
+
+        mImgPhotoService.setOnClickListener(this);
+
+        mImgPhotoDoc.setOnClickListener(this);
 
         mTxtTitleService.setOnFocusChangeListener(this);
+
+        // Configuration de firebasestorage
+
+        storage = FirebaseStorage.getInstance();
+
+
+
 
     }
 
@@ -97,7 +111,7 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
         mbtcancel = findViewById(R.id.cancel_add_service);
         mbtConfirm = findViewById(R.id.confirm_add_service);
         mbtChoosePict = findViewById(R.id.btn_con_parcourir_photoservice);
-        mbtChooseDoc = findViewById(R.id.btn_con_parcourir_docu_user);
+        //mbtChooseDoc = findViewById(R.id.btn_con_parcourir_docu_user);
         error = findViewById(R.id.title_error_add_service);
         error.setVisibility(View.INVISIBLE);
     }
@@ -107,18 +121,19 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         
         switch (view.getId()){
-            
+
+            /*
             case R.id.btn_con_parcourir_photoservice :
                 // Clic pour chercher photo de service
 
                 ChooseDoc(REQUEST_SELECT_IMAGE_SERVICE);
-                
+
                 break;
             case R.id.btn_con_parcourir_docu_user :
                 // Clic pour chercher photo du CV service
-                
+
                 ChooseDoc(REQUEST_SELECT_DOC_SERVICE);
-                break;
+                break;*/
             case R.id.confirm_add_service: 
                 // Clic pour confirmer les donnees saisir et envoyer
                 title = mTxtTitleService.getEditText().getText().toString();
@@ -147,9 +162,6 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
                     } else {
                         error.setVisibility(View.VISIBLE);
                     }
-                    
-
-                    
                     error.setText("Donnees Valider ");
                     error.setTextColor(R.color.theme_color);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -165,15 +177,40 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
                     serv.put("title",service.getTitle());
                     serv.put("categorie",service.getCategorie());
                     serv.put("description",service.getDescription());
-                    serv.put("photo",service.getContient());
-                    serv.put("add_date",service.getDatedajout());
+                    serv.put("photo",service.getPhotoService());
+                    serv.put("add_date",service.getAddDate());
 
                     FireBaseUtils.addUser(COLLECTION_SERVICE,serv,this);
 
-                    startActivity(new Intent(this,MainActivity.class));
+                    // Creer une reference
+
+                    // Create a storage reference from our app
+                    StorageReference storageRef = storage.getReference();
+
+                    // Create a child reference
+                    // imagesRef now points to "images"
+                    StorageReference imagesRef = storageRef.child("services");
+
+
+
+                    // Child references can also take paths
+                    // spaceRef now points to "images/space.jpg
+                    // imagesRef still points to "images"
+                    StorageReference spaceRef = storageRef.child("services/space.jpg");
+
+                    startActivity(new Intent(this,Presentation_prestations.class));
                 }
 
                 break;
+
+            case R.id.image_add_service_photo_item:
+                ChooseDoc(REQUEST_SELECT_IMAGE_SERVICE);
+                break;
+
+            case R.id.image_add_service_document_item:
+                ChooseDoc(REQUEST_SELECT_DOC_SERVICE);
+                break;
+
             case R.id.cancel_add_service:
                 // Clic sur le bouton annuler
                 break;
@@ -272,9 +309,7 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
                         }
                     }
                 }
-
-
                 break;
-        }
+            }
     }
 }

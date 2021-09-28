@@ -15,18 +15,24 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
+            android:name=".ContactezNousActivity"
+            android:exported="true" />
+        <activity android:name=".ResultSearchActivity">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchableActivity" />
+        </activity>
+        <activity
             android:name=".SearchActivity"
             android:exported="true"
-            android:label="Chercher un Service"/>
+            android:label="Chercher un Service">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity
             android:name=".DemarrageApp"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".Activity2"
             android:exported="true" />
@@ -58,7 +64,13 @@
         <activity
             android:name=".ConnexionActivity"
             android:exported="true"
-            android:label="Welcome" />
+            android:label="Welcome">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />

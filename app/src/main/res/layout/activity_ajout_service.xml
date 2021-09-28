@@ -21,7 +21,7 @@
 
             <TextView
                 android:id="@+id/tv_title_add_service"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 android:layout_marginStart="16dp"
@@ -33,7 +33,7 @@
                 android:gravity="center"
                 android:maxLines="4"
                 android:text="@string/add_service_FORM"
-                android:textSize="24sp"/>
+                android:textSize="24sp" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_title_service"
@@ -41,8 +41,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-                android:hint="@string/label"
                 android:layout_marginTop="16dp"
+                android:hint="@string/label_title_service"
                 app:errorContentDescription="Entrer un titre valide"
                 app:errorIconDrawable="@drawable/ic_baseline_error_24"
                 app:expandedHintEnabled="false">
@@ -119,19 +119,6 @@
                             app:srcCompat="@drawable/ic_baseline_image_24"
                             tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
-                        <Button
-                            android:id="@+id/btn_con_parcourir_photoservice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/roboto_slab_bold"
-                            android:shadowRadius="1"
-                            android:text="@string/btn_parcourir_photo"
-                            android:textColor="@color/white"
-                            app:backgroundTint="@color/theme_color"
-                            app:strokeColor="@color/background_grise"
-                            app:strokeWidth="@dimen/border_button"
-                            tools:ignore="TextContrastCheck" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -159,20 +146,6 @@
                             android:layout_weight="10"
                             app:srcCompat="@drawable/ic_baseline_image_24"
                             tools:ignore="ImageContrastCheck,ImageContrastCheck" />
-
-                        <Button
-                            android:id="@+id/btn_con_parcourir_docu_user"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/roboto_slab_bold"
-                            android:shadowRadius="1"
-                            android:text="@string/btn_parcourir_photo"
-                            android:textColor="@color/white"
-                            app:backgroundTint="@color/theme_color"
-                            app:strokeColor="@color/background_grise"
-                            app:strokeWidth="@dimen/border_button"
-                            tools:ignore="TextContrastCheck" />
 
                     </LinearLayout>
 
@@ -239,11 +212,15 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
+                    android:background="@color/theme_color"
                     android:backgroundTint="@color/white"
                     android:fontFamily="@font/roboto_slab_bold"
+                    android:shadowRadius="6"
                     android:text="Valider"
                     android:textAllCaps="false"
-                     />
+                    android:textColor="@color/white"
+                    app:backgroundTint="@color/theme_color"
+                    app:cornerRadius="6dp" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

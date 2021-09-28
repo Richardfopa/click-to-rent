@@ -8,33 +8,31 @@ import java.util.*;
 
 
 public class Photo {
-<<<<<<< HEAD
 
    private String id;
-=======
    /** @pdOid f3962377-27f1-40e4-8d7c-3b5bc74035a3 */
-   private int idPhoto;
+   private String idPhoto;
    /** @pdOid bf5fadae-969a-453b-8b49-966c5c3c51ee */
    private String nomPhoto;
    private String mImageUrl;
-
-   public Photo(int idPhoto, String nomPhoto, String mImageUrl) {
+   public Photo(String idPhoto, String nomPhoto, String mImageUrl) {
       this.idPhoto = idPhoto;
       this.nomPhoto = nomPhoto;
       this.mImageUrl = mImageUrl;
    }
->>>>>>> richard
 
-   private String urlPhoto;
 
-   public String getIdPhoto() {
-      return id;
+
+
+   public String getNomPhoto() {
+      return nomPhoto;
    }
 
-<<<<<<< HEAD
-   public Photo(String urlPhoto) {
-      this.urlPhoto = urlPhoto;
-=======
+   public void setNomPhoto(String nomPhoto) {
+      this.nomPhoto = nomPhoto;
+   }
+
+
 
    public String getmImageUrl() {
       return mImageUrl;
@@ -44,37 +42,24 @@ public class Photo {
       this.mImageUrl = mImageUrl;
    }
 
-   public int getIdPhoto() {
+   public String getIdPhoto() {
       return idPhoto;
    }
 
 
-   public void setIdPhoto(int idPhoto) {
+   public void setIdPhoto(String idPhoto) {
       this.idPhoto = idPhoto;
->>>>>>> richard
    }
 
    public String getId() {
       return id;
    }
 
-   public String getUrlPhoto() {
-      return urlPhoto;
-   }
-
-   public Photo() {
-   }
-
-
-   public void setUrlPhoto(String nomPhoto) {
-      this.urlPhoto = nomPhoto;
-   }
 
    @Override
    public String toString() {
       return "Photo{" +
               "idPhoto=" + id +
-              ", urlPhoto='" + urlPhoto + '\'' +
               '}';
    }
 }

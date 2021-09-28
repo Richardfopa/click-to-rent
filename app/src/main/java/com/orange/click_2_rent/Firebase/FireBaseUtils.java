@@ -119,6 +119,7 @@ public class FireBaseUtils {
         // [END get_all_users]
     }
 
+
     public void setDocument(String collectionName, String documentId, Map<String, Object> data){
         getReferenceFirestore(collectionName).document(documentId)
                 .set(data)
@@ -155,5 +156,26 @@ public class FireBaseUtils {
         // [END set_document]
 
     }
+
+    public String getuserService(String IdService){
+        final String[] usernameDocID = {null};
+        getReferenceFirestore("service_customer")
+                .whereEqualTo("customers",IdService)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            for (QueryDocumentSnapshot document : task.getResult()) {
+                                usernameDocID[0] = document.getId();
+                                Log.d("REQUETE", document.getId() + " => " + document.getData());
+                            }
+                        } else {
+                            Log.d("REQUETE", "Error getting documents: ", task.getException());
+                        }
+                    }
+                });
+        return usernameDocID[0];
+            }
 
 }

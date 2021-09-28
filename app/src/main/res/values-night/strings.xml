@@ -23,4 +23,7 @@
     <string name="choisir_votre_photo_de_profil">Choisir une photo descriptive de votre travail</string>
     <string name="textdoc">Faites une capture d\'ecran de votre CV</string>
     <string name="photo_service">Photo Service</string>
+    <string name="search_hint">service name, or prestataire</string>
+    <string name="app_label">search</string>
+    <string name="label_title_service">Titre du service</string>
 </resources>
