@@ -12,9 +12,12 @@ public class Photo {
    private int idPhoto;
    /** @pdOid bf5fadae-969a-453b-8b49-966c5c3c51ee */
    private String nomPhoto;
+   private String mImageUrl;
 
-   public int getIdPhoto() {
-      return idPhoto;
+   public Photo(int idPhoto, String nomPhoto, String mImageUrl) {
+      this.idPhoto = idPhoto;
+      this.nomPhoto = nomPhoto;
+      this.mImageUrl = mImageUrl;
    }
 
    public Photo(int idPhoto, String nomPhoto) {
@@ -24,6 +27,20 @@ public class Photo {
 
    public Photo() {
    }
+
+
+   public String getmImageUrl() {
+      return mImageUrl;
+   }
+
+   public void setmImageUrl(String mImageUrl) {
+      this.mImageUrl = mImageUrl;
+   }
+
+   public int getIdPhoto() {
+      return idPhoto;
+   }
+
 
    public void setIdPhoto(int idPhoto) {
       this.idPhoto = idPhoto;

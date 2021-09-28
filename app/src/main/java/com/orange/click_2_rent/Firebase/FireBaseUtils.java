@@ -1,6 +1,6 @@
 package com.orange.click_2_rent.Firebase;
 
-import android.net.Uri;
+
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -8,16 +8,19 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+
 import com.orange.click_2_rent.Models.Categorie;
 import com.orange.click_2_rent.Models.Commentaire;
 import com.orange.click_2_rent.Models.Service;
 
 
-public class FireBaseUtils {
+import java.util.Map;
 
+public class FireBaseUtils {
 
     public static final String COL_USERS = "users";
     public static final String COL_SERVICES = "services";
@@ -94,6 +97,5 @@ public class FireBaseUtils {
     }
 
 
-
-
 }
+

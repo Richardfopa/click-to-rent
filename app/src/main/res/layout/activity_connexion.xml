@@ -41,10 +41,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edittextusername_con"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                style="@style/StyleTextInputLayout"
                 android:hint="@string/email_hint"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
@@ -146,6 +143,4 @@
 
         </LinearLayout>
     </ScrollView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

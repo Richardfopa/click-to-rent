@@ -54,6 +54,7 @@
     <string name="ville">Ville</string>
     <string name="item_historique_description">Service Rendu</string>
     <string name="item_historique_note">Note</string>
+
     <string name="description_prestation">Designer 3D</string>
     <string name="intitule">Faites vos montages graphiques</string>
     <string name="date_du_jour">19/11/2021</string>
@@ -73,5 +74,11 @@
     <string name="hello_first_fragment">hello first fragment</string>
     <string name="next">next</string>
     <string name="previous">previous</string>
+
+    <string name="telephone">telephone</string>
+    <string name="votreadresse">Votre adresse</string>
+    <string name="add_service_FORM">Ajouter votre service</string>
+    <string name="choisir_votre_photo_de_profil">Photo descriptive de votre travail</string>
+    <string name="textdoc">Faites une capture d\'ecran de votre CV</string>
 
 </resources>

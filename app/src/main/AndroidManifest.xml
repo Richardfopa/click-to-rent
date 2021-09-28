@@ -14,6 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
+<<<<<<< HEAD
             android:name=".DemarrageApp"
             android:exported="true" />
         <activity
@@ -34,9 +35,25 @@
         <activity
             android:name=".AddServiceActivity"
             android:exported="true" />
+=======
+            android:name=".AjoutServiceActivity"
+            android:exported="true"
+            android:label="Prestation">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+>>>>>>> origin/richard
         <activity
             android:name=".AddUserActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:label=" Devenez membre"
+            android:visibleToInstantApps="false"/>
+
         <activity
             android:name=".PremiereConnectionActivity"
             android:exported="true" />
@@ -45,14 +62,20 @@
             android:exported="true" />
         <activity
             android:name=".ConnexionActivity"
+<<<<<<< HEAD
             android:exported="true" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+=======
+            android:exported="true"
+            android:label="Welcome"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+
+        <activity
+            android:name=".MainActivity"/>
+>>>>>>> origin/richard
+
         <activity
             android:name=".HistoryListActivity"
             android:exported="true" />

@@ -42,17 +42,15 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edittextusername_con"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                style="@style/StyleTextInputLayout"
                 android:hint="@string/username"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
                 app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusTopStart="@dimen/box_input_radius"
                 app:boxStrokeColor="@color/theme_color"
-                app:boxStrokeErrorColor="@color/black"
+                app:boxStrokeErrorColor="@color/design_default_color_error"
+                app:expandedHintEnabled="false"
                 app:hintTextColor="@color/theme_color"
                 app:startIconTint="@color/theme_color">
 
@@ -63,6 +61,7 @@
                     android:layout_marginTop="30dp"
                     android:contentDescription="@string/username_description"
                     android:fontFamily="@font/roboto_slab_bold"
+                    android:hint="richardfopa"
                     android:inputType="text"
                     android:maxLength="50"
                     android:shadowRadius="20"
@@ -76,17 +75,16 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edittextemail_update"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                style="@style/StyleTextInputLayout"
+                android:layout_marginTop="8dp"
                 android:hint="@string/email_hint"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
                 app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusTopStart="@dimen/box_input_radius"
                 app:boxStrokeColor="@color/theme_color"
-                app:boxStrokeErrorColor="@color/black"
+                app:boxStrokeErrorColor="@color/design_default_color_error"
+                app:expandedHintEnabled="false"
                 app:hintTextColor="@color/theme_color"
                 app:startIconTint="@color/theme_color">
 
@@ -99,6 +97,7 @@
                     android:drawableStart="@drawable/ic_mail"
                     android:drawableLeft="@drawable/ic_mail"
                     android:fontFamily="@font/roboto_slab_bold"
+                    android:hint="richardfopa@outlook.fr"
                     android:inputType="textWebEmailAddress"
                     android:maxLength="50"
                     android:shadowRadius="20"
@@ -112,17 +111,16 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/editname_update"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:hint="@string/name_hint"
+                style="@style/StyleTextInputLayout"
+                android:layout_marginTop="8dp"
+                android:hint="@string/votreadresse"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
                 app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusTopStart="@dimen/box_input_radius"
                 app:boxStrokeColor="@color/theme_color"
-                app:boxStrokeErrorColor="@color/black"
+                app:boxStrokeErrorColor="@color/design_default_color_error"
+                app:expandedHintEnabled="false"
                 app:hintTextColor="@color/theme_color"
                 app:startIconTint="@color/theme_color">
 
@@ -133,7 +131,46 @@
                     android:layout_marginTop="30dp"
                     android:contentDescription="@string/input_connexion"
                     android:fontFamily="@font/roboto_slab_bold"
+                    android:hint="Douala logpom"
                     android:inputType="textWebEmailAddress"
+                    android:maxLength="50"
+                    android:shadowRadius="20"
+                    android:singleLine="true"
+                    android:textColor="@color/theme_color"
+                    android:textColorHint="@color/theme_color"
+                    android:textSize="@dimen/text_input_size"
+                    tools:ignore="EditableContentDescCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+
+                android:id="@+id/edit_numero_update"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:hint="@string/telephone"
+                app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
+                app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
+                app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
+                app:boxCornerRadiusTopStart="@dimen/box_input_radius"
+                app:boxStrokeColor="@color/theme_color"
+                app:boxStrokeErrorColor="@color/black"
+                app:expandedHintEnabled="false"
+                app:hintTextColor="@color/theme_color"
+                app:startIconTint="@color/theme_color">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/textinoutedittext_telephone_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:contentDescription="@string/input_connexion"
+                    android:fontFamily="@font/roboto_slab_bold"
+                    android:hint="+237 653 36 47 48"
+                    android:inputType="phone"
                     android:maxLength="50"
                     android:shadowRadius="20"
                     android:singleLine="true"
@@ -147,7 +184,16 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card"
                 style="@style/style_card"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp">
+
+                <TextView
+                    android:id="@+id/textphoto_adduser"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="4dp"
+                    android:paddingTop="4dp"
+                    android:text="Choisir votre photo de profil" />
 
                 <LinearLayout
                     android:id="@+id/linear_layout_horizontal"
@@ -157,38 +203,55 @@
 
                     <ImageView
                         android:id="@+id/image_user_item"
-                        android:layout_width="100sp"
+                        android:layout_width="wrap_content"
                         android:layout_height="100sp"
-                        android:layout_weight="1"
+                        android:layout_weight="10"
+                        app:srcCompat="@drawable/ic_baseline_person"
                         tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
-                    <LinearLayout
-                        android:id="@+id/linear_layout"
-                        style="@style/style_linear"
+                    <Button
+                        android:id="@+id/btn_con_parcourir_photoservice"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="10"
-                        android:padding="4dp">
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/roboto_slab_bold"
+                        android:shadowRadius="1"
+                        android:text="@string/btn_parcourir_photo"
+                        android:textColor="@color/white"
+                        app:backgroundTint="@color/theme_color"
+                        app:strokeColor="@color/background_grise"
+                        app:strokeWidth="@dimen/border_button"
+                        tools:ignore="TextContrastCheck" />
 
-                        <Button
-                            android:id="@+id/btn_con_parcourir_user"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="20dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/roboto_slab_bold"
-                            android:shadowRadius="1"
-                            android:text="@string/btn_parcourir_photo"
-                            android:textColor="@color/white"
-                            app:backgroundTint="@color/theme_color"
-                            app:strokeColor="@color/background_grise"
-                            app:strokeWidth="@dimen/border_button"
-                            tools:ignore="TextContrastCheck" />
-                    </LinearLayout>
                 </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Inscrivez vous en tant que :" />
+
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/rb_prestation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Prestataire" />
+
+                <RadioButton
+                    android:id="@+id/rb_client"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:checked="true"
+                    android:text="Client" />
+            </RadioGroup>
 
             <Button
                 android:id="@+id/btn_con_valider"
@@ -200,7 +263,7 @@
                 android:text="@string/btn_confirmer_infos"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/theme_color"
-                app:cornerRadius="20dp"
+                app:cornerRadius="6dp"
                 app:strokeColor="@color/background_grise"
                 app:strokeWidth="@dimen/border_button"
                 tools:ignore="TextContrastCheck" />
