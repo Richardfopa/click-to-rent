@@ -13,9 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/color_blue"
-        android:scrollbarSize="25sp"
+        android:scrollbarSize="50sp"
         android:scrollbarStyle="insideOverlay"
         android:elevation="20sp"
+        app:itemBackground="@color/color_blue"
+        app:itemTextColor="@drawable/selection"
         app:tabGravity="fill"
         app:tabIconTint="@color/white"
         app:tabIndicatorColor="@color/white"
@@ -25,20 +27,26 @@
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:icon="@drawable/home_repair_service_24"
-            android:text="@string/prestation" />
+            android:text="@string/prestation"
+            android:gravity="center_horizontal" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:icon="@drawable/restaurant_24"
-            android:text="@string/restauration" />
+            android:text="@string/restauration"
+            android:gravity="center_horizontal" />
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textAlignment="center"
             android:icon="@drawable/local_taxi_24"
-            android:text="@string/voituration" />
+            android:text="@string/voituration"
+            android:gravity="center_horizontal" />
 
     </com.google.android.material.tabs.TabLayout>
 
@@ -46,7 +54,7 @@
         android:id="@+id/nom_de_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70sp">
+        android:layout_marginTop="80sp">
     </androidx.viewpager2.widget.ViewPager2>
 
 

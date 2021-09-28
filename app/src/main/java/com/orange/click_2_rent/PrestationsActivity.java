@@ -1,6 +1,7 @@
 package com.orange.click_2_rent;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +35,7 @@ public class PrestationsActivity extends AppCompatActivity {
 
         mRecycler = findViewById(R.id.idNosPrestations);
 
+
         EventChangeListener();
 
     }
@@ -55,7 +57,7 @@ public class PrestationsActivity extends AppCompatActivity {
                                     );
                             maListe.add(model);
                         }
-                        maPresentationAdapteur = new PresentationPrestationAdapter(maListe);
+                        maPresentationAdapteur = new PresentationPrestationAdapter(maListe,getApplicationContext());
                         mRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         mRecycler.setHasFixedSize(true);
                        mRecycler.setAdapter(maPresentationAdapteur);

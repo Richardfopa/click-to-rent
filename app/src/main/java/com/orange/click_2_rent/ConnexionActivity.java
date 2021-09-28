@@ -1,35 +1,23 @@
 package com.orange.click_2_rent;
 
 
-import static android.content.ContentValues.TAG;
+import android.content.Intent;
+import android.os.Bundle;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.text.TextUtils;
-import android.util.Log;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-
-import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.GoogleAuthProvider;
+import com.orange.click_2_rent.Models.UserRepository;
 
 public class ConnexionActivity extends AppCompatActivity {
 
@@ -38,6 +26,8 @@ public class ConnexionActivity extends AppCompatActivity {
     private TextInputLayout email;
     private Button login;
     private TextView forget_password;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,24 +60,28 @@ public class ConnexionActivity extends AppCompatActivity {
 
                 else
                 {
+
                     mAuth.signInWithEmailAndPassword(txt_email,txt_pass)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful())
                                     {
-                                        Intent intent1 = new Intent(getApplicationContext(),ajout_service.class);
+                                        UserRepository.addUser(txt_pass);
+                                        Intent intent1 = new Intent(getApplicationContext(),ProfileMainActivity.class);
                                         intent1.addFlags(intent1.FLAG_ACTIVITY_CLEAR_TASK | intent1.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent1);
 
                                     }
                                     else
                                     {
-                                        Toast.makeText(getApplicationContext(), "Connexion echouer", Toast.LENGTH_SHORT).show();
+                                        Toast.makeText(getApplicationContext(), "Connexion echouer. \nMot de Passse ou Email incorrect", Toast.LENGTH_SHORT).show();
                                     }
                                 }
                             });
+
                 }
+
             }
         });
     }

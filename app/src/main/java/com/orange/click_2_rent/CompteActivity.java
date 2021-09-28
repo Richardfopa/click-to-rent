@@ -1,26 +1,26 @@
 package com.orange.click_2_rent;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.HashMap;
+import com.orange.click_2_rent.Models.UserRepository;
 
 public class CompteActivity extends AppCompatActivity {
     private TextInputLayout username;
@@ -66,39 +66,67 @@ public class CompteActivity extends AppCompatActivity {
 
     }
 
-    private void register(String username, String password, String email)
-    {
+//    private void register(String username, String password, String email)
+//    {
+//        auth.createUserWithEmailAndPassword(email,password)
+//                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if(task.isSuccessful())
+//                        {
+//                            FirebaseUser firebaseUser = auth.getCurrentUser();
+//                            String userid = firebaseUser.getUid();
+//                            HashMap<String, String> hashMap = new HashMap<>();
+//                            hashMap.put("name",username);
+//                            hashMap.put("email",email);
+//                            hashMap.put("password",password);
+//
+//
+//                            db.collection("users").get()
+//                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+//                                        @Override
+//                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                                            if(task.isSuccessful())
+//                                            {
+//                                                Intent intent = new Intent(getApplicationContext(), ConnexionActivity.class);
+//                                                intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
+//                                                startActivity(intent);
+//
+//
+//                                            }
+//                                        }
+//                                    });
+//
+//                        }
+//                    }
+//                });
+//    }
+
+    private void register(String username, String password, String email) {
         auth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            FirebaseUser firebaseUser = auth.getCurrentUser();
-                            String userid = firebaseUser.getUid();
-                            HashMap<String, String> hashMap = new HashMap<>();
-                            hashMap.put("name",username);
-                            hashMap.put("email",email);
-                            hashMap.put("password",password);
-
-
-                            db.collection("users").get()
-                                    .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                            if(task.isSuccessful())
-                                            {
-                                                Intent intent = new Intent(getApplicationContext(), ConnexionActivity.class);
-                                                intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
-                                                startActivity(intent);
-
-
-                                            }
-                                        }
-                                    });
-
+                            UserRepository.addUser(password);
+                            Intent intent = new Intent(getApplicationContext(), ConnexionActivity.class);
+                            intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
                         }
                     }
                 });
+        AuthCredential credential = EmailAuthProvider.getCredential(email, password);
+        auth.getCurrentUser().linkWithCredential(credential)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()){
+                            Log.d("Tag","linkWithCredential:success");
+                            FirebaseUser user = task.getResult().getUser();
+                        }
+                    }
+                });
+
     }
 }

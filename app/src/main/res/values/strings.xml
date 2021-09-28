@@ -4,7 +4,7 @@
     <string name="app_name">Click 2 rent</string>
     <string name="service">Prestation serv.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="prestation">presta.</string>
+    <string name="prestation">prestat.</string>
     <string name="restauration">Restau.</string>
     <string name="voituration">voitur.</string>
     <string name="Atitre">Click to rent</string>
@@ -72,5 +72,14 @@
     <string name="label_title_service">Titre du service</string>
     <string name="textdoc">Faites une capture d\'ecran de votre CV</string>
     <string name="choisir_votre_photo_de_profil">Photo descriptive de votre service</string>
+    <string name="nomdesc" />
+    <string name="descriptionDetails" />
+    <string name="titreProfil" />
+    <string name="afficheDetails" />
+    <string name="mValider">Contactez-nous</string>
+    <string name="Vnumero">Votre e-mail</string>
+    <string name="Vnom">Votre nom</string>
+    <string name="appel">Appels</string>
+    <string name="sms">SMS</string>
 
 </resources>
