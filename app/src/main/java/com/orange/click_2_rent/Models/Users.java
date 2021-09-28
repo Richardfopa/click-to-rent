@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Users {
     private String nom;
-    private Number telphone;
+    private int telphone;
     private String email;
     private Photo photoClient;
     private String adresse;
@@ -20,7 +20,7 @@ public class Users {
     private int photoProfil;
     private String id;
 
-    public Users(String nom, Number telphone, String email, String motDePasse) {
+    public Users(String nom, int telphone, String email, String motDePasse) {
         this.nom = nom;
         this.telphone = telphone;
         this.email = email;
@@ -28,7 +28,7 @@ public class Users {
         this.mesServices=new ArrayList<Service>();
         this.servicesDemande=new ArrayList<Service>();
         this.mesCommentaires=new ArrayList<Commentaire>();
-        FirebasesUtil.addUser(this);
+
     }
 
     public Users() {
@@ -90,7 +90,7 @@ public class Users {
         return telphone;
     }
 
-    public void setTelphone(Number telphone) {
+    public void setTelphone(int telphone) {
         this.telphone = telphone;
     }
 

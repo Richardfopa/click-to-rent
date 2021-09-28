@@ -29,7 +29,7 @@ public class UserRepository {
 
     }
 
-    public static void updateTel(Number tel){
+    public static void updateTel(int tel){
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         String id = currentUser.getUid();
