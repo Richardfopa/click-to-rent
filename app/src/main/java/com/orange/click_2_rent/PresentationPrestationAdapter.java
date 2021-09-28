@@ -2,6 +2,8 @@ package com.orange.click_2_rent;
 
 import static java.lang.String.valueOf;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +26,14 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
 
     ArrayList<Presentation_prestations> maListe;
     ArrayList<Presentation_prestations> listeALL = new ArrayList<>();
+    Context context;
 
 
-    public PresentationPrestationAdapter(ArrayList<Presentation_prestations> MaListe) {
+    public PresentationPrestationAdapter(ArrayList<Presentation_prestations> MaListe,Context context) {
 
         this.maListe = MaListe;
         this.listeALL = MaListe;
+        this.context =context;
 
     }
 
@@ -46,6 +50,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     public void onBindViewHolder(@NonNull PresentationPrestationViewHolder holder, int position) {
 
         final Presentation_prestations liste_prestations = this.maListe.get(position);
+
         holder.mTitredescription.setText(liste_prestations.getTitre_prestation());
         holder.mMinidescription.setText(liste_prestations.getMiniDescription());
         holder.mDateDescription.setText(valueOf(liste_prestations.getDate_prestation().toDate()));
