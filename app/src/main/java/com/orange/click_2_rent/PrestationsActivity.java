@@ -22,8 +22,10 @@ import java.util.ArrayList;
 
 public class PrestationsActivity extends AppCompatActivity {
 
+
+
     private RecyclerView mRecycler;
-    private ArrayList<Presentation_prestations> maListe;
+    private final ArrayList<Presentation_prestations> maListe = new ArrayList<>();;
     private PresentationPrestationAdapter maPresentationAdapteur;
     private FirebaseFirestore db;
 
@@ -31,17 +33,14 @@ public class PrestationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nos_prestations);
-
         mRecycler = findViewById(R.id.idNosPrestations);
 
-
         EventChangeListener();
-
     }
 
     public void EventChangeListener()
     {
-        maListe = new ArrayList<Presentation_prestations>();
+
         db = FirebaseFirestore.getInstance();
         db.collection("services")
                 .get()
@@ -82,7 +81,9 @@ public class PrestationsActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextChange(String nouveauText) {
 
-                    maPresentationAdapteur.getFilter().filter(nouveauText);
+                    String searchMax = nouveauText;
+                    maPresentationAdapteur.getFilter().filter(searchMax);
+
                     return false;
                 }
             });

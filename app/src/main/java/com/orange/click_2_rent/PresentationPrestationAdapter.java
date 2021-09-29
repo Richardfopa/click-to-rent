@@ -1,18 +1,19 @@
 package com.orange.click_2_rent;
 
-import static java.lang.String.valueOf;
-
 import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
@@ -21,18 +22,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable {
+public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable  {
 
-    ArrayList<Presentation_prestations> maListe;
-    ArrayList<Presentation_prestations> listeALL = new ArrayList<>();
-    Context context;
+    private List<Presentation_prestations> maListe = new ArrayList<>();
+    private List<Presentation_prestations> listeALL =  new ArrayList<>();
+    private Context context;
 
 
-    public PresentationPrestationAdapter(ArrayList<Presentation_prestations> MaListe,Context context) {
+    public PresentationPrestationAdapter(List<Presentation_prestations> MaListe,Context context) {
 
+        Log.d("Ma liste", "PresentationPrestationAdapter: "+maListe);
         this.maListe = MaListe;
         this.listeALL = MaListe;
-        this.context =context;
+        this.context = context;
 
     }
 
@@ -52,7 +54,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
 
         holder.mTitredescription.setText(liste_prestations.getTitre_prestation());
         holder.mMinidescription.setText(liste_prestations.getMiniDescription());
-        holder.mDateDescription.setText(valueOf(liste_prestations.getDate_prestation().toDate()));
+        holder.mDateDescription.setText(String.valueOf(liste_prestations.getDate_prestation()));
 
         Picasso.with(holder.mImgProfil.getContext()).load(liste_prestations.getPhoto()).into(holder.mImgProfil);
 
@@ -67,47 +69,52 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     @Override
     public Filter getFilter() {
 
-     Filter filter = new Filter() {
+        Filter filter = new Filter() {
 
-        @Override
-        protected FilterResults performFiltering(CharSequence constraint) {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
 
-            FilterResults filterResults  = new FilterResults();
+                Log.d("contenu", "performFiltering: "+constraint+"======"+listeALL);
 
-            if(constraint == null || constraint.length() == 0 ) {
+                FilterResults filterResults  = new FilterResults();
 
-               filterResults.values = listeALL;
-               filterResults.count = listeALL.size();
+                if(constraint == null || constraint.length() == 0 ) {
 
-            }else{
+                    filterResults.values = listeALL;
+                    filterResults.count = listeALL.size();
 
-                String searchMax = constraint.toString().toLowerCase();
-                List<Presentation_prestations> prestations = new ArrayList<>();
+                }else{
 
-                for (Presentation_prestations presence :listeALL){
+                    String searchMax = constraint.toString().toLowerCase();
+                    List<Presentation_prestations> prestations = new ArrayList<>();
 
-                   if(presence.getMiniDescription().toLowerCase().contains(searchMax) || presence.getTitre_prestation().toLowerCase().contains(searchMax))
+                    for (Presentation_prestations presence :listeALL){
 
-                     {
-                         prestations.add(presence);
-                     }
+                        if(presence.getMiniDescription().toLowerCase().contains(searchMax) || presence.getTitre_prestation().toLowerCase().contains(searchMax))
+
+                         {
+                            prestations.add(presence);
+                         }
+                    }
+                    filterResults.values = prestations;
+                    filterResults.count = prestations.size();
                 }
-                filterResults.values = prestations;
-                filterResults.count = prestations.size();
+
+                return filterResults;
             }
 
-            return filterResults;
-        }
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults filterResults) {
 
-        @Override
-        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
+                maListe = filterResults.values == null ? new ArrayList<>() : ((ArrayList<Presentation_prestations>) filterResults.values);
+                notifyDataSetChanged();
+            }
+        };
 
-            maListe = (ArrayList<Presentation_prestations>) filterResults.values;
-            notifyDataSetChanged();
-        }
-    };
         return filter;
     }
+
+
 
 
     public class PresentationPrestationViewHolder extends RecyclerView.ViewHolder {
@@ -116,7 +123,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
         public final TextView mTitredescription;
         public final TextView mMinidescription;
         public final TextView mDateDescription;
-        public final CardView mCadreVue;
+        public final RelativeLayout mRelativeLayout;
 
         public PresentationPrestationViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -125,7 +132,20 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
             mTitredescription = itemView.findViewById(R.id.mDescription);
             mMinidescription = itemView.findViewById(R.id.miniDescription);
             mDateDescription = itemView.findViewById(R.id.mDate);
-            mCadreVue = itemView.findViewById(R.id.monCadre);
+            mRelativeLayout = itemView.findViewById(R.id.mCardVue);
+
+            mRelativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(context, ContactezNousActivity.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    }
+                    context.startActivity(intent);
+              }
+            });
+
         }
     }
 }

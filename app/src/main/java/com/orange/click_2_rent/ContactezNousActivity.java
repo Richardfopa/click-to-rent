@@ -37,7 +37,7 @@ public class ContactezNousActivity extends AppCompatActivity {
         contactezNous = findViewById(R.id.mBtnConctactez);
         myRecyclerContact = findViewById(R.id.myRecyclerProfil);
         contactezNousAdapter = new ContactezNousAdapter(myArrayList);
-        myRecyclerContact.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        myRecyclerContact.setLayoutManager(new LinearLayoutManager(this));
         myRecyclerContact.setHasFixedSize(true);
         myRecyclerContact.setAdapter(new ContactezNousAdapter(initialisation()));
 

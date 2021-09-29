@@ -22,6 +22,10 @@
             android:exported="true"
             android:parentActivityName=".ConnexionActivity" />
         <activity
+            android:name=".ContactezNousActivity"
+            android:exported="true"
+            android:parentActivityName=".PrestationsActivity" />
+        <activity
             android:name=".DemarrageApp"
             android:exported="true">
             <intent-filter>
