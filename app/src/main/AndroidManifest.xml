@@ -45,7 +45,8 @@
             android:exported="true" />
         <activity
             android:name=".AddUserActivity"
-            android:exported="true">
+            android:exported="true"/>
+        <activity
             android:name=".AjoutServiceActivity"
             android:exported="true"
             android:label="Prestation">

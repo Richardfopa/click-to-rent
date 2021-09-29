@@ -26,4 +26,5 @@
     <string name="search_hint">service name, or prestataire</string>
     <string name="app_label">search</string>
     <string name="label_title_service">Titre du service</string>
+    <string name="txtDescription">Description</string>
 </resources>

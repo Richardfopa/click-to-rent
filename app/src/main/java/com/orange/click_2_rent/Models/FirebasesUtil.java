@@ -69,6 +69,18 @@ public class FirebasesUtil {
                     }
                 });
 
+
+//        FirebasesUtil.getReferenceFirestore(COL_SERVICES)
+//                .document("service"+service.getId())
+//                .set(service)
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void unused) {
+//                        Log.d("message", "DocumentSnapshot written with ID: " + service.getId());
+//                    }
+//                });
+
+
     }
 
     public  static  void addCategory(Categorie cat){

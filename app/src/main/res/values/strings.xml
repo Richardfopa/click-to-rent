@@ -83,6 +83,9 @@
     <string name="Vnom">Votre Nom</string>
     <string name="Vnumero">Votre Email</string>
     <string name="label_title_service">Titre du service</string>
+    <string name="plombier">Plombier</string>
+    <string name="valider">Valider</string>
+    <string name="txtDescription">Description</string>
 
 
 </resources>

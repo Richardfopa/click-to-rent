@@ -1,5 +1,6 @@
 package com.orange.click_2_rent;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -19,39 +21,65 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
-import com.orange.click_2_rent.Firebase.FireBaseUtils;
-import com.orange.click_2_rent.Models.Service;
 
+import com.google.firebase.Timestamp;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnPausedListener;
+import com.google.firebase.storage.OnProgressListener;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
+import com.google.firebase.storage.UploadTask;
+import com.orange.click_2_rent.Models.FirebasesUtil;
+import com.orange.click_2_rent.Models.Service;
+import com.squareup.picasso.Picasso;
+
+import java.io.ByteArrayOutputStream;
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Date;
+import java.util.UUID;
 
-public class AjoutServiceActivity extends AppCompatActivity implements View.OnClickListener, View.OnFocusChangeListener {
+public class AjoutServiceActivity
+        extends AppCompatActivity
+        implements View.OnClickListener, View.OnFocusChangeListener {
 
-    FirebaseStorage storage;
-    TextInputLayout mTxtTitleService;
-    TextInputLayout mTxtCategorieService;
-    ImageView mImgPhotoService;
-    Button mbtChoosePict;
-    ImageView mImgPhotoDoc;
-    Button mbtChooseDoc;
-    TextView mtxtphoto;
-    TextView mtxtdoc;
-    Button mbtcancel;
-    Button mbtConfirm;
-    AutoCompleteTextView mautoComplete;
-    TextView error;
-    String title;
-    String categorie;
-    String description;
-    TextInputLayout mTxtDescription;
+    private FirebaseStorage storage;
+    private TextInputLayout mTxtTitleService;
+    private TextInputLayout mTxtCategorieService;
+    private ImageView mImgPhotoService;
+    private Button mbtChoosePict;
+    private ImageView mImgPhotoDoc;
+    private Button mbtChooseDoc;
+    private TextView mtxtphoto;
+    private TextView mtxtdoc;
+    private Button mbtcancel;
+    private Button mbtConfirm;
+    private StorageMetadata metadata;
+    private AutoCompleteTextView mautoComplete;
+    private TextView error;
+    private String title;
+    private String categorie;
+    private String mnomphoto;
+    private Uri uriphotoservice;
+    private String mnomdocument;
+    private Uri uridocservice;
+    private String description;
+    private ProgressBar mProgressBar;
+    private StorageReference mStorageRef;
+    private StorageReference mStorageRefImage;
+    private DatabaseReference mDatabaseRef;
+    private StorageTask mUploadTask;
+//    private FirebaseStorage storage;
+    private TextInputLayout mTxtDescription;
     private static final int REQUEST_SELECT_IMAGE_SERVICE = 10004;
     private static final int REQUEST_SELECT_DOC_SERVICE = 10005;
     private static final String COLLECTION_SERVICE = "services";
@@ -83,7 +111,12 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
         // Configuration de firebasestorage
 
         storage = FirebaseStorage.getInstance();
+        //  Create a storage reference from our app
+        mStorageRef = storage.getReference();
 
+        //  Create a sotarage reference to images
+
+        mStorageRefImage = mStorageRef.child("services");
 
 
 
@@ -105,7 +138,12 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
         mTxtCategorieService = findViewById(R.id.txt_category_service);
         mTxtDescription = findViewById(R.id.tv_description);
         mImgPhotoService = findViewById(R.id.image_add_service_photo_item);
+        mImgPhotoService.setMaxWidth(R.dimen.size_img_upload);
+        mImgPhotoService.setMaxHeight(R.dimen.size_img_upload);
+
         mImgPhotoDoc = findViewById(R.id.image_add_service_document_item);
+        mImgPhotoDoc.setMaxHeight(R.dimen.size_img_upload);
+        mImgPhotoDoc.setMaxWidth(R.dimen.size_img_upload);
         mtxtphoto = findViewById(R.id.textphoto_add_service);
         mtxtdoc = findViewById(R.id.textdoc_add_service);
         mbtcancel = findViewById(R.id.cancel_add_service);
@@ -121,19 +159,6 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
     public void onClick(View view) {
         
         switch (view.getId()){
-
-            /*
-            case R.id.btn_con_parcourir_photoservice :
-                // Clic pour chercher photo de service
-
-                ChooseDoc(REQUEST_SELECT_IMAGE_SERVICE);
-
-                break;
-            case R.id.btn_con_parcourir_docu_user :
-                // Clic pour chercher photo du CV service
-
-                ChooseDoc(REQUEST_SELECT_DOC_SERVICE);
-                break;*/
             case R.id.confirm_add_service: 
                 // Clic pour confirmer les donnees saisir et envoyer
                 title = mTxtTitleService.getEditText().getText().toString();
@@ -170,35 +195,45 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
 
                     Log.d("NOERROR","pas erreur");
 
-                    Service service = new Service(true,title,categorie,description,null);
-
-                    Map<String, Object> serv = new HashMap<>();
-                    serv.put("status",service.getStatus());
-                    serv.put("title",service.getTitle());
-                    serv.put("categorie",service.getCategorie());
-                    serv.put("description",service.getDescription());
-                    serv.put("photo",service.getPhotoService());
-                    serv.put("add_date",service.getAddDate());
-
-                    FireBaseUtils.addUser(COLLECTION_SERVICE,serv,this);
 
                     // Creer une reference
 
                     // Create a storage reference from our app
-                    StorageReference storageRef = storage.getReference();
-
-                    // Create a child reference
-                    // imagesRef now points to "images"
-                    StorageReference imagesRef = storageRef.child("services");
-
-
+                    StorageReference storageRef = storage.getReference("services");
 
                     // Child references can also take paths
                     // spaceRef now points to "images/space.jpg
                     // imagesRef still points to "images"
-                    StorageReference spaceRef = storageRef.child("services/space.jpg");
+                    Service service = new Service();
+                    UUID Uuid =  UUID.randomUUID();
+                    StorageReference photoserviceRef = mStorageRef.child("services/photo"+title+Uuid);
+                    StorageReference documentserviceRef = mStorageRef.child("services/doc"+title+Uuid);
 
-                    startActivity(new Intent(this,Presentation_prestations.class));
+                    service.setAddDate(new Timestamp(new Date()));
+                    service.setId(Uuid.toString());
+                    service.setCategorie(categorie);
+                    service.setPhotoService(photoserviceRef.getPath());
+                    service.setClients(null);
+                    service.setUrlphotoService(documentserviceRef.getPath());
+                    service.setCommentaire(null);
+                    service.setDescription(description);
+                    service.setId(null);
+                    service.setNom_prestataire("Gambee");
+                    service.setNote(null);
+                    service.setTitle(title);
+                    service.setPhotos(null);
+
+                    // Get the data from an ImageView as bytes
+                    uploadImageViewToStorage(mImgPhotoDoc,photoserviceRef);
+                    uploadImageViewToStorage(mImgPhotoDoc,documentserviceRef);
+
+
+
+                    Log.d("STORAGE","RECUPERATION DU SERVICE");
+                    FirebasesUtil.addService(service);
+                    Log.d("STORAGE","AJOUT EFFECTUER AVEC SUCCESS");
+                    startActivity(new Intent(view.getContext(), MainActivity.class));
+
                 }
 
                 break;
@@ -213,6 +248,8 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
 
             case R.id.cancel_add_service:
                 // Clic sur le bouton annuler
+
+                startActivity(new Intent(this, MainActivity.class));
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + view.getId());
@@ -235,50 +272,33 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
     }
 
     @Override
-        protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
             super.onActivityResult(requestCode, resultCode, data);
         
             if (requestCode == REQUEST_SELECT_IMAGE_SERVICE && resultCode == RESULT_OK) {
-                setImage(mtxtphoto,mImgPhotoService,data);
+                Picasso
+                        .with(this)
+                        .load(data.getData())
+                        .resize(500,500)
+                        .centerCrop()
+                        .into(mImgPhotoService);
+                //setImage(mtxtphoto,mImgPhotoService,data);
             }
             if (requestCode == REQUEST_SELECT_DOC_SERVICE && resultCode == RESULT_OK) {
-                setImage(mtxtdoc,mImgPhotoDoc,data);
+                Picasso
+                        .with(this)
+                        .load(data.getData())
+                        .resize(1000,1000)
+                        .centerCrop()
+                        .into(mImgPhotoDoc)
+                        ;
+                //setImage(mtxtdoc,mImgPhotoDoc,data);
             }
             
         }
-    
-        private void setImage(TextView txtdesc, ImageView imageViewId, @Nullable Intent data){
 
-            if (data != null) {
-                Uri selectedImageUri = data.getData();
-                if (Build.VERSION.SDK_INT < 19) {
-                    String selectedImagePath = getPath(selectedImageUri);
-                    Bitmap bitmap = BitmapFactory.decodeFile(selectedImagePath);
-                    txtdesc.setVisibility(View.INVISIBLE);
-                    imageViewId.setImageBitmap(bitmap);
-                }
-                else{
-                    ParcelFileDescriptor parcelFileDescriptor;
-                    try {
-                        parcelFileDescriptor = getContentResolver().openFileDescriptor(selectedImageUri, "r");
-                        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
-                        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-                        parcelFileDescriptor.close();
-                        txtdesc.setVisibility(View.INVISIBLE);
-                        imageViewId.setImageBitmap(image);
 
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-        
-        }
-
-        private String getPath(Uri uri) {
+    private String getPath(Uri uri) {
     
             if( uri == null ) {
                 return null;
@@ -293,6 +313,70 @@ public class AjoutServiceActivity extends AppCompatActivity implements View.OnCl
             }
             return uri.getPath();
         }
+
+    private void uploadFile() {
+
+    }
+
+    public void uploadImageViewToStorage(ImageView imageview, StorageReference photoRef){
+        imageview.setDrawingCacheEnabled(true);
+        imageview.buildDrawingCache();
+
+
+        Bitmap bitmap = ((BitmapDrawable) imageview.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = photoRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                Log.d("STORAGE","FAILLURE INSERTION");
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                // ...
+                Log.d("STORAGE","INSERTION REUSSI");
+            }
+        });
+    }
+
+    public void uploadtoStorage(Uri filephotoservice){
+
+        UploadTask uploadTask = mStorageRef.child("services/" + filephotoservice.getLastPathSegment()).putFile(filephotoservice, metadata);
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
+                Log.d("STORAGE", "Upload is " + progress + "% done");
+            }
+        }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
+                Log.d("STORAGE", "Upload is paused");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                Log.w("STORAGE", "Upload is cancel",exception);
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // Handle successful uploads on complete
+                // ...
+                Log.d("STORAGE", "Upload is Success");
+            }
+        });
+
+    }
 
     @Override
     public void onFocusChange(View view, boolean hasfocus) {
