@@ -3,7 +3,6 @@ package com.orange.click_2_rent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,21 +18,21 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
 public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable  {
 
-    private List<Presentation_prestations> maListe = new ArrayList<>();
-    private List<Presentation_prestations> listeALL =  new ArrayList<>();
+    private List<Presentation_prestations> maListe;
+    private List<Presentation_prestations> listeALL;
     private Context context;
 
 
     public PresentationPrestationAdapter(List<Presentation_prestations> MaListe,Context context) {
 
-        Log.d("Ma liste", "PresentationPrestationAdapter: "+maListe);
         this.maListe = MaListe;
-        this.listeALL = MaListe;
+        this.listeALL = new ArrayList<>(MaListe);
         this.context = context;
 
     }
@@ -69,53 +68,49 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     @Override
     public Filter getFilter() {
 
+        return filter;
+    }
+
         Filter filter = new Filter() {
+
+        //Lancer le thread au niveau en arriere plan.
 
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
 
-                Log.d("contenu", "performFiltering: "+constraint+"======"+listeALL);
+                List<Presentation_prestations> filteredList = new ArrayList<>();
+
+                try {
+                     if(constraint.toString().isEmpty()) {
+
+                        filteredList.addAll(listeALL);
+                     }else{
+                        for (Presentation_prestations presence :listeALL)
+                            if ((presence.getTitre_prestation().toLowerCase().contains(constraint.toString().toLowerCase())) || (presence.getMiniDescription().toLowerCase().contains(constraint.toString().toLowerCase())))
+                                filteredList.add(presence);
+
+                    }
+                }catch (Exception ex){
+
+                    ex.getMessage();
+                    ex.printStackTrace();
+                }
 
                 FilterResults filterResults  = new FilterResults();
 
-                if(constraint == null || constraint.length() == 0 ) {
-
-                    filterResults.values = listeALL;
-                    filterResults.count = listeALL.size();
-
-                }else{
-
-                    String searchMax = constraint.toString().toLowerCase();
-                    List<Presentation_prestations> prestations = new ArrayList<>();
-
-                    for (Presentation_prestations presence :listeALL){
-
-                        if(presence.getMiniDescription().toLowerCase().contains(searchMax) || presence.getTitre_prestation().toLowerCase().contains(searchMax))
-
-                         {
-                            prestations.add(presence);
-                         }
-                    }
-                    filterResults.values = prestations;
-                    filterResults.count = prestations.size();
-                }
-
+                filterResults.values = filteredList;
+                filterResults.count = filteredList.size();
                 return filterResults;
             }
-
+            //Executer le thread sur l'affichage
             @Override
             protected void publishResults(CharSequence constraint, FilterResults filterResults) {
 
-                maListe = filterResults.values == null ? new ArrayList<>() : ((ArrayList<Presentation_prestations>) filterResults.values);
+                maListe.clear();
+                maListe.addAll((Collection <? extends Presentation_prestations>) filterResults.values);
                 notifyDataSetChanged();
             }
         };
-
-        return filter;
-    }
-
-
-
 
     public class PresentationPrestationViewHolder extends RecyclerView.ViewHolder {
 

@@ -81,8 +81,7 @@ public class PrestationsActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextChange(String nouveauText) {
 
-                    String searchMax = nouveauText;
-                    maPresentationAdapteur.getFilter().filter(searchMax);
+                    maPresentationAdapteur.getFilter().filter(nouveauText);
 
                     return false;
                 }
