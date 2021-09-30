@@ -9,10 +9,12 @@ import java.util.*;
 
 public class Photo {
 
-   private String id;
-   /** @pdOid f3962377-27f1-40e4-8d7c-3b5bc74035a3 */
+
    private String idPhoto;
-   /** @pdOid bf5fadae-969a-453b-8b49-966c5c3c51ee */
+
+   public Photo() {
+   }
+
    private String nomPhoto;
    private String mImageUrl;
    public Photo(String idPhoto, String nomPhoto, String mImageUrl) {
@@ -21,7 +23,10 @@ public class Photo {
       this.mImageUrl = mImageUrl;
    }
 
-
+   public Photo(String nomPhoto, String mImageUrl) {
+      this.nomPhoto = nomPhoto;
+      this.mImageUrl = mImageUrl;
+   }
 
 
    public String getNomPhoto() {
@@ -52,14 +57,14 @@ public class Photo {
    }
 
    public String getId() {
-      return id;
+      return idPhoto;
    }
 
 
    @Override
    public String toString() {
       return "Photo{" +
-              "idPhoto=" + id +
+              "idPhoto=" + idPhoto +
               '}';
    }
 }

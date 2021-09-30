@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -27,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
+
+    FloatingActionButton fab;
 
     TabLayout Tablelayout;
     ViewPager2  Viewpage;
@@ -45,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
+
+        fab = findViewById(R.id.boutonFlottant);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(view.getContext(), AddUserActivity.class));
+            }
+        });
 
 
         if(savedInstanceState!=null){

@@ -45,17 +45,18 @@
             android:exported="true" />
         <activity
             android:name=".AddUserActivity"
-            android:exported="true"/>
+            android:exported="true" />
         <activity
             android:name=".AjoutServiceActivity"
             android:exported="true"
-            android:label="Prestation">
+            android:label="Ajouter une Prestation">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".PremiereConnectionActivity"
             android:exported="true" />
@@ -65,13 +66,8 @@
         <activity
             android:name=".ConnexionActivity"
             android:exported="true"
-            android:label="Welcome">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="Welcome"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
         <activity
             android:name=".MainActivity"
             android:exported="true" />

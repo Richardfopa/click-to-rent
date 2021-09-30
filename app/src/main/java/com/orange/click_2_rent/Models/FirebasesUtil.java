@@ -54,6 +54,8 @@ public class FirebasesUtil {
     }
 
     public  static  void addService(Service service){
+
+        /*
         FirebasesUtil.getReferenceFirestore(COL_SERVICES)
                 .add(service)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
@@ -67,18 +69,18 @@ public class FirebasesUtil {
                     public void onFailure(@NonNull Exception e) {
                         Log.w("TAG_FAILURE", "Error writing document", e);
                     }
+                });*/
+
+
+        FirebasesUtil.getReferenceFirestore(COL_SERVICES)
+                .document("service"+service.getId())
+                .set(service)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+                        Log.d("message", "DocumentSnapshot written with ID: " + service.getId());
+                    }
                 });
-
-
-//        FirebasesUtil.getReferenceFirestore(COL_SERVICES)
-//                .document("service"+service.getId())
-//                .set(service)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void unused) {
-//                        Log.d("message", "DocumentSnapshot written with ID: " + service.getId());
-//                    }
-//                });
 
 
     }
