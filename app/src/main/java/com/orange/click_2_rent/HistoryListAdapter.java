@@ -21,9 +21,9 @@ import java.util.LinkedList;
 public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.HistoryListViewHolder> {
     private LinkedList<ClientUtil> client;
     private LayoutInflater mInflater;
-    public HistoryListAdapter(Context context){
+    public HistoryListAdapter(Context context, LinkedList<ClientUtil> client){
         mInflater = LayoutInflater.from(context);
-       this.client = new LinkedList<>();
+        this.client = client;
     }
     @NonNull
     @Override

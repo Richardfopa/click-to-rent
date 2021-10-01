@@ -11,12 +11,10 @@ public class Service {
     private String title;
     private Boolean status;
     private String description;
-    private String photo_service;
-
-    private String doc_service;
+    private String urlphotoService;
     private String categorie;
-    private Timestamp add_date;
-    private String name_provider;
+    private Timestamp AddDate;
+    private String nom_prestataire;
     private ArrayList<Photo> photos;
     private ArrayList<Users> clients;
     private ArrayList<Commentaire> commentaire;
@@ -25,50 +23,44 @@ public class Service {
     public Service() {
     }
 
-    public Service(String id, String title, Boolean status, String description, String photo_service, String categorie, Timestamp addDate, String name_provider, ArrayList<Photo> photos, ArrayList<Users> clients, ArrayList<Commentaire> commentaire, ArrayList<Integer> note) {
+    public Service(String id,
+                   String title,
+                   Boolean status,
+                   String description,
+                   String urlphotoService,
+                   String categorie,
+                   Timestamp addDate,
+                   String nom_prestataire,
+                   ArrayList<Photo> photos,
+                   ArrayList<Users> clients,
+                   ArrayList<Commentaire> commentaire,
+                   ArrayList<Integer> note) {
         this.id = id;
         this.title = title;
         this.status = status;
         this.description = description;
-        this.photo_service = photo_service;
+        this.urlphotoService = urlphotoService;
         this.categorie = categorie;
-        this.add_date = addDate;
-        this.name_provider = name_provider;
+        AddDate = addDate;
+        this.nom_prestataire = nom_prestataire;
         this.photos = photos;
         this.clients = clients;
         this.commentaire = commentaire;
         this.note = note;
     }
 
-        public Service( Boolean status, String description, String photo_service,
-                        String categorie, String name_provider){
-            this.status = status;
-            this.description = description;
-            this.photo_service = photo_service;
-            this.categorie = categorie;
-            this.add_date =new Timestamp(new Date());
-            this.name_provider = name_provider;
-        }
-
-    public String getDoc_service() {
-        return doc_service;
-    }
-
-    public void setDoc_service(String doc_service) {
-        this.doc_service = doc_service;
-    }
-
-    public Timestamp getAdd_date() {
-        return add_date;
-    }
-
-    public void setAdd_date(Timestamp add_date) {
-        this.add_date = add_date;
-    }
-
-
     public String getId() {
         return id;
+    }
+
+    public Service( Boolean status, String description, String urlphotoService,
+                    String categorie, String nom_prestataire ){
+        this.status = status;
+        this.description = description;
+        this.urlphotoService = urlphotoService;
+        this.categorie = categorie;
+        AddDate =new Timestamp(new Date());
+        this.nom_prestataire = nom_prestataire;
     }
 
     public String getTitle() {
@@ -96,11 +88,11 @@ public class Service {
     }
 
     public String getPhotoService() {
-        return photo_service;
+        return urlphotoService;
     }
 
     public void setPhotoService(String photoService) {
-        this.photo_service = photoService;
+        this.urlphotoService = photoService;
     }
 
     public String getCategorie() {
@@ -112,31 +104,31 @@ public class Service {
     }
 
     public Timestamp getAddDate() {
-        return add_date;
+        return AddDate;
     }
 
-    public String getName_provider() {
-        return name_provider;
+    public String getNom_prestataire() {
+        return nom_prestataire;
     }
 
-    public void setName_provider(String name_provider) {
-        this.name_provider = name_provider;
+    public void setNom_prestataire(String nom_prestataire) {
+        this.nom_prestataire = nom_prestataire;
     }
 
     public void setId(String id) {
         this.id = id;
     }
 
-    public String getPhoto_service() {
-        return photo_service;
+    public String getUrlphotoService() {
+        return urlphotoService;
     }
 
-    public void setPhoto_service(String photo_service) {
-        this.photo_service = photo_service;
+    public void setUrlphotoService(String urlphotoService) {
+        this.urlphotoService = urlphotoService;
     }
 
     public void setAddDate(Timestamp addDate) {
-        add_date = addDate;
+        AddDate = addDate;
     }
 
     public void setPhotos(ArrayList<Photo> photos) {
@@ -156,57 +148,57 @@ public class Service {
     }
 
     public ArrayList<Photo> getPhotos() {
-            if( photos == null);
-                photos = new ArrayList<Photo>();
-            return photos;
-        }
+        if( photos == null);
+        photos = new ArrayList<Photo>();
+        return photos;
+    }
 
-        public void addPhotos(Photo photo) {
+    public void addPhotos(Photo photo) {
 
-            this.photos.add(photo);
-        }
+        this.photos.add(photo);
+    }
 
-        public ArrayList<Users> getClients() {
-            if (clients == null);
-                clients = new ArrayList<Users>();
-            return clients;
-        }
+    public ArrayList<Users> getClients() {
+        if (clients == null);
+        clients = new ArrayList<Users>();
+        return clients;
+    }
 
-        public void addClients(Users clients) {
+    public void addClients(Users clients) {
 
-            this.clients.add(clients);
-        }
+        this.clients.add(clients);
+    }
 
-        public ArrayList<Commentaire> getCommentaire() {
-            if (commentaire == null);
-                commentaire = new ArrayList<Commentaire>();
-            return commentaire;
-        }
+    public ArrayList<Commentaire> getCommentaire() {
+        if (commentaire == null);
+        commentaire = new ArrayList<Commentaire>();
+        return commentaire;
+    }
 
-        public void addCommentaire(Commentaire commentaire) {
+    public void addCommentaire(Commentaire commentaire) {
 
-            this.commentaire.add(commentaire);
-        }
+        this.commentaire.add(commentaire);
+    }
 
-        public ArrayList<Integer> getNote() {
-            if (note == null);
-                note=new ArrayList<Integer>();
-            return note;
-        }
+    public ArrayList<Integer> getNote() {
+        if (note == null);
+        note=new ArrayList<Integer>();
+        return note;
+    }
 
-//        public void setNote(Integer note) {
-//
-//            this.note.add(note);
-//        }
+    public void setNote(Integer note) {
 
-        @Override
-        public String toString() {
-            return "Service{" +
-                    "id=" + id +
-                    ", status=" + status +
-                    ", description='" + description + '\'' +
-                    ", photoService=" + photo_service +
-                    ", contient=" + photos +
-                    '}';
-        }
+        this.note.add(note);
+    }
+
+    @Override
+    public String toString() {
+        return "Service{" +
+                "id=" + id +
+                ", status=" + status +
+                ", description='" + description + '\'' +
+                ", photoService=" + urlphotoService +
+                ", contient=" + photos +
+                '}';
+    }
 }

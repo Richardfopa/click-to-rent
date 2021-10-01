@@ -3,69 +3,37 @@ package com.orange.click_2_rent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Parcelable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.firebase.database.annotations.Nullable;
-import com.google.firebase.firestore.DocumentChange;
-import com.google.firebase.firestore.EventListener;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QuerySnapshot;
-import com.orange.click_2_rent.Firebase.FireBaseUtils;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.Collection;
+import java.util.List;
 
 
-public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> {
+public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable  {
 
-    LinkedList<Presentation_prestations> maListe;
+    private List<Presentation_prestations> maListe;
+    private List<Presentation_prestations> listeALL;
+    private Context context;
 
-    public PresentationPrestationAdapter(Context context) {
 
-        this.maListe = new LinkedList<>();
+    public PresentationPrestationAdapter(List<Presentation_prestations> MaListe,Context context) {
 
-        FireBaseUtils.getReferenceFirestore(FireBaseUtils.TASK_COLLECTION)
-                .addSnapshotListener(new EventListener<QuerySnapshot>() {
-                    @RequiresApi(api = Build.VERSION_CODES.N)
-                    @Override
-                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                        if (error != null){
-                            Log.w("error:",error);
-                        }
-                        for (DocumentChange dc : value.getDocumentChanges()){
-                            switch (dc.getType()){
-                                case ADDED:
-                                    Log.d("ADD:",dc.getDocument().getData().toString());
-
-//                                    Tache tache = dc.getDocument().toObject(Tache.class);
-                                    Presentation_prestations prestations = new Presentation_prestations(
-                                            dc.getDocument().getId(),
-                                            dc.getDocument().getString("name_provider"),
-                                            dc.getDocument().getString("description"),
-                                            dc.getDocument().getTimestamp("add_date").toDate());
-                                    maListe.add(prestations);
-//                                    maListe.add(dc.getDocument().toObject(Presentation_prestations.class));
-                                    PresentationPrestationAdapter.this.notifyItemInserted(0);
-                                    break;
-                                case MODIFIED:
-                                    break;
-                                case REMOVED:
-                                    break;
-                            }
-                        }
-                    }
-                });
+        this.maListe = MaListe;
+        this.listeALL = new ArrayList<>(MaListe);
+        this.context = context;
 
     }
 
@@ -79,14 +47,15 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PresentationPrestationAdapter.PresentationPrestationViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PresentationPrestationViewHolder holder, int position) {
 
         final Presentation_prestations liste_prestations = this.maListe.get(position);
 
-//        holder.mImgProfil.setImageResource(liste_prestations.getImage_profil_prestation());
         holder.mTitredescription.setText(liste_prestations.getTitre_prestation());
         holder.mMinidescription.setText(liste_prestations.getMiniDescription());
         holder.mDateDescription.setText(String.valueOf(liste_prestations.getDate_prestation()));
+
+        Picasso.with(holder.mImgProfil.getContext()).load(liste_prestations.getPhoto()).into(holder.mImgProfil);
 
     }
 
@@ -96,13 +65,60 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
         return maListe.size();
     }
 
-    public class PresentationPrestationViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener {
+    @Override
+    public Filter getFilter() {
+
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+
+        //Lancer le thread au niveau en arriere plan.
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            List<Presentation_prestations> filteredList = new ArrayList<>();
+
+            try {
+                if(constraint.toString().isEmpty()) {
+
+                    filteredList.addAll(listeALL);
+                }else{
+                    for (Presentation_prestations presence :listeALL)
+                        if ((presence.getTitre_prestation().toLowerCase().contains(constraint.toString().toLowerCase())) || (presence.getMiniDescription().toLowerCase().contains(constraint.toString().toLowerCase())))
+                            filteredList.add(presence);
+
+                }
+            }catch (Exception ex){
+
+                ex.getMessage();
+                ex.printStackTrace();
+            }
+
+            FilterResults filterResults  = new FilterResults();
+
+            filterResults.values = filteredList;
+            filterResults.count = filteredList.size();
+            return filterResults;
+        }
+        //Executer le thread sur l'affichage
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
+
+            maListe.clear();
+            maListe.addAll((Collection <? extends Presentation_prestations>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
+
+    public class PresentationPrestationViewHolder extends RecyclerView.ViewHolder {
 
         public final ImageView mImgProfil;
         public final TextView mTitredescription;
         public final TextView mMinidescription;
         public final TextView mDateDescription;
-        public final CardView mCadreVue;
+        public final RelativeLayout mRelativeLayout;
 
         public PresentationPrestationViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -111,23 +127,20 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
             mTitredescription = itemView.findViewById(R.id.mDescription);
             mMinidescription = itemView.findViewById(R.id.miniDescription);
             mDateDescription = itemView.findViewById(R.id.mDate);
-            mCadreVue = itemView.findViewById(R.id.monCadre);
+            mRelativeLayout = itemView.findViewById(R.id.mCardVue);
 
-            mCadreVue.setOnLongClickListener(this);
+            mRelativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
-        }
+                    Intent intent = new Intent(context, ContactezNousActivity.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    }
+                    context.startActivity(intent);
+                }
+            });
 
-        @Override
-        public boolean onLongClick(View view) {
-
-            switch(view.getId()){
-                case R.id.monCadre:
-                    Presentation_prestations prestataire = maListe.get(getLayoutPosition());
-                    Intent service = new Intent(view.getContext(),ContactezNousActivity.class);
-                    service.putExtra(Presentation_prestations.PRESTATION_CLES,prestataire);
-                    break;
-            }
-            return false;
         }
     }
 }

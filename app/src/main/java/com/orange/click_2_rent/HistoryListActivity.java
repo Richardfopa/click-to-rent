@@ -19,7 +19,7 @@ public class HistoryListActivity extends AppCompatActivity {
         client.add(new ClientUtil(R.drawable.outline_construction_black_24, "Maconnerie", 10));
 
         RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        HistoryListAdapter adapter = new HistoryListAdapter(this);
+        HistoryListAdapter adapter = new HistoryListAdapter(this,client);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }

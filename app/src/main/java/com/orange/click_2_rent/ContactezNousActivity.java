@@ -1,11 +1,6 @@
 package com.orange.click_2_rent;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -13,7 +8,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -29,18 +29,15 @@ public class ContactezNousActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contactez_nous);
+
         mDialog =  new Dialog(this);
         mDialog.setContentView(R.layout.contact_dialog);
         mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-        Intent receipprestataire = getIntent();
-        Presentation_prestations prestataire = receipprestataire.getParcelableExtra(Presentation_prestations.PRESTATION_CLES);
-
-
         contactezNous = findViewById(R.id.mBtnConctactez);
         myRecyclerContact = findViewById(R.id.myRecyclerProfil);
         contactezNousAdapter = new ContactezNousAdapter(myArrayList);
-        myRecyclerContact.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+        myRecyclerContact.setLayoutManager(new LinearLayoutManager(this));
         myRecyclerContact.setHasFixedSize(true);
         myRecyclerContact.setAdapter(new ContactezNousAdapter(initialisation()));
 
@@ -56,41 +53,19 @@ public class ContactezNousActivity extends AppCompatActivity {
                 mDialog.show();
             }
         });
-
-        if (!prestataire.getIdPrestation().equals(null)){
-            TextView titleprestation = findViewById(R.id.profiltitle);
-            TextView titlename = findViewById(R.id.profilname);
-            TextView titledescription = findViewById(R.id.explications);
-
-            titleprestation.setText(prestataire.getTitre_prestation());
-            // Recuperer le prestataire qui a pour service
-
-
-
-
-
-
-
-
-        }
-
-
     }
 
-
-
-    private ArrayList<ContactProfil> initialisation() {
+    private List<ContactProfil> initialisation() {
 
         myArrayList = new ArrayList<>();
 
-        myArrayList.add(new ContactProfil(R.drawable.plombier3,"Mr Kamga Orelien","Je suis tres content de  votre service"));
-        myArrayList.add(new ContactProfil(R.drawable.plombier3,"Mr Kamga Orelien","Je suis tres content de  votre service"));
-        myArrayList.add(new ContactProfil(R.drawable.plombier3,"Mr Kamga Orelien","Je suis tres content de  votre service"));
-        myArrayList.add(new ContactProfil(R.drawable.plombier3,"Mr Kamga Orelien","Je suis tres content de  votre service"));
-        myArrayList.add(new ContactProfil(R.drawable.plombier3,"Mr Kamga Orelien","Je suis tres content de  votre service"));
-        myArrayList.add(new ContactProfil(R.drawable.plombier3,"Mr Kamga Orelien","Je suis tres content de  votre service"));
+        myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
+        myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
+        myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
+        myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
+        myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
+        myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
 
         return myArrayList;
     }
-
 }

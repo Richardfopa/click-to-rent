@@ -25,7 +25,7 @@ class ContactezNousAdapter extends RecyclerView.Adapter<ContactezNousAdapter.Con
 
     @NonNull
     @Override
-    public ContactezNousAdapter.ContactezNousViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ContactezNousViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         View vues = LayoutInflater.from(parent.getContext()).inflate(R.layout.contactez_items,parent,false);
 
@@ -43,7 +43,7 @@ class ContactezNousAdapter extends RecyclerView.Adapter<ContactezNousAdapter.Con
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ContactezNousAdapter.ContactezNousViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ContactezNousViewHolder holder, int position) {
 
         final ContactProfil contactez = this.myList.get(position);
 

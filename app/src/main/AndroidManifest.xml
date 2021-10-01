@@ -34,8 +34,22 @@
             android:name=".DemarrageApp"
             android:exported="true" />
         <activity
-            android:name=".Activity2"
+            android:name=".AjoutServiceActivity"
             android:exported="true" />
+        <activity
+            android:name=".CompteActivity"
+            android:exported="true"
+            android:parentActivityName=".ConnexionActivity" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Activity2"
+            android:exported="true"
+            android:parentActivityName=".ConnexionActivity" />
         <activity
             android:name=".PrestationsActivity"
             android:exported="true"
@@ -43,29 +57,16 @@
         <activity
             android:name=".AddUserActivity"
             android:exported="true" />
-        <activity
-            android:name=".AjoutServiceActivity"
-            android:exported="true"
-            android:label="Ajouter une Prestation">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
 
         <activity
             android:name=".PremiereConnectionActivity"
             android:exported="true" />
         <activity
-            android:name=".ConnexionmdpActivity"
-            android:exported="true" />
-        <activity
             android:name=".ConnexionActivity"
             android:exported="true"
-            android:label="Welcome"/>
-
-        <activity
+            android:label="Welcome"
+            android:parentActivityName=".MainActivity" />
+     <activity
             android:name=".MainActivity"
             android:exported="true" />
         <activity
@@ -83,5 +84,4 @@
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
-
 </manifest>

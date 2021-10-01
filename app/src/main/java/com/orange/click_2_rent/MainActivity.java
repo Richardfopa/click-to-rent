@@ -12,7 +12,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -142,17 +141,13 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.profil:
 
-                Toast.makeText(this, "Profil", Toast.LENGTH_SHORT).show();
-            case R.id.Rechercher:
+                Intent intent = new Intent(getApplicationContext(),ConnexionActivity.class);
+                startActivity(intent);
 
-                Toast.makeText(this, "Rechercher", Toast.LENGTH_SHORT).show();
-                return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
         }
 
     }
-
-
 
 }
