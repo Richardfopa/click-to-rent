@@ -28,7 +28,6 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputLayout;
 
 import com.google.firebase.Timestamp;
@@ -189,17 +188,15 @@ public class AjoutServiceActivity
                 }
                 if (categorie.isEmpty()){
                     mautoComplete.setError("Veuiller choisir une categorie !!");
-                }
-                if (title.length() > 5 && !categorie.isEmpty() && description.length() >100)
-*/
+                }*/
+                if (title.length() > 5 && !categorie.isEmpty() && description.length() >100) {
+
                     error.setText("Donnees Valider ");
                     error.setTextColor(R.color.theme_color);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        error.setCompoundDrawablesRelative(null,null,getDrawable(R.drawable.ic_baseline_check_24),null);
+                        error.setCompoundDrawablesRelative(null, null, getDrawable(R.drawable.ic_baseline_check_24), null);
                     }
-
-                    Log.d("NOERROR","pas erreur");
-
+                    Log.d("NOERROR", "pas erreur");
 
                     // Creer une reference
 
@@ -210,16 +207,17 @@ public class AjoutServiceActivity
                     // spaceRef now points to "images/space.jpg
                     // imagesRef still points to "images"
 
-                    Uuid =  UUID.randomUUID();
-                    StorageReference photoserviceRef = mStorageRef.child("services/photo"+title+Uuid);
-                    StorageReference documentserviceRef = mStorageRef.child("services/doc"+title+Uuid);
+                    Uuid = UUID.randomUUID();
+                    StorageReference photoserviceRef = mStorageRef.child("services/photo" + title + Uuid);
+                    StorageReference documentserviceRef = mStorageRef.child("services/doc" + title + Uuid);
 
                     // Get the data from an ImageView as bytes
-                    uploadImageViewToStorage(mImgPhotoDoc,photoserviceRef);
+                    uploadImageViewToStorage(mImgPhotoDoc, photoserviceRef);
                     // uploadDocToStorage(mImgPhotoService,documentserviceRef);
-                    Toast.makeText(this, "Insertion reussi avec success ", Toast.LENGTH_SHORT).show();;
-                    startActivity(new Intent(this,MainActivity.class));
-
+                    Toast.makeText(this, "Insertion reussi avec success ", Toast.LENGTH_SHORT).show();
+                    ;
+                    startActivity(new Intent(this, MainActivity.class));
+                }
                 break;
 
             case R.id.image_add_service_photo_item:
