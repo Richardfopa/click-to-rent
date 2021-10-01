@@ -1,39 +1,39 @@
 package com.orange.click_2_rent;
 
-import static java.lang.String.valueOf;
-
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 
-public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable {
+public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable  {
 
-    ArrayList<Presentation_prestations> maListe;
-    ArrayList<Presentation_prestations> listeALL = new ArrayList<>();
-    Context context;
+    private List<Presentation_prestations> maListe;
+    private List<Presentation_prestations> listeALL;
+    private Context context;
 
 
-    public PresentationPrestationAdapter(ArrayList<Presentation_prestations> MaListe,Context context) {
+    public PresentationPrestationAdapter(List<Presentation_prestations> MaListe,Context context) {
 
         this.maListe = MaListe;
-        this.listeALL = MaListe;
-        this.context =context;
+        this.listeALL = new ArrayList<>(MaListe);
+        this.context = context;
 
     }
 
@@ -50,9 +50,10 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     public void onBindViewHolder(@NonNull PresentationPrestationViewHolder holder, int position) {
 
         final Presentation_prestations liste_prestations = this.maListe.get(position);
+
         holder.mTitredescription.setText(liste_prestations.getTitre_prestation());
         holder.mMinidescription.setText(liste_prestations.getMiniDescription());
-        holder.mDateDescription.setText(valueOf(liste_prestations.getDate_prestation().toDate()));
+        holder.mDateDescription.setText(String.valueOf(liste_prestations.getDate_prestation()));
 
         Picasso.with(holder.mImgProfil.getContext()).load(liste_prestations.getPhoto()).into(holder.mImgProfil);
 
@@ -67,48 +68,49 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     @Override
     public Filter getFilter() {
 
-     Filter filter = new Filter() {
+        return filter;
+    }
+
+    Filter filter = new Filter() {
+
+        //Lancer le thread au niveau en arriere plan.
 
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
 
-            FilterResults filterResults  = new FilterResults();
+            List<Presentation_prestations> filteredList = new ArrayList<>();
 
-            if(constraint == null || constraint.length() == 0 ) {
+            try {
+                if(constraint.toString().isEmpty()) {
 
-               filterResults.values = listeALL;
-               filterResults.count = listeALL.size();
+                    filteredList.addAll(listeALL);
+                }else{
+                    for (Presentation_prestations presence :listeALL)
+                        if ((presence.getTitre_prestation().toLowerCase().contains(constraint.toString().toLowerCase())) || (presence.getMiniDescription().toLowerCase().contains(constraint.toString().toLowerCase())))
+                            filteredList.add(presence);
 
-            }else{
-
-                String searchMax = constraint.toString().toLowerCase();
-                List<Presentation_prestations> prestations = new ArrayList<>();
-
-                for (Presentation_prestations presence :listeALL){
-
-                   if(presence.getMiniDescription().toLowerCase().contains(searchMax) || presence.getTitre_prestation().toLowerCase().contains(searchMax))
-
-                     {
-                         prestations.add(presence);
-                     }
                 }
-                filterResults.values = prestations;
-                filterResults.count = prestations.size();
+            }catch (Exception ex){
+
+                ex.getMessage();
+                ex.printStackTrace();
             }
 
+            FilterResults filterResults  = new FilterResults();
+
+            filterResults.values = filteredList;
+            filterResults.count = filteredList.size();
             return filterResults;
         }
-
+        //Executer le thread sur l'affichage
         @Override
         protected void publishResults(CharSequence constraint, FilterResults filterResults) {
 
-            maListe = (ArrayList<Presentation_prestations>) filterResults.values;
+            maListe.clear();
+            maListe.addAll((Collection <? extends Presentation_prestations>) filterResults.values);
             notifyDataSetChanged();
         }
     };
-        return filter;
-    }
-
 
     public class PresentationPrestationViewHolder extends RecyclerView.ViewHolder {
 
@@ -116,7 +118,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
         public final TextView mTitredescription;
         public final TextView mMinidescription;
         public final TextView mDateDescription;
-        public final CardView mCadreVue;
+        public final RelativeLayout mRelativeLayout;
 
         public PresentationPrestationViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -125,8 +127,19 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
             mTitredescription = itemView.findViewById(R.id.mDescription);
             mMinidescription = itemView.findViewById(R.id.miniDescription);
             mDateDescription = itemView.findViewById(R.id.mDate);
-            mCadreVue = itemView.findViewById(R.id.monCadre);
+            mRelativeLayout = itemView.findViewById(R.id.mCardVue);
 
+            mRelativeLayout.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(context, ContactezNousActivity.class);
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    }
+                    context.startActivity(intent);
+                }
+            });
 
         }
     }

@@ -1,7 +1,14 @@
 package com.orange.click_2_rent.Models;
 
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.firestore.FieldValue;
 
@@ -36,7 +43,20 @@ public class UserRepository {
         if (id!=null){
             FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
                     .document(id)
-                    .update("telephone", tel);
+                    .update("telephone", tel)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.w("SUCCESS", "Telephone successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("NOT SUCCESS", "Error during updating Telephone", e);
+                        }
+                    });
+
 
         }
 
@@ -49,7 +69,19 @@ public class UserRepository {
         if (id!=null){
             FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
                     .document(id)
-                    .update("email", email);
+                    .update("email", email)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.w("SUCCESS", "email successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("NOT SUCCESS", "Error during updating email", e);
+                        }
+                    });
             currentUser.updateEmail(email);
 
         }
@@ -83,7 +115,19 @@ public class UserRepository {
         if (id!=null){
             FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
                     .document(id)
-                    .update("adresse", adresse);
+                    .update("adresse", adresse)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.w("SUCCESS", "adresse successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("NOT SUCCESS", "Error during updating adresse", e);
+                        }
+                    });
 
         }
 
@@ -95,7 +139,19 @@ public class UserRepository {
         if (id!=null){
             FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
                     .document(id)
-                    .update("motDePasse", motDePasse);
+                    .update("motDePasse", motDePasse)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.w("SUCCESS", "Password successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("NOT SUCCESS", "Error during updating Password", e);
+                        }
+                    });
             currentUser.updatePassword(motDePasse);
 
         }
@@ -108,7 +164,19 @@ public class UserRepository {
         if (id!=null){
             FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
                     .document(id)
-                    .update("ville", ville);
+                    .update("ville", ville)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.w("SUCCESS", "Ville successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("NOT SUCCESS", "Error during updating ville", e);
+                        }
+                    });
 
         }
 
@@ -120,7 +188,19 @@ public class UserRepository {
         if (id!=null){
             FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
                     .document(id)
-                    .update("mesServices", FieldValue.arrayUnion(idService));
+                    .update("mesServices", FieldValue.arrayUnion(idService))
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.w("SUCCESS", "mesService successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("NOT SUCCESS", "Error during updating mesService", e);
+                        }
+                    });
 
         }
 
@@ -132,7 +212,19 @@ public class UserRepository {
         if (id!=null){
             FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
                     .document(id)
-                    .update("servicesDemande", FieldValue.arrayUnion(idService));
+                    .update("servicesDemande", FieldValue.arrayUnion(idService))
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.w("SUCCESS", "serviceDemande successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("NOT SUCCESS", "Error during updating serviceDemande", e);
+                        }
+                    });
 
         }
 
@@ -144,7 +236,20 @@ public class UserRepository {
         if (id!=null){
             FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
                     .document(id)
-                    .update("mesCommentaires", FieldValue.arrayUnion(comment));
+                    .update("mesCommentaires", FieldValue.arrayUnion(comment))
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            Log.w("SUCCESS", "mesCommentaire successfully updated!");
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w("NOT SUCCESS", "Error during updating mesCommentaires", e);
+                        }
+                    });
+
 
         }
 

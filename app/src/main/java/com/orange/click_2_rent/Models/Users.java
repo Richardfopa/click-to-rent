@@ -8,7 +8,7 @@ import java.util.*;
 
 public class Users {
     private String nom;
-    private int telphone;
+    private int telephone;
     private String email;
     private Photo photoClient;
     private String adresse;
@@ -22,7 +22,7 @@ public class Users {
 
     public Users(String nom, int telphone, String email, String motDePasse) {
         this.nom = nom;
-        this.telphone = telphone;
+        this.telephone = telphone;
         this.email = email;
         this.motDePasse = motDePasse;
         this.mesServices=new ArrayList<Service>();
@@ -86,12 +86,12 @@ public class Users {
         this.nom = nom;
     }
 
-    public Number getTelphone() {
-        return telphone;
+    public Number getTelephone() {
+        return telephone;
     }
 
-    public void setTelphone(int telphone) {
-        this.telphone = telphone;
+    public void setTelephone(int telphone) {
+        this.telephone = telphone;
     }
 
     public String getEmail() {
@@ -163,7 +163,7 @@ public class Users {
     public String toString() {
         return "Users{" +
                 ", nom='" + nom + '\'' +
-                ", telphone=" + telphone +
+                ", telephone=" + telephone +
                 ", email='" + email + '\'' +
                 ", motDePasse='" + motDePasse + '\'' +
                 ", photoProfil=" + photoProfil +

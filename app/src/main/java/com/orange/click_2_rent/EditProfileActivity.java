@@ -1,9 +1,11 @@
 package com.orange.click_2_rent;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -12,10 +14,15 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.orange.click_2_rent.Models.FirebasesUtil;
 import com.orange.click_2_rent.Models.UserRepository;
 
 public class EditProfileActivity extends AppCompatActivity {
@@ -46,6 +53,21 @@ public class EditProfileActivity extends AppCompatActivity {
 
         name.setText(currentUser.getDisplayName());
         email_address.setText(currentUser.getEmail());
+
+        FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
+                .document(currentUser.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()){
+                            DocumentSnapshot document = task.getResult();
+                            phone_number.setText(String.valueOf(document.getLong("telephone")));
+                            ville.setText(document.getString("ville"));
+                            adresse.setText(document.getString("adresse"));
+                        }
+                    }
+                });
 
 
         //création du menu pour le genre (sexe)

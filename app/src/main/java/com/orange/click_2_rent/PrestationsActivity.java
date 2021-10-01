@@ -1,7 +1,6 @@
 package com.orange.click_2_rent;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,13 +17,16 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.orange.click_2_rent.Models.FirebasesUtil;
 
 import java.util.ArrayList;
 
 public class PrestationsActivity extends AppCompatActivity {
 
+
+
     private RecyclerView mRecycler;
-    private ArrayList<Presentation_prestations> maListe;
+    private final ArrayList<Presentation_prestations> maListe = new ArrayList<>();;
     private PresentationPrestationAdapter maPresentationAdapteur;
     private FirebaseFirestore db;
 
@@ -32,19 +34,16 @@ public class PrestationsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nos_prestations);
-
         mRecycler = findViewById(R.id.idNosPrestations);
 
-
         EventChangeListener();
-
     }
 
     public void EventChangeListener()
     {
-        maListe = new ArrayList<Presentation_prestations>();
-        db = FirebaseFirestore.getInstance();
-        db.collection("services")
+        FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_SERVICES)
+//        db = FirebaseFirestore.getInstance();
+//        db.collection("services")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -54,42 +53,43 @@ public class PrestationsActivity extends AppCompatActivity {
                             Presentation_prestations model = new Presentation_prestations(doc.getString("name_provider"),
                                     doc.getString("description"),doc.getTimestamp("add_date"),
                                     doc.getString("photo_service")
-                                    );
+                            );
                             maListe.add(model);
                         }
                         maPresentationAdapteur = new PresentationPrestationAdapter(maListe,getApplicationContext());
                         mRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         mRecycler.setHasFixedSize(true);
-                       mRecycler.setAdapter(maPresentationAdapteur);
+                        mRecycler.setAdapter(maPresentationAdapteur);
                     }
                 });
     }
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-            getMenuInflater().inflate(R.menu.searchmenu, menu);
-            MenuItem menuItem = menu.findItem(R.id.Rechercher);
-            SearchView searchView = (SearchView) menuItem.getActionView();
-            searchView.setMaxWidth(Integer.MAX_VALUE);
-            searchView.setQueryHint("rechercher un prestataire");
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
+        getMenuInflater().inflate(R.menu.searchmenu, menu);
+        MenuItem menuItem = menu.findItem(R.id.Rechercher);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setQueryHint("rechercher un prestataire");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
 
-                    return false;
-                }
+                return false;
+            }
 
-                @Override
-                public boolean onQueryTextChange(String nouveauText) {
+            @Override
+            public boolean onQueryTextChange(String nouveauText) {
 
-                    maPresentationAdapteur.getFilter().filter(nouveauText);
-                    return false;
-                }
-            });
+                maPresentationAdapteur.getFilter().filter(nouveauText);
 
-            return super.onCreateOptionsMenu(menu);
-        }
+                return false;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -108,5 +108,3 @@ public class PrestationsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
-
