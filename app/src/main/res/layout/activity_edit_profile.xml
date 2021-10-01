@@ -83,7 +83,7 @@
                     android:inputType="phone"
                     android:textColorLink="#20A6FE" />
             </com.google.android.material.textfield.TextInputLayout>
-
+<!--
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/gender_dropdown_menu"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -121,6 +121,7 @@
                     android:layout_height="wrap_content"
                     android:inputType="none" />
             </com.google.android.material.textfield.TextInputLayout>
+-->
 
             <com.google.android.material.textfield.TextInputLayout
 

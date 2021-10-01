@@ -70,19 +70,19 @@ public class EditProfileActivity extends AppCompatActivity {
                 });
 
 
-        //création du menu pour le genre (sexe)
-        String[] gender = new String[]{"Homme", "Femme"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.gender_item, gender);
-        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.gender_list);
-        textView.setAdapter(adapter);
-
-        //création du menu pour le civilite
-        String[] civilite = new String[]{"Mr.", "Mme"};
-        ArrayAdapter<String> adapter_2 = new ArrayAdapter<>(this, R.layout.civilite_item, civilite);
-        AutoCompleteTextView civilite_textview = (AutoCompleteTextView) findViewById(R.id.civilite_list);
-        civilite_textview.setAdapter(adapter_2);
-
-        btn_modif.setOnClickListener(new View.OnClickListener() {
+//        création du menu pour le genre (sexe)
+//        String[] gender = new String[]{"Homme", "Femme"};
+//        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, R.layout.gender_item, gender);
+//        AutoCompleteTextView textView = (AutoCompleteTextView) findViewById(R.id.gender_list);
+//        textView.setAdapter(adapter);
+//
+//        création du menu pour le civilite
+//        String[] civilite = new String[]{"Mr.", "Mme"};
+//        ArrayAdapter<String> adapter_2 = new ArrayAdapter<>(this, R.layout.civilite_item, civilite);
+//        AutoCompleteTextView civilite_textview = (AutoCompleteTextView) findViewById(R.id.civilite_list);
+//        civilite_textview.setAdapter(adapter_2);
+//
+          btn_modif.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (name.getText().toString().length() != 0){
