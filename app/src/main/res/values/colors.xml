@@ -22,5 +22,7 @@
     <color name="background_grise">#11606060</color>
     <color name="grey">#808080</color>
     <color name="rouge">#A01C13</color>
+    <color name="v_validation">#01D758</color>
+    <color name="r_annulation">#C1491F</color>
 
 </resources>

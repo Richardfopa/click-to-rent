@@ -78,4 +78,6 @@
     <string name="Vnom">Votre nom</string>
     <string name="appel">Appels</string>
     <string name="sms">SMS</string>
+    <string name="txtDescription">Description</string>
+    <string name="plombier">Plombier</string>
 </resources>
