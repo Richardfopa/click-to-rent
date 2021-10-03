@@ -15,7 +15,7 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-public class ajout_service extends AppCompatActivity {
+public class AjoutServiceActivity extends AppCompatActivity {
     static final int REQUEST_SELECT_IMAGE_SERVICE = 1;
     static final int REQUEST_SELECT_IMAGE_REF = 2;
     Button btnParcourirService;

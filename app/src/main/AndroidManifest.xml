@@ -43,10 +43,6 @@
             android:exported="true"
             android:parentActivityName=".MainActivity" />
         <activity
-            android:name=".ajout_service"
-            android:exported="true"
-            android:parentActivityName=".ajout_service" />
-        <activity
             android:name=".PremiereConnectionActivity"
             android:exported="true" />
         <activity
@@ -69,7 +65,8 @@
             android:parentActivityName=".ProfileMainActivity" />
         <activity
             android:name=".ProfileMainActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"
