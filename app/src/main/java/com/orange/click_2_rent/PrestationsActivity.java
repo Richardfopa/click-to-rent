@@ -49,7 +49,7 @@ public class PrestationsActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for(DocumentSnapshot doc: task.getResult())
                         {
-                            Presentation_prestations model = new Presentation_prestations(doc.getString("name_provider"),
+                            Presentation_prestations model = new Presentation_prestations(doc.getString("title"),
                                     doc.getString("description"),doc.getTimestamp("add_date"),
                                     doc.getString("photo_service")
                             );
@@ -103,7 +103,7 @@ public class PrestationsActivity extends AppCompatActivity {
     }
 
     public void AjoutService(View view) {
-        Intent intent = new Intent(getApplicationContext(),AjoutServiceActivity.class);
+        Intent intent = new Intent(getApplicationContext(),AddUserActivity.class);
         startActivity(intent);
     }
 }

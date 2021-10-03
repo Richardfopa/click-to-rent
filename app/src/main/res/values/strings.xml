@@ -69,7 +69,6 @@
     <string name="txtDescription">Description</string>
 
 
-
     <string name="password_hint">password</string>
     <string name="textview_passe_oublier">Mot de passe oublier</string>
     <string name="create_up_con">Create a new account</string>
@@ -93,5 +92,6 @@
     <string name="Vnom">Votre nom</string>
     <string name="appel">Appels</string>
     <string name="sms">SMS</string>
+    <string name="choisir_votre_photo">Choisir votre photo de profil (optionnel)</string>
 
 </resources>

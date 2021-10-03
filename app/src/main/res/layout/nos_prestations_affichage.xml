@@ -6,28 +6,26 @@
     android:layout_height="wrap_content"
     android:id="@+id/mCardVue"
     android:clickable="true"
-    android:layout_margin="10sp"
-    app:cardCornerRadius="10sp"
     android:clipChildren="false"
     app:cardPreventCornerOverlap="true"
     app:cardUseCompatPadding="true"
-    app:cardElevation="12sp">
+    >
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="130sp"
         android:layout_marginLeft="4sp"
+        android:elevation="4sp"
+        app:cardElevation="4sp"
+        app:cardPreventCornerOverlap="true"
         android:layout_marginRight="4sp"
-        android:layout_marginTop="4sp"
-        android:layout_marginBottom="4sp"
-        app:cardCornerRadius="10sp"
-        app:cardElevation="6sp">
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/mProfil"
                 android:layout_width="125sp"
                 android:layout_height="125sp"
@@ -35,9 +33,13 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="16dp"
+                android:adjustViewBounds="true"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
+                app:civ_circle_background_color="@color/white"
                 android:padding="10sp"
                 app:civ_border_color="@color/menu_tab"
                 app:civ_border_width="1dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -56,10 +58,10 @@
                     android:layout_height="0dp"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:paddingTop="10sp"
+                    android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:maxLength="25"
+                    android:paddingTop="10sp"
                     android:text="@string/description_prestation"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -72,11 +74,12 @@
                 <TextView
                     android:id="@+id/miniDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="0sp"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="5sp"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="0sp"
+                    android:paddingBottom="0sp"
                     android:layout_weight="1"
                     android:maxLength="100"
                     android:text="@string/intitule"
@@ -91,8 +94,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginStart="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginBottom="16dp"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginTop="0sp"
+                    android:paddingTop="15sp"
+                    android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:maxLength="20"
                     android:text="@string/date_du_jour"

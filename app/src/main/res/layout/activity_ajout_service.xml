@@ -9,35 +9,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20sp"
             android:orientation="vertical"
             android:padding="8dp">
 
 
-<<<<<<< HEAD
-=======
-            <TextView
-                android:id="@+id/tv_title_add_service"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:fontFamily="@font/roboto_slab_bold"
-                android:gravity="center"
-                android:maxLines="4"
-                android:text="@string/add_service_FORM"
-                android:textSize="24sp" />
-
->>>>>>> 35aa176bc7fa37a0003d3aa35db363f0e7240530
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/txt_title_service"
                 style="@style/StyleTextInputLayout"
@@ -46,20 +29,19 @@
                 android:layout_margin="8dp"
                 android:layout_marginTop="16dp"
                 android:hint="@string/label_title_service"
+                android:textStyle="bold"
                 app:errorContentDescription="Entrer un titre valide"
                 app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                app:expandedHintEnabled="false">
+                app:expandedHintEnabled="false"
+                app:shapeAppearanceOverlay="@style/roundedImageView">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_slab_bold"
-<<<<<<< HEAD
                     android:hint="@string/plombier"
-=======
-                    android:hint="Plombier"
->>>>>>> 35aa176bc7fa37a0003d3aa35db363f0e7240530
-                    android:singleLine="true" />
+                    android:singleLine="true"
+                    android:textStyle="bold"
+                    app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -72,22 +54,20 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/select_category"
+                android:textStyle="bold"
                 app:errorIconDrawable="@drawable/ic_baseline_error_24"
                 app:expandedHintEnabled="false"
-                app:hintTextColor="@color/theme_color">
+                app:hintTextColor="@color/theme_color"
+                app:shapeAppearanceOverlay="@style/roundedImageView">
 
                 <AutoCompleteTextView
                     android:id="@+id/category"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/roboto_slab_bold"
-<<<<<<< HEAD
                     android:hint="@string/plombier"
-=======
-                    android:hint="Plombier"
->>>>>>> 35aa176bc7fa37a0003d3aa35db363f0e7240530
-                    android:inputType="none" />
+                    android:inputType="none"
+                    android:textStyle="bold" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -97,25 +77,20 @@
                 style="@style/style_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
                 android:paddingBottom="10dp">
 
                 <LinearLayout
                     android:id="@+id/linear_layout_horizontal_add_service"
-<<<<<<< HEAD
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:baselineAligned="false"
-=======
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
->>>>>>> 35aa176bc7fa37a0003d3aa35db363f0e7240530
                     android:gravity="center|center_vertical"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-<<<<<<< HEAD
                         android:layout_margin="4dp"
                         android:layout_weight="1"
                         android:gravity="center"
@@ -129,6 +104,8 @@
                             android:padding="8dp"
                             android:text="@string/choisir_votre_photo_de_profil"
                             android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:shapeAppearanceOverlay="@style/roundedImageView"
                             tools:ignore="HardcodedText" />
 
                         <ImageView
@@ -137,6 +114,7 @@
                             android:layout_height="100dp"
                             android:contentDescription="@string/choisir_votre_photo_de_profil"
                             android:padding="10dp"
+                            app:shapeAppearanceOverlay="@style/roundedImageView"
                             app:srcCompat="@drawable/ic_baseline_image_24"
                             tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
@@ -158,9 +136,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="30dp"
                             android:padding="8dp"
-
                             android:text="@string/textdoc"
                             android:textSize="12sp"
+                            android:textStyle="bold"
+                            app:shapeAppearanceOverlay="@style/roundedImageView"
                             tools:ignore="HardcodedText" />
 
                         <ImageView
@@ -169,87 +148,9 @@
                             android:layout_height="100dp"
                             android:contentDescription="@string/textdoc"
                             android:padding="10dp"
+                            app:shapeAppearanceOverlay="@style/roundedImageView"
                             app:srcCompat="@drawable/ic_baseline_image_24"
                             tools:ignore="ImageContrastCheck,ImageContrastCheck" />
-=======
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textphoto_add_service"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:paddingLeft="4dp"
-                            android:paddingTop="4dp"
-                            android:text="@string/choisir_votre_photo_de_profil"
-                            android:textSize="12dp"
-                            tools:ignore="HardcodedText" />
-
-                        <ImageView
-                            android:id="@+id/image_add_service_photo_item"
-                            android:layout_width="match_parent"
-                            android:layout_height="100sp"
-                            android:layout_weight="10"
-                            app:srcCompat="@drawable/ic_baseline_image_24"
-                            tools:ignore="ImageContrastCheck,ImageContrastCheck" />
-
-                        <Button
-                            android:id="@+id/btn_con_parcourir_photoservice"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/roboto_slab_bold"
-                            android:shadowRadius="1"
-                            android:text="@string/btn_parcourir_photo"
-                            android:textColor="@color/white"
-                            app:backgroundTint="@color/theme_color"
-                            app:strokeColor="@color/background_grise"
-                            app:strokeWidth="@dimen/border_button"
-                            tools:ignore="TextContrastCheck" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:gravity="center"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/textdoc_add_service"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:paddingLeft="4dp"
-                            android:paddingTop="4dp"
-                            android:text="@string/textdoc"
-                            android:textSize="12dp"
-                            tools:ignore="HardcodedText" />
-
-                        <ImageView
-                            android:id="@+id/image_add_service_document_item"
-                            android:layout_width="match_parent"
-                            android:layout_height="100sp"
-                            android:layout_weight="10"
-                            app:srcCompat="@drawable/ic_baseline_image_24"
-                            tools:ignore="ImageContrastCheck,ImageContrastCheck" />
-
-                        <Button
-                            android:id="@+id/btn_con_parcourir_docu_user"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/roboto_slab_bold"
-                            android:shadowRadius="1"
-                            android:text="@string/btn_parcourir_photo"
-                            android:textColor="@color/white"
-                            app:backgroundTint="@color/theme_color"
-                            app:strokeColor="@color/background_grise"
-                            app:strokeWidth="@dimen/border_button"
-                            tools:ignore="TextContrastCheck" />
->>>>>>> 35aa176bc7fa37a0003d3aa35db363f0e7240530
 
                     </LinearLayout>
 
@@ -264,17 +165,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
-<<<<<<< HEAD
                 android:layout_marginTop="18dp"
                 android:hint="@string/txtDescription"
                 android:paddingTop="4dp"
-=======
-                android:layout_marginTop="8dp"
-                android:hint="Description"
->>>>>>> 35aa176bc7fa37a0003d3aa35db363f0e7240530
+                android:textStyle="bold"
                 app:counterMaxLength="100"
                 app:errorEnabled="true"
-                app:expandedHintEnabled="false">
+                app:expandedHintEnabled="false"
+                app:shapeAppearanceOverlay="@style/roundedImageView">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -283,7 +181,9 @@
                     android:hint="@string/description"
                     android:inputType="textMultiLine"
                     android:lines="3"
-                    android:maxLines="4" />
+                    android:maxLines="4"
+                    android:textStyle="bold"
+                    app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -291,42 +191,33 @@
                 android:id="@+id/title_error_add_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-<<<<<<< HEAD
-                android:gravity="center" />
-=======
-                android:layout_marginTop="8dp"
-                android:layout_weight="1"
                 android:gravity="center"
-                android:padding="4dp"
-                android:textColor="@android:color/holo_red_light" />
->>>>>>> 35aa176bc7fa37a0003d3aa35db363f0e7240530
+                android:textStyle="bold"
+                app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="8dp"
                 android:orientation="horizontal"
-
-                android:padding="16dp"
+                android:padding="10sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
                 <Button
                     android:id="@+id/cancel_add_service"
-<<<<<<< HEAD
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="8dp"
-                    android:layout_marginRight="8dp"
+                    android:layout_marginLeft="5sp"
+                    android:layout_marginRight="10dp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/roboto_slab_bold"
-                    android:shadowRadius="6"
                     android:text="@string/fui_cancel"
                     android:textAllCaps="true"
                     android:textColor="@color/theme_color"
-                    app:backgroundTint="@color/background_grise"
-                    app:cornerRadius="6dp"
-                    app:strokeColor="@color/background_grise"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/white"
+                    app:shapeAppearanceOverlay="@style/roundedTextAndInput"
+                    app:strokeColor="@color/white"
                     app:strokeWidth="@dimen/border_button"
                     tools:ignore="TextContrastCheck" />
 
@@ -335,43 +226,20 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
-                    android:layout_marginLeft="8dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10sp"
                     android:layout_weight="1"
-                    android:fontFamily="@font/roboto_slab_bold"
-                    android:shadowRadius="6"
+                    android:elevation="4sp"
                     android:text="@string/bt_conn_valider"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
+                    android:textStyle="bold"
                     app:backgroundTint="@color/theme_color"
-                    app:cornerRadius="6dp"
+                    app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                     app:strokeColor="@color/background_grise"
                     app:strokeWidth="@dimen/border_button"
                     tools:ignore="TextContrastCheck" />
-=======
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:fontFamily="@font/roboto_slab_bold"
-                    android:text="Annuler"
-                    android:textColor="@color/purple_500"
-                    android:backgroundTint="@color/white"
-                    android:textAllCaps="false" />
-
-                <Button
-                    android:id="@+id/confirm_add_service"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:background="@color/theme_color"
-                    android:backgroundTint="@color/white"
-                    android:fontFamily="@font/roboto_slab_bold"
-                    android:text="Valider"
-                    android:textAllCaps="false"
-                    android:textColor="@color/white"
-                    app:backgroundTint="@color/theme_color" />
->>>>>>> 35aa176bc7fa37a0003d3aa35db363f0e7240530
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

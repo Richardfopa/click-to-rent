@@ -6,14 +6,14 @@
     android:layout_height="match_parent"
     app:circularflow_defaultRadius="50dp"
     tools:context=".CompteActivity">
+
     <ScrollView
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="8dp"
         android:foregroundGravity="center"
         android:paddingLeft="16dp"
-        android:paddingTop="16dp"
         android:paddingRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -22,36 +22,24 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="16dp"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingBottom="16dp">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab_bold"
-                android:gravity="center"
-                android:text="@string/create_up_con"
-                android:textColor="#039BE5"
-                android:textSize="25sp"
-                android:textStyle="bold" />
-
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edittextusername_con"
-                style="@style/StyleTextInputLayout"
-                android:hint="@string/username"
+                android:id="@+id/edittextnom_con"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
+                android:hint="@string/nom_hint"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
                 app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusTopStart="@dimen/box_input_radius"
                 app:boxStrokeColor="@color/theme_color"
-                app:boxStrokeErrorColor="@color/design_default_color_error"
-                app:expandedHintEnabled="false"
+                app:boxStrokeErrorColor="@color/black"
                 app:hintTextColor="@color/theme_color"
                 app:startIconDrawable="@drawable/ic_baseline_account_box_24"
                 app:startIconTint="@color/theme_color">
@@ -62,8 +50,6 @@
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/input_connexion"
                     android:fontFamily="@font/roboto_slab_bold"
-                    android:hint="richardfopa"
-                    android:maxLength="50"
                     android:inputType="textWebEmailAddress"
                     android:shadowRadius="20"
                     android:singleLine="true"
@@ -76,7 +62,7 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/edittextemail_update"
+                android:id="@+id/edittextusername_con"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -87,8 +73,7 @@
                 app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusTopStart="@dimen/box_input_radius"
                 app:boxStrokeColor="@color/theme_color"
-                app:boxStrokeErrorColor="@color/design_default_color_error"
-                app:expandedHintEnabled="false"
+                app:boxStrokeErrorColor="@color/black"
                 app:hintTextColor="@color/theme_color"
                 app:startIconDrawable="@drawable/ic_mail"
                 app:startIconTint="@color/theme_color">
@@ -99,7 +84,6 @@
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/input_connexion"
                     android:fontFamily="@font/roboto_slab_bold"
-                    android:hint="richardfopa@outlook.fr"
                     android:inputType="textWebEmailAddress"
                     android:shadowRadius="20"
                     android:singleLine="true"
@@ -111,47 +95,11 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/editname_update"
-                style="@style/StyleTextInputLayout"
-                android:layout_marginTop="8dp"
-                android:hint="@string/votreadresse"
-                app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
-                app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
-                app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
-                app:boxCornerRadiusTopStart="@dimen/box_input_radius"
-                app:boxStrokeColor="@color/theme_color"
-                app:boxStrokeErrorColor="@color/design_default_color_error"
-                app:expandedHintEnabled="false"
-                app:hintTextColor="@color/theme_color"
-                app:startIconTint="@color/theme_color">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textinoutedittext_user_update"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
-                    android:contentDescription="@string/input_connexion"
-                    android:fontFamily="@font/roboto_slab_bold"
-                    android:hint="Douala logpom"
-                    android:inputType="textWebEmailAddress"
-                    android:maxLength="50"
-                    android:shadowRadius="20"
-                    android:singleLine="true"
-                    android:textColor="@color/theme_color"
-                    android:textColorHint="@color/theme_color"
-                    android:textSize="@dimen/text_input_size"
-                    tools:ignore="EditableContentDescCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
-
-                android:id="@+id/edit_numero_update"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:id="@+id/edittextpassword_con"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
                 android:hint="@string/password_hint"
                 app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
                 app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
@@ -159,22 +107,17 @@
                 app:boxCornerRadiusTopStart="@dimen/box_input_radius"
                 app:boxStrokeColor="@color/theme_color"
                 app:boxStrokeErrorColor="@color/black"
-                app:expandedHintEnabled="false"
                 app:hintTextColor="@color/theme_color"
                 app:startIconDrawable="@drawable/ic_baseline_lock_24"
                 app:startIconTint="@color/theme_color">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/textinoutedittext_telephone_update"
-
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/input_connexion"
                     android:fontFamily="@font/roboto_slab_bold"
-                    android:hint="+237 653 36 47 48"
-                    android:inputType="phone"
-                    android:maxLength="50"
+                    android:inputType="textPassword"
                     android:shadowRadius="20"
                     android:singleLine="true"
                     android:textColor="@color/black"
@@ -184,77 +127,38 @@
                     tools:ignore="EditableContentDescCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/card"
-                style="@style/style_card"
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardview_photo"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="8dp">
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp">
 
                 <TextView
-                    android:id="@+id/textphoto_adduser"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingLeft="4dp"
-                    android:paddingTop="4dp"
-                    android:text="Choisir votre photo de profil" />
-
-                <LinearLayout
-                    android:id="@+id/linear_layout_horizontal"
+                    android:id="@+id/textphoto_add_account"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:text="@string/choisir_votre_photo"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    app:shapeAppearanceOverlay="@style/roundedImageView"
+                    tools:ignore="HardcodedText" />
 
-                    <ImageView
-                        android:id="@+id/image_user_item"
-                        android:layout_width="wrap_content"
-                        android:layout_height="100sp"
-                        android:layout_weight="10"
-                        app:srcCompat="@drawable/ic_baseline_person"
-                        tools:ignore="ImageContrastCheck,ImageContrastCheck" />
+                <ImageView
+                    android:id="@+id/image_add_create_account"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/choisir_votre_photo_de_profil"
+                    android:padding="20dp"
+                    app:shapeAppearanceOverlay="@style/roundedImageView"
+                    app:srcCompat="@drawable/ic_baseline_image_24"
+                    tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
-                    <Button
-                        android:id="@+id/btn_con_parcourir_photoservice"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/roboto_slab_bold"
-                        android:shadowRadius="1"
-                        android:text="@string/btn_parcourir_photo"
-                        android:textColor="@color/white"
-                        app:backgroundTint="@color/theme_color"
-                        app:strokeColor="@color/background_grise"
-                        app:strokeWidth="@dimen/border_button"
-                        tools:ignore="TextContrastCheck" />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Inscrivez vous en tant que :" />
-
-            <RadioGroup
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/rb_prestation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Prestataire" />
-
-                <RadioButton
-                    android:id="@+id/rb_client"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="true"
-                    android:text="Client" />
-            </RadioGroup>
+            </androidx.cardview.widget.CardView>
 
             <Button
                 android:id="@+id/btn_con_valider"
@@ -266,7 +170,7 @@
                 android:text="@string/bt_conn_valider"
                 android:textColor="@color/white"
                 app:backgroundTint="@color/theme_color"
-                app:cornerRadius="6dp"
+                app:cornerRadius="20dp"
                 app:strokeColor="@color/background_grise"
                 app:strokeWidth="@dimen/border_button"
                 tools:ignore="TextContrastCheck" />

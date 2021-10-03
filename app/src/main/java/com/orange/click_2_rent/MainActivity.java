@@ -14,7 +14,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
 
 
@@ -27,8 +26,6 @@ public class MainActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
-
-    FloatingActionButton fab;
 
     TabLayout Tablelayout;
     ViewPager2  Viewpage;
@@ -48,15 +45,6 @@ public class MainActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        fab = findViewById(R.id.boutonFlottant);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(view.getContext(), AddUserActivity.class));
-            }
-        });
-
 
         if(savedInstanceState!=null){
             positionCourante = savedInstanceState.getInt(CLE_POSITION_CoURANTE,0);
@@ -65,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
         }
 
         //getSupportFragmentManager().beginTransaction()
-          //      .add(R.id.principal,new Fragment1(),Fragment1.class.getSimpleName())
-          //      .commit();
+        //      .add(R.id.principal,new Fragment1(),Fragment1.class.getSimpleName())
+        //      .commit();
 
         myCardview = findViewById(R.id.monCadre);
         Tablelayout = findViewById(R.id.maTabLayout);
@@ -74,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Recuperation et Affichage des icones
 
-       // Tablelayout.getTabAt(0).setIcon(R.drawable.home_repair_service_24);
+        // Tablelayout.getTabAt(0).setIcon(R.drawable.home_repair_service_24);
         //Tablelayout.getTabAt(1).setIcon(R.drawable.restaurant_24);
         // Tablelayout.getTabAt(2).setIcon(R.drawable.local_taxi_24);
 
@@ -131,8 +119,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.home:
 
-                 Toast.makeText(this, "vous avez selectionnez Home", Toast.LENGTH_SHORT).show();
-                 return true;
+                Toast.makeText(this, "vous avez selectionnez Home", Toast.LENGTH_SHORT).show();
+                return true;
 
             case R.id.Parametres:
 

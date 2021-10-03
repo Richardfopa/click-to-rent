@@ -31,6 +31,7 @@ public class FirebasesUtil {
 
 
     static CollectionReference mRefCollection;
+    public static final String TAG = "DATABASE";
 
     public static CollectionReference getReferenceFirestore(String collectionName){
         if (mRefCollection == null){
@@ -43,8 +44,40 @@ public class FirebasesUtil {
 
 
     public  static  void addService(Service service){
-        FirebasesUtil.getReferenceFirestore(COL_SERVICES)
+
+        /*FirebasesUtil.getReferenceFirestore(COL_SERVICES)
                 .add(service)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d("message", "DocumentSnapshot written with ID: " + documentReference.getId());
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w("TAG_FAILURE", "Error writing document", e);
+                    }
+                });*/
+        getReferenceFirestore(COL_SERVICES).document("service"+service.getId())
+                .set(service)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void unused) {
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+
+                    }
+                });
+
+    }
+    public  static  void addUsers(Users users){
+        FirebasesUtil.getReferenceFirestore(COL_USERS)
+                .add(users)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -96,4 +129,26 @@ public class FirebasesUtil {
 
     }
 
+    public static void setService(@NonNull Service service) {
+
+        String Uuid = service.getId();
+
+        FirebasesUtil.getReferenceFirestore(COL_SERVICES)
+                .document(Uuid)
+                .update("photos", service.getPhotos())
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "DocumentSnapshot successfully updated!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error updating document", e);
+                    }
+                });
+        // [END update_document]
+
+    }
 }

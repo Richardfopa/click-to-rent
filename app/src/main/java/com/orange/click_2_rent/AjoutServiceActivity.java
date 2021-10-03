@@ -54,6 +54,12 @@ public class AjoutServiceActivity
         implements View.OnClickListener, View.OnFocusChangeListener {
 
     private FirebaseStorage storage;
+    private StorageMetadata metadata;
+    private StorageReference mStorageRef;
+    private StorageReference mStorageRefImage;
+    private DatabaseReference mDatabaseRef;
+    private StorageTask mUploadTask;
+
     private TextInputLayout mTxtTitleService;
     private TextInputLayout mTxtCategorieService;
     private ImageView mImgPhotoService;
@@ -64,7 +70,7 @@ public class AjoutServiceActivity
     private TextView mtxtdoc;
     private Button mbtcancel;
     private Button mbtConfirm;
-    private StorageMetadata metadata;
+
     private AutoCompleteTextView mautoComplete;
     private TextView error;
     private String title;
@@ -75,10 +81,7 @@ public class AjoutServiceActivity
     private Uri uridocservice;
     private String description;
     private ProgressBar mProgressBar;
-    private StorageReference mStorageRef;
-    private StorageReference mStorageRefImage;
-    private DatabaseReference mDatabaseRef;
-    private StorageTask mUploadTask;
+
 
     Service service = new Service();
 
@@ -155,7 +158,6 @@ public class AjoutServiceActivity
         mtxtdoc = findViewById(R.id.textdoc_add_service);
         mbtcancel = findViewById(R.id.cancel_add_service);
         mbtConfirm = findViewById(R.id.confirm_add_service);
-        mbtChoosePict = findViewById(R.id.btn_con_parcourir_photoservice);
         error = findViewById(R.id.title_error_add_service);
         uridocservice = null;
         uriphotoservice = null;
@@ -172,8 +174,7 @@ public class AjoutServiceActivity
                 categorie = mTxtCategorieService.getEditText().getText().toString();
                 description = mTxtDescription.getEditText().getText().toString();
 
-  /*              if (title.isEmpty() || categorie.isEmpty() || description.isEmpty()){
-                    error.setVisibility(View.VISIBLE);
+                if (title.isEmpty() || categorie.isEmpty() || description.isEmpty()){
                     error.setText("Verifier que vous avez rempli tous les champs !");
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                         error.setCompoundDrawables(null,null,getDrawable(R.drawable.ic_baseline_error_24),null);
@@ -188,9 +189,8 @@ public class AjoutServiceActivity
                 }
                 if (categorie.isEmpty()){
                     mautoComplete.setError("Veuiller choisir une categorie !!");
-                }*/
+                }
                 if (title.length() > 5 && !categorie.isEmpty() && description.length() >100) {
-
                     error.setText("Donnees Valider ");
                     error.setTextColor(R.color.theme_color);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -211,11 +211,22 @@ public class AjoutServiceActivity
                     StorageReference photoserviceRef = mStorageRef.child("services/photo" + title + Uuid);
                     StorageReference documentserviceRef = mStorageRef.child("services/doc" + title + Uuid);
 
+                    service.setAddDate(new Timestamp(new Date()));
+                    service.setId(""+Uuid);
+                    service.setCategorie(categorie);
+                    service.setClients(null);
+                    service.setCommentaire(null);
+                    service.setDescription(description);
+                    service.setName_provider("Gambee");
+                    service.setNote(null);
+                    service.setTitle(title);
+
                     // Get the data from an ImageView as bytes
                     uploadImageViewToStorage(mImgPhotoDoc, photoserviceRef);
-                    // uploadDocToStorage(mImgPhotoService,documentserviceRef);
+                    uploadDocToStorage(mImgPhotoService,documentserviceRef);
+
                     Toast.makeText(this, "Insertion reussi avec success ", Toast.LENGTH_SHORT).show();
-                    ;
+//                    Intent prestation = new Intent(this, PrestationsActivity.class);
                     startActivity(new Intent(this, MainActivity.class));
                 }
                 break;
@@ -343,22 +354,14 @@ public class AjoutServiceActivity
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
                 if (task.isSuccessful()) {
+
                     Uri photoservice = task.getResult();
-                    TextView txt = findViewById(R.id.textphoto_add_service);
-                    txt.setText(photoservice.toString());
+
                     Log.d("FILEURL", "onComplete: "+ photoservice.toString());
                     listphoto.add(new Photo(Uuid.toString(),photoservice.toString(),photoservice.toString()));
-                    service.setAddDate(new Timestamp(new Date()));
-                    service.setId(""+Uuid);
-                    service.setCategorie(categorie);
                     service.setPhotoService(photoservice.toString());
-                    service.setClients(null);
                     service.setPhotos(listphoto);
-                    service.setCommentaire(null);
-                    service.setDescription(description);
-                    service.setName_provider("Gambee");
-                    service.setNote(null);
-                    service.setTitle(title);
+
 
                     Log.d("STORAGE","RECUPERATION DU SERVICE");
                     FirebasesUtil.addService(service);
@@ -416,9 +419,11 @@ public class AjoutServiceActivity
                 public void onComplete(@NonNull Task<Uri> task) {
                     if (task.isSuccessful()) {
                         uridocservice = task.getResult();
-                        TextView txt = findViewById(R.id.textdoc_add_service);
-                        txt.setText(uridocservice.toString());
                         Log.d("FILEURL", "onComplete: "+ uridocservice.toString());
+                        listphoto.add(new Photo(Uuid.toString(), uridocservice.toString(),uridocservice.getPath()));
+                        service.setPhotos(listphoto);
+                        FirebasesUtil.setService(service);
+
                     } else {
                         // Handle failures
                         // ...

@@ -3,6 +3,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -25,34 +26,54 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageMetadata;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.StorageTask;
 import com.orange.click_2_rent.Firebase.FireBaseUtils;
+import com.orange.click_2_rent.Firebase.Storage;
 import com.orange.click_2_rent.Models.Client;
+import com.orange.click_2_rent.Models.Users;
+import com.squareup.picasso.Picasso;
 
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 public class AddUserActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private static final String USERS_CODE = "INSERTION_DUN_USERS";
+    private FirebaseStorage storage;
+    private StorageMetadata metadata;
+    private StorageReference mStorageRef;
+    private StorageReference mStorageRefImage;
+    private DatabaseReference mDatabaseRef;
+    private StorageTask mUploadTask;
+
 
     static final int REQUEST_SELECT_IMAGE = 1;
     TextInputLayout mUsername;
     TextInputLayout mEmail;
     TextInputLayout mProfilname;
     TextInputLayout mNumero;
+    TextInputLayout mAdresse;
     ImageView mProfilPhoto;
     String Usertype;
     Client client;
     RadioButton mrbclient;
     RadioButton mrbprestataire;
+    Users users;
     Button mbtn_parcourir;
     Button mbtn_confirmer;
     TextView mphotodes;
     ImageView apercu;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    CardView card;
 
 
     @SuppressLint("ResourceAsColor")
@@ -73,8 +94,17 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
         mbtn_confirmer.setOnClickListener(this);
         // Button for choose profile image
 
+        apercu.setOnClickListener(this);
 
-        mbtn_parcourir.setOnClickListener(this);
+        //l mbtn_parcourir.setOnClickListener(this);
+        card.setOnClickListener(this);
+
+        // Configuration de firebasestorage
+
+        storage = FirebaseStorage.getInstance();
+        //  Create a storage reference from our app
+
+        mStorageRef = storage.getReference();
     }
 
     private void setVariablefromLayout() {
@@ -83,8 +113,11 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
         mrbclient = findViewById(R.id.rb_client);
         mrbprestataire = findViewById(R.id.rb_prestation);
         mbtn_confirmer = findViewById(R.id.btn_con_valider);
-        mbtn_parcourir = findViewById(R.id.btn_con_parcourir_photoservice);
+        mAdresse = findViewById(R.id.editname_update);
         apercu = findViewById(R.id.image_user_item);
+        card = findViewById(R.id.card_ref);
+        storage = FirebaseStorage.getInstance();
+
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
@@ -94,30 +127,12 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
         if (requestCode == REQUEST_SELECT_IMAGE && resultCode == RESULT_OK) {
             if (data != null) {
                 Uri selectedImageUri = data.getData();
-                if (Build.VERSION.SDK_INT < 19) {
-                    String selectedImagePath = getPath(selectedImageUri);
-                    Bitmap bitmap = BitmapFactory.decodeFile(selectedImagePath);
-                    mphotodes.setVisibility(View.INVISIBLE);
-                    apercu.setImageBitmap(bitmap);
-                }
-                else{
-                    ParcelFileDescriptor parcelFileDescriptor;
-                    try {
-                        parcelFileDescriptor = getContentResolver().openFileDescriptor(selectedImageUri, "r");
-                        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
-                        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-
-                        parcelFileDescriptor.close();
-                        mphotodes.setVisibility(View.INVISIBLE);
-                        apercu.setImageBitmap(image);
-
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
+                Picasso
+                        .with(this)
+                        .load(selectedImageUri)
+                        .fit()
+                        .centerCrop()
+                        .into(apercu);
             }
         }
     }
@@ -160,7 +175,7 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
                 mUsername.setError("Veuiller Entrer un nom valide");
                 mUsername.setErrorTextColor(ColorStateList.valueOf(R.color.rouge));
             }
-            if (email.isEmpty() || email.isEmpty() || !email.contains("@") || !email.contains(".")){
+            if (email.isEmpty() || !email.contains("@") || !email.contains(".")){
                 mEmail.setError("Veuiller Entrer un mail valide");
             }
             if(mprofilname.isEmpty()){
@@ -170,33 +185,33 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
 
             }
 
+            StorageReference storageRef = storage.getReference("users");
 
+            // Child references can also take paths
+            // spaceRef now points to "images/space.jpg
+            // imagesRef still points to "images"
 
+            UUID Uuid = UUID.randomUUID();
+            StorageReference photoserviceRef = mStorageRef.child("users/photo" + username + Uuid);
 
-            client = new Client();
-            client = new Client(mUsername.getEditText().getText().toString(),
-                    mEmail.getEditText().getText().toString(),
-                    mProfilname.getEditText().getText().toString(),
-                    mProfilname.getEditText().getText().toString(),
-                    Usertype);
-            Map<String, Object> user = new HashMap<>();
-            user.put("nom", client.getNom());
-            user.put("telephone", client.getTelphone());
-            user.put("email", client.email);
-            user.put("datearrive", client.getDatedarrive());
-            user.put("motdepasse", client.getNom());
-            user.put("nom", client.getNom());
-            user.put("type", client.getTypeclient());
-            user.put("service_souscri", client.getDemande());
-            user.put("datedesorti", client.getDatedesorti());
-            Log.w("REUSSI",client.toString());
+            users = new Users();
+            users.setAdresse("");
+            users.setEmail(mEmail.getEditText().getText().toString());
+            users.setId(Uuid.toString());
+            users.setMotDePasse(null);
+//            users.setPhotoProfil();
+            users.setAdresse(mAdresse.getEditText().getText().toString());
+            users.setNom(mProfilname.getEditText().getText().toString());
+            users.setTelphone(mNumero.getEditText().getText().toString());
 
-            FireBaseUtils.addUser(FireBaseUtils.CLIENT_COLLECTION,user,this);
-            Intent intent = new Intent(view.getContext(), MainActivity.class);
+            Storage.uploadImageViewToStorage(apercu,photoserviceRef,users);
+            //    FireBaseUtils.addUser(FireBaseUtils.CLIENT_COLLECTION,user,this);
+            Intent intent = new Intent(view.getContext(), AjoutServiceActivity.class);
+            intent.putExtra(USERS_CODE,users);
             startActivity(intent);
         }
         //Choose profile picture
-        if (view.getId() == R.id.btn_con_parcourir_photoservice){
+        if (view.getId() == R.id.image_user_item){
 
             Intent intent = new Intent();
             String[] type = {"image/png", "image/jpeg", "image/jpg", "image/gif"};
@@ -208,6 +223,18 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
             intent.setType("image/*");
             startActivityForResult(Intent.createChooser(intent,"Select your profile"), REQUEST_SELECT_IMAGE);
 
+        }
+
+        if (view.getId() == R.id.card_ref){
+            Intent intent = new Intent();
+            String[] type = {"image/png", "image/jpeg", "image/jpg", "image/gif"};
+            intent.addCategory(Intent.CATEGORY_OPENABLE);
+            intent.setAction(Intent.ACTION_GET_CONTENT);
+            intent.putExtra(Intent.EXTRA_MIME_TYPES, type);
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+            //  intent.putExtra(ImageView);
+            intent.setType("image/*");
+            startActivityForResult(Intent.createChooser(intent,"Select your profile"), REQUEST_SELECT_IMAGE);
         }
 
 
