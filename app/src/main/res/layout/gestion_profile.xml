@@ -10,15 +10,17 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:background="#20A6FE">
+        android:background="@color/color_blue">
 
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/profile_image"
-            android:paddingTop="32dp"/>
+            android:layout_width="100sp"
+            android:layout_height="100sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10sp"
+            android:paddingTop="32dp"
+            app:srcCompat="@drawable/techniciens" />
 
         <TextView
             android:id="@+id/profile_image_title"
@@ -46,28 +48,18 @@
             android:layout_weight="1"
             android:onClick="editProfile"
             android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageView24"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/outline_edit_black_24" />
-
             <TextView
                 android:id="@+id/profile_edit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/outline_edit_black_24"
+                android:drawableRight="@drawable/outline_chevron_right_black_24"
                 android:paddingTop="8dp"
+                android:gravity="center"
+                android:textSize="25sp"
                 android:text="@string/profil_edit" />
 
-            <ImageView
-                android:id="@+id/imageView25"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/outline_chevron_right_black_24" />
         </LinearLayout>
 
         <LinearLayout
@@ -77,29 +69,18 @@
             android:orientation="horizontal"
             android:onClick="showServiceList">
 
-
-            <ImageView
-                android:id="@+id/imageView31"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/outline_construction_black_24" />
-
             <TextView
                 android:id="@+id/prodile_service_list"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingTop="8dp"
+                android:drawableLeft="@drawable/outline_construction_black_24"
+                android:drawableRight="@drawable/outline_chevron_right_black_24"
+                android:gravity="center"
+                android:textSize="25sp"
                 android:text="@string/profile_service_list" />
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/outline_chevron_right_black_24" />
         </LinearLayout>
-
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -107,28 +88,17 @@
             android:orientation="horizontal"
             android:onClick="viewCommentList">
 
-            <ImageView
-                android:id="@+id/imageView26"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingTop="8dp"
-                app:srcCompat="@drawable/outline_comment_black_24" />
-
             <TextView
                 android:id="@+id/profile_comment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/outline_comment_black_24"
+                android:drawableRight="@drawable/outline_chevron_right_black_24"
+                android:gravity="center"
+                android:textSize="25sp"
                 android:paddingTop="8dp"
                 android:text="@string/profile_comment" />
-
-            <ImageView
-                android:id="@+id/imageView27"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/outline_chevron_right_black_24" />
         </LinearLayout>
 
         <LinearLayout
@@ -138,27 +108,17 @@
             android:orientation="horizontal"
             android:onClick="showHistoriqueClient">
 
-            <ImageView
-                android:id="@+id/imageView28"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/outline_history_black_24" />
-
             <TextView
                 android:id="@+id/profile_history"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawableLeft="@drawable/outline_history_black_24"
+                android:drawableRight="@drawable/outline_chevron_right_black_24"
+                android:gravity="center"
+                android:textSize="25sp"
                 android:paddingTop="8dp"
                 android:text="@string/profile_history" />
-
-            <ImageView
-                android:id="@+id/imageView29"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@drawable/outline_chevron_right_black_24" />
         </LinearLayout>
     </LinearLayout>
 
@@ -173,28 +133,18 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/imageView30"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="100dp"
-                android:layout_marginLeft="100dp"
-                android:layout_marginTop="32dp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/outline_logout_black_24" />
-
             <Button
                 android:id="@+id/deconnexion_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:src="@drawable/outline_logout_black_24"
                 android:text="@string/profile_deconnexion"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView30"
-                app:layout_constraintStart_toEndOf="@+id/imageView30"
-                app:layout_constraintTop_toTopOf="@+id/imageView30"
-                />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.235" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </LinearLayout>

@@ -48,7 +48,6 @@ public class ajout_service extends AppCompatActivity {
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.putExtra(Intent.EXTRA_MIME_TYPES,type);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
-//        intent.putExtra(ImageView);
                 intent.setType("image/*");
                 startActivityForResult(intent,REQUEST_SELECT_IMAGE_SERVICE);
             }
@@ -63,13 +62,11 @@ public class ajout_service extends AppCompatActivity {
                 intent.addCategory(Intent.CATEGORY_OPENABLE);
                 intent.putExtra(Intent.EXTRA_MIME_TYPES,type);
                 intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE,true);
-//        intent.putExtra(ImageView);
                 intent.setType("image/*");
                 startActivityForResult(intent,REQUEST_SELECT_IMAGE_REF);
             }
         });
     }
-
     @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -86,7 +83,6 @@ public class ajout_service extends AppCompatActivity {
             }
 
         }
-
         else if (requestCode == REQUEST_SELECT_IMAGE_REF && resultCode == RESULT_OK) {
             if (data != null) {
                 Picasso
@@ -95,7 +91,6 @@ public class ajout_service extends AppCompatActivity {
                         .fit()
                         .into(apercu2);
             }
-    }
-
+        }
     }
 }

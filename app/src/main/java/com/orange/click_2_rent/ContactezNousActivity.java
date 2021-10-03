@@ -1,6 +1,7 @@
 package com.orange.click_2_rent;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -11,6 +12,8 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +27,10 @@ public class ContactezNousActivity extends AppCompatActivity {
     private ContactezNousAdapter contactezNousAdapter;
     private Button contactezNous;
     private Dialog mDialog;
+    private Dialog mDialog1;
+    private FloatingActionButton floatingActionButton;
+    private Button btnAnnul;
+    private Button btnValid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +41,28 @@ public class ContactezNousActivity extends AppCompatActivity {
         mDialog.setContentView(R.layout.contact_dialog);
         mDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
+        //
+        mDialog1 = new Dialog(this);
+        mDialog1.setContentView(R.layout.notes_commentaire_layout);
+        mDialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+        btnAnnul = findViewById(R.id.btnAnnuler);
+        btnValid = findViewById(R.id.btnValider);
         contactezNous = findViewById(R.id.mBtnConctactez);
         myRecyclerContact = findViewById(R.id.myRecyclerProfil);
         contactezNousAdapter = new ContactezNousAdapter(myArrayList);
         myRecyclerContact.setLayoutManager(new LinearLayoutManager(this));
         myRecyclerContact.setHasFixedSize(true);
+        floatingActionButton = findViewById(R.id.boutonFlottant2);
         myRecyclerContact.setAdapter(new ContactezNousAdapter(initialisation()));
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                mDialog1.show();
+            }
+        });
 
         contactezNous.setOnClickListener(new View.OnClickListener() {
             @Override

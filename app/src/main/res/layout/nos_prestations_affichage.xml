@@ -27,7 +27,7 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/mProfil"
-                android:layout_width="125sp"
+                android:layout_width="150sp"
                 android:layout_height="125sp"
                 android:layout_marginStart="10dp"
                 android:layout_marginLeft="10dp"
