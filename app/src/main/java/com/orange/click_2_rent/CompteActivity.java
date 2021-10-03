@@ -99,6 +99,7 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
                             users.setPhotoClient(null);
                             users.setServicesDemande(null);
                             users.setMesServices(null);
+                            users.setId(firebaseUser.getUid());
 
                             Storage.uploadImageViewToStorage(mImgPhoto,photoserviceRef,users);
 
