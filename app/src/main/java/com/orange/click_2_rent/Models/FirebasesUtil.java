@@ -59,7 +59,7 @@ public class FirebasesUtil {
                         Log.w("TAG_FAILURE", "Error writing document", e);
                     }
                 });*/
-        getReferenceFirestore(COL_SERVICES).document("service"+service.getId())
+        getReferenceFirestore(COL_SERVICES).document(service.getId())
                 .set(service)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
