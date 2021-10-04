@@ -7,6 +7,8 @@ package com.orange.click_2_rent.Models;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.google.firebase.Timestamp;
+
 import java.util.*;
 
 public class Users implements Parcelable {
@@ -16,12 +18,14 @@ public class Users implements Parcelable {
     private Photo photoClient;
     private String adresse;
     private String motDePasse;
+    private Timestamp date_darriver;
     private ArrayList<Service> mesServices;
     private ArrayList<Service> servicesDemande;
     private ArrayList<Commentaire> mesCommentaires;
     private String id;
 
-    public Users(String nom, String telphone, String email, Photo photoClient, String adresse, ArrayList<Service> mesServices, ArrayList<Service> servicesDemande, ArrayList<Commentaire> mesCommentaires, String motDePasse, String id) {
+    public Users(String nom, String telphone, String email, Photo photoClient, String adresse, ArrayList<Service> mesServices, ArrayList<Service> servicesDemande, ArrayList<Commentaire> mesCommentaires, String motDePasse, String id,Timestamp date_darriver) {
+        this.date_darriver = date_darriver;
         this.nom = nom;
         this.telphone = telphone;
         this.email = email;
@@ -84,6 +88,13 @@ public class Users implements Parcelable {
     public Users() {
     }
 
+    public Timestamp getDate_darriver() {
+        return date_darriver;
+    }
+
+    public void setDate_darriver(Timestamp date_darriver) {
+        this.date_darriver = date_darriver;
+    }
 
 
     public String getId() {

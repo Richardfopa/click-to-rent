@@ -19,6 +19,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 
 
@@ -53,7 +54,13 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
 
         holder.mTitredescription.setText(liste_prestations.getTitre_prestation());
         holder.mMinidescription.setText(liste_prestations.getMiniDescription());
-        holder.mDateDescription.setText(String.valueOf(liste_prestations.getDate_prestation()));
+        Date dateservice = new Date();liste_prestations.getDate_prestation().toDate();
+        if(!liste_prestations.getDate_prestation().equals(null)){
+            holder.mDateDescription.setText(String.valueOf(liste_prestations.getDate_prestation().toDate()));
+        }else{
+            holder.mDateDescription.setText(String.valueOf(liste_prestations.getDate_prestation()));
+        }
+
 
         Picasso.with(holder.mImgProfil.getContext()).load(liste_prestations.getPhoto()).into(holder.mImgProfil);
 
