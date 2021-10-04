@@ -11,7 +11,7 @@
         android:id="@+id/scrollView2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="80dp"
         android:foregroundGravity="center"
         android:paddingLeft="16dp"
         android:paddingTop="16dp"
@@ -32,12 +32,11 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab_bold"
                 android:gravity="center"
                 android:text="@string/forget_up_con"
-                android:textColor="#039BE5"
-                android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textColor="@color/color_blue"
+                android:textSize="30sp"
+                android:textStyle="normal" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edittextusername_con"
@@ -46,28 +45,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="@string/email_hint"
-                app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
-                app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
-                app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
-                app:boxCornerRadiusTopStart="@dimen/box_input_radius"
-                app:boxStrokeColor="@color/theme_color"
+                app:boxStrokeColor="@color/color_blue"
                 app:boxStrokeErrorColor="@color/black"
-                app:hintTextColor="@color/theme_color"
+                app:hintTextColor="@color/color_blue"
+                app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                 app:startIconDrawable="@drawable/ic_mail"
-                app:startIconTint="@color/theme_color">
+                app:startIconTint="@color/color_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/input_connexion"
-                    android:fontFamily="@font/roboto_slab_bold"
                     android:inputType="textWebEmailAddress"
                     android:shadowRadius="20"
                     android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/theme_color"
+                    android:textColorHint="@color/color_blue"
                     android:textSize="@dimen/text_input_size"
+                    android:textStyle="normal"
                     app:startIconDrawable="@drawable/ic_mail"
                     tools:ignore="EditableContentDescCheck" />
             </com.google.android.material.textfield.TextInputLayout>
@@ -78,27 +74,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="@font/roboto_slab_bold"
                 android:shadowRadius="1"
                 android:text="@string/bt_conn_reset"
                 android:textColor="@color/white"
-                app:backgroundTint="@color/theme_color"
+                android:textStyle="normal"
+                app:backgroundTint="@color/color_blue"
                 app:cornerRadius="20dp"
                 app:strokeColor="@color/background_grise"
                 app:strokeWidth="@dimen/border_button"
                 tools:ignore="TextContrastCheck" />
+
             <TextView
                 android:id="@+id/forget_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-
-                android:fontFamily="@font/roboto_slab_bold"
-                android:gravity="center"
                 android:clickable="true"
+                android:gravity="center"
                 android:text="@string/text_passe_oublier"
                 android:textColor="@color/black"
-                 />
+                android:textStyle="normal" />
 
 
         </LinearLayout>

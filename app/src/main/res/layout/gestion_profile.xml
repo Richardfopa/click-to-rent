@@ -100,5 +100,4 @@
         app:backgroundTint="@color/theme_color"
         app:icon="@drawable/ic_baseline_white"
         app:iconTintMode="add" />
-
 </LinearLayout>

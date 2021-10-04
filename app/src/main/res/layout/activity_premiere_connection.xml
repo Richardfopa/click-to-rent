@@ -118,4 +118,5 @@
                 tools:ignore="TextContrastCheck" />
         </LinearLayout>
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,37 +10,28 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         app:circularflow_defaultRadius="50sp"
-        android:layout_height="220sp">
-
+        android:layout_marginLeft="22sp"
+        android:layout_marginRight="22sp"
+        android:layout_height="85sp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profilClient"
-            android:layout_width="190sp"
-            android:layout_height="190sp"
-            android:layout_gravity="center"
-            android:layout_marginTop="10sp"
-            android:paddingTop="2sp"
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:layout_gravity="start"
+            android:layout_marginTop="20sp"
             android:scaleType="centerCrop"
             android:src="@drawable/femme"
             app:civ_border_color="@color/color_blue"
             app:civ_border_width="0.5sp" />
-    </androidx.cardview.widget.CardView>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
 
         <TextView
             android:id="@+id/profiltitle"
-            android:layout_width="match_parent"
+            android:layout_width="216sp"
             android:layout_height="wrap_content"
-            android:textStyle="bold"
-            android:textSize="30sp"
+            android:layout_gravity="center"
             android:layout_marginTop="10sp"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center"
-            android:text="@string/titreProfil" />
+            android:text="@string/DESCRIPTION" />
 
         <TextView
             android:id="@+id/profilname"
@@ -57,36 +48,39 @@
             android:id="@+id/explications"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/afficheDetails"
+            android:layout_gravity="end"
+            android:textStyle="bold"
+            android:textSize="30sp"
             android:layout_marginTop="10sp"
-            android:textStyle="italic"
-            android:layout_gravity="center"
-            android:gravity="center"/>
-    </LinearLayout>
+            android:text="@string/NOTE"
+             />
+
+    </androidx.cardview.widget.CardView>
 
     <HorizontalScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/monScrollHorizontal">
+        android:id="@+id/monScrollHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10sp"
+        android:overScrollMode="ifContentScrolls"
+        tools:ignore="SpeakableTextPresentCheck">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:scrollbars="horizontal"
-            android:scrollbarStyle="outsideOverlay"
-            android:scrollbarSize="@dimen/border_button"/>
+        <ImageView
+            android:layout_width="80sp"
+            android:layout_height="80sp"
+            android:src="@drawable/femme" />
+
     </HorizontalScrollView>
 
     <Button
         android:id="@+id/mBtnConctactez"
+        app:shapeAppearanceOverlay="@style/roundedTextAndInput"
         android:layout_width="350sp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="35sp"
+        android:layout_marginTop="30sp"
         android:gravity="center"
         android:layout_gravity="center"
         android:text="@string/mValider" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/myRecyclerProfil"
         android:layout_width="match_parent"
@@ -96,4 +90,18 @@
         android:layout_marginRight="22sp"
         tools:listitem="@layout/contactez_items" />
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/boutonFlottant2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginTop="10sp"
+        android:layout_margin="30sp"
+        android:backgroundTint="@color/color_blue"
+        android:clickable="true"
+        android:src="@drawable/edit_24"
+        app:elevation="10sp"
+        app:fabSize="normal"
+        app:rippleColor="@color/color_blue"
+        tools:ignore="SpeakableTextPresentCheck,VectorDrawableCompat" />
 </LinearLayout>

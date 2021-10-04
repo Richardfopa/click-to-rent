@@ -85,7 +85,7 @@ public class AjoutServiceActivity
 
     Service service = new Service();
 
-//    private FirebaseStorage storage;
+    //    private FirebaseStorage storage;
     private ArrayList<Photo> listphoto = new ArrayList<>();
     private TextInputLayout mTxtDescription;
     private static final int REQUEST_SELECT_IMAGE_SERVICE = 10004;
@@ -94,12 +94,12 @@ public class AjoutServiceActivity
 
     private UUID Uuid;
 
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_service);
-        
+
         // Initialisation des variable de la vue
         setVariablefromLayout();
         // Gestion des click sur la vue
@@ -166,9 +166,9 @@ public class AjoutServiceActivity
     @SuppressLint("ResourceAsColor")
     @Override
     public void onClick(View view) {
-        
+
         switch (view.getId()){
-            case R.id.confirm_add_service: 
+            case R.id.confirm_add_service:
                 // Clic pour confirmer les donnees saisir et envoyer
                 title = mTxtTitleService.getEditText().getText().toString();
                 categorie = mTxtCategorieService.getEditText().getText().toString();
@@ -250,7 +250,7 @@ public class AjoutServiceActivity
     }
 
     private void ChooseDoc(int requestSelectImageService) {
-        
+
         Intent intent = new Intent();
         String[] type = {"image/png", "image/jpeg", "image/jpg", "image/gif"};
         intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -261,51 +261,51 @@ public class AjoutServiceActivity
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent,"Select your profile"), requestSelectImageService);
-        
+
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-        
-            if (requestCode == REQUEST_SELECT_IMAGE_SERVICE && resultCode == RESULT_OK) {
-                Picasso
-                        .with(this)
-                        .load(data.getData())
-                        .fit()
-                        .centerCrop()
-                        .into(mImgPhotoService);
-                //setImage(mtxtphoto,mImgPhotoService,data);
-            }
-            if (requestCode == REQUEST_SELECT_DOC_SERVICE && resultCode == RESULT_OK) {
-                Picasso
-                        .with(this)
-                        .load(data.getData())
-                        .fit()
-                        .centerCrop()
-                        .into(mImgPhotoDoc)
-                        ;
-                //setImage(mtxtdoc,mImgPhotoDoc,data);
-            }
-            
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == REQUEST_SELECT_IMAGE_SERVICE && resultCode == RESULT_OK) {
+            Picasso
+                    .with(this)
+                    .load(data.getData())
+                    .fit()
+                    .centerCrop()
+                    .into(mImgPhotoService);
+            //setImage(mtxtphoto,mImgPhotoService,data);
         }
+        if (requestCode == REQUEST_SELECT_DOC_SERVICE && resultCode == RESULT_OK) {
+            Picasso
+                    .with(this)
+                    .load(data.getData())
+                    .fit()
+                    .centerCrop()
+                    .into(mImgPhotoDoc)
+            ;
+            //setImage(mtxtdoc,mImgPhotoDoc,data);
+        }
+
+    }
 
 
     private String getPath(Uri uri) {
-    
-            if( uri == null ) {
-                return null;
-            }
-            String[] projection = { MediaStore.Images.Media.DATA };
-            Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-            if( cursor != null ){
-                int column_index = cursor
-                        .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-                cursor.moveToFirst();
-                return cursor.getString(column_index);
-            }
-            return uri.getPath();
+
+        if( uri == null ) {
+            return null;
         }
+        String[] projection = { MediaStore.Images.Media.DATA };
+        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
+        if( cursor != null ){
+            int column_index = cursor
+                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
+            cursor.moveToFirst();
+            return cursor.getString(column_index);
+        }
+        return uri.getPath();
+    }
 
     private void uploadFile() {
 
@@ -340,33 +340,89 @@ public class AjoutServiceActivity
 
         Task<Uri> urlTask = uploadTask.continueWithTask(
                 new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-            @Override
-            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                if (!task.isSuccessful()) {
-                    throw task.getException();
-                }
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
+                        }
 
-                // Continue with the task to get the download URL
-                return photoRef.getDownloadUrl();
-            }
-        })
+                        // Continue with the task to get the download URL
+                        return photoRef.getDownloadUrl();
+                    }
+                })
                 .addOnCompleteListener(new OnCompleteListener<Uri>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Uri> task) {
+                        if (task.isSuccessful()) {
+
+                            Uri photoservice = task.getResult();
+
+                            Log.d("FILEURL", "onComplete: "+ photoservice.toString());
+                            listphoto.add(new Photo(Uuid.toString(),photoservice.toString(),photoservice.toString()));
+                            service.setPhotoService(photoservice.toString());
+                            service.setPhotos(listphoto);
+
+
+                            Log.d("STORAGE","RECUPERATION DU SERVICE");
+                            FirebasesUtil.addService(service);
+                            Log.d("STORAGE","AJOUT EFFECTUER AVEC SUCCESS");
+                            //startActivity(new Intent(view.getContext(), MainActivity.class));
+
+                        } else {
+                            // Handle failures
+                            // ...
+                        }
+                    }
+                });
+
+    }
+    public void uploadDocToStorage(@NonNull ImageView imageview, @NonNull StorageReference photoRef){
+        imageview.setDrawingCacheEnabled(true);
+        imageview.buildDrawingCache();
+
+        Bitmap bitmap = ((BitmapDrawable) imageview.getDrawable()).getBitmap();
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+        byte[] data = baos.toByteArray();
+
+        UploadTask uploadTask = photoRef.putBytes(data);
+        uploadTask.addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                // Handle unsuccessful uploads
+                Log.d("STORAGE","FAILLURE INSERTION");
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
+                // ...
+                Log.d("STORAGE","INSERTION REUSSI");
+            }
+        });
+
+        // image imagedownload uri from firebase
+
+        Task<Uri> urlTask = uploadTask.continueWithTask(
+                new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                    @Override
+                    public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                        if (!task.isSuccessful()) {
+                            throw task.getException();
+                        }
+
+                        // Continue with the task to get the download URL
+                        return photoRef.getDownloadUrl();
+                    }
+                }).addOnCompleteListener(new OnCompleteListener<Uri>() {
             @Override
             public void onComplete(@NonNull Task<Uri> task) {
                 if (task.isSuccessful()) {
-
-                    Uri photoservice = task.getResult();
-
-                    Log.d("FILEURL", "onComplete: "+ photoservice.toString());
-                    listphoto.add(new Photo(Uuid.toString(),photoservice.toString(),photoservice.toString()));
-                    service.setPhotoService(photoservice.toString());
+                    uridocservice = task.getResult();
+                    Log.d("FILEURL", "onComplete: "+ uridocservice.toString());
+                    listphoto.add(new Photo(Uuid.toString(), uridocservice.toString(),uridocservice.getPath()));
                     service.setPhotos(listphoto);
-
-
-                    Log.d("STORAGE","RECUPERATION DU SERVICE");
-                    FirebasesUtil.addService(service);
-                    Log.d("STORAGE","AJOUT EFFECTUER AVEC SUCCESS");
-                    //startActivity(new Intent(view.getContext(), MainActivity.class));
+                    FirebasesUtil.setService(service);
 
                 } else {
                     // Handle failures
@@ -376,62 +432,6 @@ public class AjoutServiceActivity
         });
 
     }
-    public void uploadDocToStorage(@NonNull ImageView imageview, @NonNull StorageReference photoRef){
-            imageview.setDrawingCacheEnabled(true);
-            imageview.buildDrawingCache();
-
-            Bitmap bitmap = ((BitmapDrawable) imageview.getDrawable()).getBitmap();
-            ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-            byte[] data = baos.toByteArray();
-
-            UploadTask uploadTask = photoRef.putBytes(data);
-            uploadTask.addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle unsuccessful uploads
-                    Log.d("STORAGE","FAILLURE INSERTION");
-                }
-            }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                @Override
-                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                    // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
-                    // ...
-                    Log.d("STORAGE","INSERTION REUSSI");
-                }
-            });
-
-            // image imagedownload uri from firebase
-
-            Task<Uri> urlTask = uploadTask.continueWithTask(
-                    new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
-                @Override
-                public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
-                    if (!task.isSuccessful()) {
-                        throw task.getException();
-                    }
-
-                    // Continue with the task to get the download URL
-                    return photoRef.getDownloadUrl();
-                }
-            }).addOnCompleteListener(new OnCompleteListener<Uri>() {
-                @Override
-                public void onComplete(@NonNull Task<Uri> task) {
-                    if (task.isSuccessful()) {
-                        uridocservice = task.getResult();
-                        Log.d("FILEURL", "onComplete: "+ uridocservice.toString());
-                        listphoto.add(new Photo(Uuid.toString(), uridocservice.toString(),uridocservice.getPath()));
-                        service.setPhotos(listphoto);
-                        FirebasesUtil.setService(service);
-
-                    } else {
-                        // Handle failures
-                        // ...
-                    }
-                }
-            });
-
-        }
 
 
     public void uploadtoStorage(Uri filephotoservice){
@@ -483,6 +483,6 @@ public class AjoutServiceActivity
                     }
                 }
                 break;
-            }
+        }
     }
 }

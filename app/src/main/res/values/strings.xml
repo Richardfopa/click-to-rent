@@ -16,7 +16,7 @@
     <string name="email_con">Email :</string>
     <string name="email_hint">email:</string>
     <string name="bt_conn_valider">Valider</string>
-    <string name="textview_creer_compte">Creer votre compte ici </string>
+    <string name="textview_creer_compte">Create your account here </string>
     <string name="facebook">Facebook</string>
     <string name="google">google</string>
     <string name="input_connexion">input connexion</string>
@@ -64,13 +64,11 @@
     <string name="search_hint">service name, or prestataire</string>
     <string name="app_label">search</string>
 
-    <string name="plombier">Plombier</string>
     <string name="valider">Valider</string>
-    <string name="txtDescription">Description</string>
 
 
     <string name="password_hint">password</string>
-    <string name="textview_passe_oublier">Mot de passe oublier</string>
+    <string name="textview_passe_oublier">Mot de passe oublié</string>
     <string name="create_up_con">Create a new account</string>
     <string name="nom_hint">name</string>
     <string name="bt_conn_login">Login</string>
@@ -94,4 +92,11 @@
     <string name="sms">SMS</string>
     <string name="choisir_votre_photo">Choisir votre photo de profil (optionnel)</string>
 
+    <string name="txtDescription">Description</string>
+    <string name="plombier">Plombier</string>
+    <string name="DESCRIPTION">Description</string>
+    <string name="NOTE">NOTE</string>
+    <string name="note">Notez-ici:</string>
+    <string name="Annuler">Annuler</string>
+    <string name="Validation">Valider</string>
 </resources>

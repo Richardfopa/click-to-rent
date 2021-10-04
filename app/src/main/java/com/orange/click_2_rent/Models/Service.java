@@ -52,7 +52,6 @@ public class Service implements Parcelable {
         this.add_date =new Timestamp(new Date());
         this.name_provider = name_provider;
     }
-
     protected Service(Parcel in) {
         id = in.readString();
         title = in.readString();

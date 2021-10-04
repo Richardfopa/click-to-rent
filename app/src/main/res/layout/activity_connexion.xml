@@ -23,7 +23,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="80dp"
             android:gravity="center"
             android:orientation="vertical"
             android:paddingBottom="16dp">
@@ -32,40 +32,41 @@
                 android:id="@+id/textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/roboto_slab_bold"
+                android:textStyle="normal"
                 android:gravity="center"
                 android:text="@string/sign_up_con"
-                android:textColor="#039BE5"
+                android:textColor="@color/color_blue"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+               />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edittextusername_con"
-                style="@style/StyleTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:textStyle="normal"
                 android:hint="@string/email_hint"
-                app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
-                app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
-                app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
-                app:boxCornerRadiusTopStart="@dimen/box_input_radius"
-                app:boxStrokeColor="@color/theme_color"
+                app:shapeAppearanceOverlay="@style/roundedTextAndInput"
+                app:boxStrokeColor="@color/color_blue"
                 app:boxStrokeErrorColor="@color/black"
-                app:hintTextColor="@color/theme_color"
-                app:startIconDrawable="@drawable/ic_mail"
-                app:startIconTint="@color/theme_color">
+                app:hintTextColor="@color/color_blue"
+                app:startIconDrawable="@drawable/ic_baseline_mail_24"
+                app:startIconTint="@color/color_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/input_connexion"
-                    android:fontFamily="@font/roboto_slab_bold"
+                    android:textStyle="normal"
+                    app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                     android:inputType="textWebEmailAddress"
-                    android:shadowRadius="20"
                     android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/theme_color"
+                    android:textColorHint="@color/color_blue"
                     android:textSize="@dimen/text_input_size"
-                    app:startIconDrawable="@drawable/ic_mail"
+                    app:startIconDrawable="@drawable/ic_baseline_mail_24"
                     tools:ignore="EditableContentDescCheck" />
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -76,13 +77,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:hint="@string/password_hint"
-                app:boxCornerRadiusBottomEnd="@dimen/box_input_radius"
-                app:boxCornerRadiusBottomStart="@dimen/box_input_radius"
-                app:boxCornerRadiusTopEnd="@dimen/box_input_radius"
-                app:boxCornerRadiusTopStart="@dimen/box_input_radius"
+                android:textStyle="normal"
+                app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                 app:boxStrokeColor="@color/theme_color"
                 app:boxStrokeErrorColor="@color/black"
-                app:hintTextColor="@color/theme_color"
+                app:hintTextColor="@color/color_blue"
                 app:startIconDrawable="@drawable/ic_baseline_lock_24"
                 app:startIconTint="@color/theme_color">
 
@@ -91,12 +90,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/input_connexion"
-                    android:fontFamily="@font/roboto_slab_bold"
+                    android:textStyle="normal"
                     android:inputType="textPassword"
                     android:shadowRadius="20"
                     android:singleLine="true"
                     android:textColor="@color/black"
-                    android:textColorHint="@color/theme_color"
+                    android:textColorHint="@color/color_blue"
+                    app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                     android:textSize="@dimen/text_input_size"
                     app:startIconDrawable="@drawable/ic_baseline_lock_24"
                     tools:ignore="EditableContentDescCheck" />
@@ -109,37 +109,42 @@
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/roboto_slab_bold"
                 android:shadowRadius="6"
+                android:textAllCaps="false"
+                android:textStyle="normal"
                 android:text="@string/bt_conn_login"
                 android:textColor="@color/white"
-                android:textAllCaps="false"
-                app:backgroundTint="@color/theme_color"
-                app:cornerRadius="6dp"
+                app:backgroundTint="@color/color_blue"
+                app:cornerRadius="20dp"
                 app:strokeColor="@color/background_grise"
                 app:strokeWidth="@dimen/border_button"
                 tools:ignore="TextContrastCheck" />
+
             <TextView
                 android:id="@+id/forget_pass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-
-                android:fontFamily="@font/roboto_slab_bold"
-                android:gravity="end"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="4sp"
                 android:clickable="true"
+                android:textStyle="normal"
+                android:gravity="end"
+                android:minHeight="48dp"
                 android:text="@string/textview_passe_oublier"
-                android:textColor="@color/theme_color"
+                android:textColor="@color/color_blue"
                 android:textSize="16sp" />
+
             <TextView
                 android:id="@+id/text_media_con"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:fontFamily="@font/roboto_slab_bold"
-                android:gravity="center"
+                android:layout_marginTop="20dp"
                 android:clickable="true"
+                android:textStyle="normal"
+                android:gravity="center"
+                android:minHeight="48dp"
                 android:onClick="fct_envoie"
                 android:text="@string/textview_creer_compte"
-                android:textColor="@color/black"
+                android:textColor="@color/gris_fonce"
                 android:textSize="16sp" />
 
         </LinearLayout>
