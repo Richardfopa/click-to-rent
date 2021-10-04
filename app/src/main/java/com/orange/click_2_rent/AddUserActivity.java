@@ -26,6 +26,7 @@ import android.widget.TextView;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.Timestamp;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -42,6 +43,7 @@ import com.squareup.picasso.Picasso;
 import java.io.FileDescriptor;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
@@ -203,6 +205,7 @@ public class AddUserActivity extends AppCompatActivity implements View.OnClickLi
             users.setAdresse(mAdresse.getEditText().getText().toString());
             users.setNom(mProfilname.getEditText().getText().toString());
             users.setTelphone(mNumero.getEditText().getText().toString());
+            users.setDate_darriver(Timestamp.now());
 
             Storage.uploadImageViewToStorage(apercu,photoserviceRef,users);
             //    FireBaseUtils.addUser(FireBaseUtils.CLIENT_COLLECTION,user,this);
