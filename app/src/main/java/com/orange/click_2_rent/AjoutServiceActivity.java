@@ -211,7 +211,7 @@ public class AjoutServiceActivity
                     StorageReference photoserviceRef = mStorageRef.child("services/photo" + title + Uuid);
                     StorageReference documentserviceRef = mStorageRef.child("services/doc" + title + Uuid);
 
-                    service.setAddDate(new Timestamp(new Date()));
+                    service.setAddDate(Timestamp.now());
                     service.setId(""+Uuid);
                     service.setCategorie(categorie);
                     service.setClients(null);
