@@ -1,7 +1,6 @@
 package com.orange.click_2_rent;
 
 import android.app.Dialog;
-import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -82,6 +81,9 @@ public class ContactezNousActivity extends AppCompatActivity {
 
         myArrayList = new ArrayList<>();
 
+        myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
+        myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
+        myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
         myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
         myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));
         myArrayList.add(new ContactProfil(R.drawable.elect,"Mr Kamga Orelien","Je suis tres content de  votre service"));

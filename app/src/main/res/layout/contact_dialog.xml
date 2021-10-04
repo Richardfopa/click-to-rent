@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="330sp"
+    android:layout_width="380sp"
     android:id="@+id/monDialog"
     app:circularflow_defaultRadius="20sp"
     app:shapeAppearanceOverlay="@style/roundedTextAndInput"
@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         app:shapeAppearanceOverlay="@style/roundedTextAndInput"
         android:layout_marginTop="40sp"
-        android:background="@color/color_blue"
+        android:background="@color/bleu_clair"
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="2sp">
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="80sp"
             android:text="@string/Vnom"
-            android:textColor="@color/white"
+            android:textColor="@color/gris_fonce"
             android:textSize="24sp"
             android:textStyle="bold" />
 
@@ -39,7 +39,7 @@
             android:layout_marginTop="5sp"
             android:layout_marginBottom="10sp"
             android:text="@string/Vnumero"
-            android:textColor="@color/white"
+            android:textColor="@color/gris_fonce"
             android:textSize="18sp" />
 
         <Button
@@ -57,8 +57,6 @@
             android:textSize="20sp"
             app:backgroundTint="@color/white"
             tools:ignore="TextContrastCheck" />
-
-
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"

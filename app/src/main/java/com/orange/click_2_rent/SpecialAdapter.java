@@ -56,7 +56,11 @@ public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.SpecialV
     @Override
     public int getItemCount() {
 
-        return mesSpecialites.size();
+        if(mesSpecialites != null){
+
+            return mesSpecialites.size();
+        }
+            return 0;
     }
 
     public class SpecialViewHolder extends RecyclerView.ViewHolder{

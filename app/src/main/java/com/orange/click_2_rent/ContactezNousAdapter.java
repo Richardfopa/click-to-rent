@@ -55,7 +55,11 @@ class ContactezNousAdapter extends RecyclerView.Adapter<ContactezNousAdapter.Con
      @Override
      public int getItemCount() {
 
-         return myList.size();
+         if(myList !=null){
+
+             return myList.size();
+         }
+         return 0;
      }
 
      public class ContactezNousViewHolder extends RecyclerView.ViewHolder{

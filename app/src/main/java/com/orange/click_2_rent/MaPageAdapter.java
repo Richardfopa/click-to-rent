@@ -30,6 +30,7 @@ public class MaPageAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
+
         return 3;
     }
 }

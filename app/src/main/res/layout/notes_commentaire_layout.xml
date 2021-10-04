@@ -49,6 +49,17 @@
         android:stepSize="0.2"
         tools:ignore="SpeakableTextPresentCheck" />
 
+    <TextView
+        android:id="@+id/texteStat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="15sp"
+        android:layout_marginTop="90sp"
+        android:gravity="center"
+        android:text="@string/txtCommentaire"
+        android:textSize="15sp" />
+
     <EditText
         android:id="@+id/textCommentaire"
         android:layout_width="match_parent"
@@ -63,11 +74,13 @@
         android:layout_marginTop="70sp"
         android:layout_marginEnd="15sp"
         android:layout_marginRight="15sp"
-        android:textColorHint="@color/color_blue"
+        android:drawableStart="@drawable/edit1_24"
+        android:drawableLeft="@drawable/edit1_24"
         android:ems="10"
         android:inputType="textPersonName"
-        android:text="Name"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:text=""
+        android:textColorHint="@color/color_blue"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <Button
         android:id="@+id/btnAnnuler"

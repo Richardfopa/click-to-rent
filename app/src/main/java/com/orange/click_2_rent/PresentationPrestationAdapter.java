@@ -53,6 +53,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
 
         holder.mTitredescription.setText(liste_prestations.getTitre_prestation());
         holder.mMinidescription.setText(liste_prestations.getMiniDescription());
+
         holder.mDateDescription.setText(String.valueOf(liste_prestations.getDate_prestation()));
 
         Picasso.with(holder.mImgProfil.getContext()).load(liste_prestations.getPhoto()).into(holder.mImgProfil);
@@ -62,7 +63,10 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     @Override
     public int getItemCount() {
 
-        return maListe.size();
+        if (maListe != null){
+            return maListe.size();
+        }
+        return 0;
     }
 
     @Override

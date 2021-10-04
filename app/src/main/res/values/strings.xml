@@ -85,4 +85,5 @@
     <string name="note">Notez-ici:</string>
     <string name="Annuler">Annuler</string>
     <string name="Validation">Valider</string>
+    <string name="txtCommentaire">Saisissez un commentaire pour l\'amélioration de l\'application:</string>
 </resources>
