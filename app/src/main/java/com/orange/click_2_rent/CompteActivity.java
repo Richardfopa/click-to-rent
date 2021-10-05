@@ -15,35 +15,33 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.common.net.InternetDomainName;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.orange.click_2_rent.Firebase.Storage;
 import com.orange.click_2_rent.Models.Users;
 import com.squareup.picasso.Picasso;
-
-import java.util.HashMap;
 import java.util.UUID;
 
 public class CompteActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final String USERS_OBJECT = "users_object" ;
     private TextInputLayout username;
     private TextInputLayout password;
     private TextInputLayout email;
+    private TextInputLayout telephone;
     private ImageView mImgPhoto;
     private Button valider;
     private FirebaseAuth auth;
+    private FirebaseUser firebaseusers;
     private FirebaseFirestore db;
     public static final int REQUEST_SELECT_IMAGE_PROFILE = 10005;
-    FirebaseStorage storage;
-    UUID Uuid;
+    private FirebaseStorage storage;
+    private UUID Uuid;
     private StorageReference mStorageRef;
     private StorageReference photoserviceRef;
 
@@ -55,6 +53,7 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
         username = findViewById(R.id.edittextnom_con);
         password = findViewById(R.id.edittextpassword_con);
         email = findViewById(R.id.edittextusername_con);
+        telephone =findViewById(R.id.edittext_telephone_con);
         valider = findViewById(R.id.btn_con_valider);
         mImgPhoto = findViewById(R.id.image_add_create_account);
 
@@ -87,31 +86,26 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-
-                            FirebaseUser firebaseUser = auth.getCurrentUser();
-
+                            firebaseusers = auth.getCurrentUser();
+                            String userid = firebaseusers.getUid();
+                            // Create new users with firebase
                             Users users = new Users();
                             users.setAdresse("");
-                            users.setTelphone("");
+                            users.setTelphone(telephone.getEditText().getText().toString());
                             users.setEmail(email);
                             users.setMotDePasse(password);
-                            users.setId(firebaseUser.getUid());
+                            users.setId(userid);
                             users.setNom(username);
                             users.setPhotoClient(null);
                             users.setServicesDemande(null);
                             users.setMesServices(null);
-                            users.setId(firebaseUser.getUid());
+                            users.setId(firebaseusers.getUid());
                             users.setDate_darriver(Timestamp.now());
-
+                            //Upload users datatofirestore
                             Storage.uploadImageViewToStorage(mImgPhoto,photoserviceRef,users);
-
-                            String userid = firebaseUser.getUid();
-                            HashMap<String, String> hashMap = new HashMap<>();
-                            hashMap.put("name",username);
-                            hashMap.put("email",email);
-                            hashMap.put("password",password);
-
+                            //  Change activity to ConnectionActivity
                             Intent intent = new Intent(getApplicationContext(), ConnexionActivity.class);
+                            intent.putExtra(USERS_OBJECT,users);
                             intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                         }
@@ -125,12 +119,14 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.image_add_create_account:
+                //Choose image to device
                 ChooseDoc(REQUEST_SELECT_IMAGE_PROFILE);
 
                 break;
 
             case R.id.btn_con_valider:
 
+                // Validation du formulaires et envoi des donnees
                 String txt_user = username.getEditText().getText().toString();
                 String txt_pass = password.getEditText().getText().toString();
                 String txt_email = email.getEditText().getText().toString();
@@ -170,6 +166,8 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
 
     }
 
+
+    // Methode for choose static image to devices
     private void ChooseDoc(int requestSelectImageService) {
 
         Intent intent = new Intent();

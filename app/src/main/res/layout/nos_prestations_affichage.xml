@@ -97,7 +97,6 @@
                     android:paddingTop="15sp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
-                    android:maxLength="20"
                     android:text="@string/date_du_jour"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

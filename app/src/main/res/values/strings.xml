@@ -99,4 +99,5 @@
     <string name="note">Notez-ici:</string>
     <string name="Annuler">Annuler</string>
     <string name="Validation">Valider</string>
+    <string name="Vnumero_hint">(+237) 651 391762</string>
 </resources>

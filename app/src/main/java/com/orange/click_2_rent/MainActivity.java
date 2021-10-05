@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        final android.app.ActionBar actionbar = getActionBar();
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -51,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
             return;
         }
+
 
         //getSupportFragmentManager().beginTransaction()
         //      .add(R.id.principal,new Fragment1(),Fragment1.class.getSimpleName())
@@ -107,6 +109,13 @@ public class MainActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+    }
+
     public boolean onCreateOptionsMenu(Menu menu){
 
         MenuInflater menuInflater = getMenuInflater();

@@ -18,14 +18,17 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class ConnexionActivity extends AppCompatActivity {
 
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
     private TextInputLayout password;
     private TextInputLayout email;
     private Button login;
     private TextView forget_password;
+    private FirebaseAuth firebaseauth;
+    private FirebaseUser firebaseuser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,7 +46,7 @@ public class ConnexionActivity extends AppCompatActivity {
             }
         });
 
-        mAuth = FirebaseAuth.getInstance();
+        firebaseauth = FirebaseAuth.getInstance();
 
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,13 +61,13 @@ public class ConnexionActivity extends AppCompatActivity {
 
                 else
                 {
-                    mAuth.signInWithEmailAndPassword(txt_email,txt_pass)
+                    firebaseauth.signInWithEmailAndPassword(txt_email,txt_pass)
                             .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if(task.isSuccessful())
                                     {
-                                        Intent intent1 = new Intent(getApplicationContext(),AjoutServiceActivity.class);
+                                        Intent intent1 = new Intent(getApplicationContext(),MainActivity.class);
                                         intent1.addFlags(intent1.FLAG_ACTIVITY_CLEAR_TASK | intent1.FLAG_ACTIVITY_NEW_TASK);
                                         startActivity(intent1);
 

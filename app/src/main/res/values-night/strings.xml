@@ -28,4 +28,5 @@
     <string name="label_title_service">Titre du service</string>
     <string name="txtDescription">Description</string>
     <string name="choisir_votre_photo">Choisir votre photo de profil (optionnel)</string>
+    <string name="Vnumero_hint">(+237) 651 391762</string>
 </resources>
