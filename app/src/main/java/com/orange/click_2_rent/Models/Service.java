@@ -40,15 +40,7 @@ public class Service {
         this.note = note;
     }
 
-    public Service( Boolean status, String description, String photo_service,
-                    String categorie, String name_provider){
-        this.status = status;
-        this.description = description;
-        this.photo_service = photo_service;
-        this.categorie = categorie;
-        this.add_date =new Timestamp(new Date());
-        this.name_provider = name_provider;
-    }
+
 
     public String getDoc_service() {
         return doc_service;

@@ -35,8 +35,9 @@
                 android:id="@+id/monTitre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="16sp"
+                android:textStyle="normal"
+                android:textColor="@color/color_blue"
+                android:textSize="20sp"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:text="@string/info" />

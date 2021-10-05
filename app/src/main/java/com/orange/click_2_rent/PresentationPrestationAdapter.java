@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.orange.click_2_rent.Models.Service;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,12 +25,12 @@ import java.util.List;
 
 public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable  {
 
-    private List<Presentation_prestations> maListe;
-    private List<Presentation_prestations> listeALL;
+    private List<Service> maListe;
+    private List<Service> listeALL;
     private Context context;
 
 
-    public PresentationPrestationAdapter(List<Presentation_prestations> MaListe,Context context) {
+    public PresentationPrestationAdapter(List<Service> MaListe,Context context) {
 
         this.maListe = MaListe;
         this.listeALL = new ArrayList<>(MaListe);
@@ -49,14 +50,14 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     @Override
     public void onBindViewHolder(@NonNull PresentationPrestationViewHolder holder, int position) {
 
-        final Presentation_prestations liste_prestations = this.maListe.get(position);
+        final Service service = this.maListe.get(position);
 
-        holder.mTitredescription.setText(liste_prestations.getTitre_prestation());
-        holder.mMinidescription.setText(liste_prestations.getMiniDescription());
+        holder.mTitredescription.setText(service.getName_provider());
+        holder.mMinidescription.setText(service.getDescription());
 
-        holder.mDateDescription.setText(String.valueOf(liste_prestations.getDate_prestation()));
+        holder.mDateDescription.setText(String.valueOf(service.getAdd_date()));
 
-        Picasso.with(holder.mImgProfil.getContext()).load(liste_prestations.getPhoto()).into(holder.mImgProfil);
+        Picasso.with(holder.mImgProfil.getContext()).load(service.getPhotoService()).into(holder.mImgProfil);
 
     }
 
@@ -82,15 +83,16 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
             @Override
             protected FilterResults performFiltering(CharSequence constraint) {
 
-                List<Presentation_prestations> filteredList = new ArrayList<>();
+                List<Service> filteredList = new ArrayList<>();
 
                 try {
                      if(constraint.toString().isEmpty()) {
 
                         filteredList.addAll(listeALL);
                      }else{
-                        for (Presentation_prestations presence :listeALL)
-                            if ((presence.getTitre_prestation().toLowerCase().contains(constraint.toString().toLowerCase())) || (presence.getMiniDescription().toLowerCase().contains(constraint.toString().toLowerCase())))
+                        for (Service presence :listeALL)
+
+                            if (presence.getName_provider().toLowerCase().contains(constraint.toString().toLowerCase()) || (presence.getDescription().toLowerCase().contains(constraint.toString().toLowerCase())))
                                 filteredList.add(presence);
 
                     }
@@ -111,7 +113,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
             protected void publishResults(CharSequence constraint, FilterResults filterResults) {
 
                 maListe.clear();
-                maListe.addAll((Collection <? extends Presentation_prestations>) filterResults.values);
+                maListe.addAll((Collection <? extends Service>) filterResults.values);
                 notifyDataSetChanged();
             }
         };

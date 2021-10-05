@@ -17,6 +17,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.orange.click_2_rent.Models.Service;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class PrestationsActivity extends AppCompatActivity {
 
 
     private RecyclerView mRecycler;
-    private final ArrayList<Presentation_prestations> maListe = new ArrayList<>();;
+    private final ArrayList<Service> maListe = new ArrayList<>();;
     private PresentationPrestationAdapter maPresentationAdapteur;
     private FirebaseFirestore db;
 
@@ -49,10 +50,11 @@ public class PrestationsActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for(DocumentSnapshot doc: task.getResult())
                         {
-                            Presentation_prestations model = new Presentation_prestations(doc.getString("name_provider"),
-                                    doc.getString("description"),doc.getTimestamp("add_date"),
-                                    doc.getString("photo_service")
-                                    );
+                            Service model = new Service();
+                            model.setName_provider(doc.getString("name_provider"));
+                            model.setDescription(doc.getString("description"));
+                            model.setAddDate(doc.getTimestamp("add_date"));
+                            model.setPhoto_service(doc.getString("photo_service"));
                             maListe.add(model);
                         }
                         maPresentationAdapteur = new PresentationPrestationAdapter(maListe,getApplicationContext());

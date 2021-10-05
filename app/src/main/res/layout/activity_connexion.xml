@@ -49,7 +49,7 @@
                 android:hint="@string/email_hint"
                 app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                 app:boxStrokeColor="@color/color_blue"
-                app:boxStrokeErrorColor="@color/black"
+                app:boxStrokeErrorColor="@color/grey"
                 app:hintTextColor="@color/color_blue"
                 app:startIconDrawable="@drawable/ic_baseline_mail_24"
                 app:startIconTint="@color/color_blue">
@@ -63,7 +63,7 @@
                     app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                     android:inputType="textWebEmailAddress"
                     android:singleLine="true"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey"
                     android:textColorHint="@color/color_blue"
                     android:textSize="@dimen/text_input_size"
                     app:startIconDrawable="@drawable/ic_baseline_mail_24"
@@ -79,11 +79,11 @@
                 android:hint="@string/password_hint"
                 android:textStyle="normal"
                 app:shapeAppearanceOverlay="@style/roundedTextAndInput"
-                app:boxStrokeColor="@color/theme_color"
-                app:boxStrokeErrorColor="@color/black"
-                app:hintTextColor="@color/color_blue"
+                app:boxStrokeColor="@color/color_blue"
+                app:boxStrokeErrorColor="@color/color_blue"
+                app:hintTextColor="@color/grey"
                 app:startIconDrawable="@drawable/ic_baseline_lock_24"
-                app:startIconTint="@color/theme_color">
+                app:startIconTint="@color/color_blue">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
@@ -94,7 +94,7 @@
                     android:inputType="textPassword"
                     android:shadowRadius="20"
                     android:singleLine="true"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey"
                     android:textColorHint="@color/color_blue"
                     app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                     android:textSize="@dimen/text_input_size"
@@ -107,10 +107,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textStyle="normal"
                 android:shadowRadius="1"
                 android:text="@string/bt_conn_login"
                 android:textColor="@color/white"
+                android:textStyle="normal"
                 app:backgroundTint="@color/color_blue"
                 app:cornerRadius="20dp"
                 app:strokeColor="@color/background_grise"
@@ -119,31 +119,31 @@
 
             <TextView
                 android:id="@+id/forget_pass"
-                android:layout_width="match_parent"
+                android:layout_width="379dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="25dp"
                 android:layout_marginRight="4sp"
                 android:clickable="true"
-                android:textStyle="normal"
-                android:gravity="end"
+                android:gravity="center_horizontal"
                 android:minHeight="48dp"
                 android:text="@string/textview_passe_oublier"
                 android:textColor="@color/color_blue"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textStyle="normal" />
 
             <TextView
                 android:id="@+id/text_media_con"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="25dp"
                 android:clickable="true"
-                android:textStyle="normal"
                 android:gravity="center"
                 android:minHeight="48dp"
                 android:onClick="fct_envoie"
                 android:text="@string/textview_creer_compte"
-                android:textColor="@color/gris_fonce"
-                android:textSize="16sp" />
+                android:textColor="@color/grey"
+                android:textSize="16sp"
+                android:textStyle="normal" />
 
         </LinearLayout>
     </ScrollView>

@@ -5,7 +5,6 @@
     android:layout_width="380sp"
     android:id="@+id/monDialog"
     app:circularflow_defaultRadius="20sp"
-    app:shapeAppearanceOverlay="@style/roundedTextAndInput"
     app:circularflow_radiusInDP="5sp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
@@ -15,12 +14,12 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:shapeAppearanceOverlay="@style/roundedTextAndInput"
         android:layout_marginTop="40sp"
         android:background="@color/bleu_clair"
         android:gravity="center_horizontal"
         android:orientation="vertical"
-        android:padding="2sp">
+        android:padding="2sp"
+        app:shapeAppearanceOverlay="@style/roundedTextAndInput">
 
         <TextView
             android:id="@+id/NomProfil"
@@ -57,6 +56,7 @@
             android:textSize="20sp"
             app:backgroundTint="@color/white"
             tools:ignore="TextContrastCheck" />
+
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"

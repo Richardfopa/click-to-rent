@@ -61,7 +61,7 @@
     <string name="nom_hint">name</string>
     <string name="bt_conn_login">Login</string>
     <string name="forget_up_con">Reset your password</string>
-    <string name="text_passe_oublier">Cliquez pour renitialiser, vous devez recvoire un mail pour renitialiser votre mot de passe</string>
+    <string name="text_passe_oublier">Cliquez sur le bouton RESET pour réinitialiser votre mot de passe, vous allez recevoir un mail de réinitialiseation votre mot de passe</string>
     <string name="bt_conn_reset">reset</string>
     <string name="phone">Telephone</string>
     <string name="search">search</string>
@@ -85,5 +85,7 @@
     <string name="note">Notez-ici:</string>
     <string name="Annuler">Annuler</string>
     <string name="Validation">Valider</string>
-    <string name="txtCommentaire">Saisissez un commentaire pour l\'amélioration de l\'application:</string>
+    <string name="txtCommentaire">Saisissez un commentaire pour qui nous permettra d\'améliorer votre l\'application:</string>
+    <string name="ReserverTitle">Réservez en quelques cliques</string>
+    <string name="hint_commentaire">Saisissez votre commentaire ici.</string>
 </resources>

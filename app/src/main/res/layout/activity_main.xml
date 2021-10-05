@@ -28,7 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:icon="@drawable/tools_solid"
+            android:icon="@drawable/outline_construction_black_24"
             android:text="@string/prestation"
             android:gravity="center_horizontal" />
 
@@ -36,7 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:icon="@drawable/concierge_bell_solid"
+            android:icon="@drawable/nourriture_et_restaurant1"
             android:text="@string/restauration"
             android:gravity="center_horizontal" />
 
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:icon="@drawable/car_side_solid"
+            android:icon="@drawable/local_taxi_24"
             android:text="@string/voituration"
             android:gravity="center_horizontal" />
 

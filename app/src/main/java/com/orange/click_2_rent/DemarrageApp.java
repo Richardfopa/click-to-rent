@@ -28,6 +28,7 @@ public class DemarrageApp extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_demarrage_app);
 
+        getSupportActionBar().setElevation(0);
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
 

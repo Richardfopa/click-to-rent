@@ -3,6 +3,7 @@ package com.orange.click_2_rent;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -88,8 +89,8 @@ public class Fragment1 extends Fragment {
         specialiteArrayList = new ArrayList<>();
 
         specialiteArrayList.add(new Specialite(R.drawable.sanitaire,"Plomberie"));
-        specialiteArrayList.add(new Specialite(R.drawable.electricite,"Electricite"));
-        specialiteArrayList.add(new Specialite(R.drawable.menuserie,"Menuiserie"));
+        specialiteArrayList.add(new Specialite(R.drawable.electricite,"Electricité"));
+        specialiteArrayList.add(new Specialite(R.drawable.menuserie,"Ménuiserie"));
         specialiteArrayList.add(new Specialite(R.drawable.elect,"Maconnerie"));
         specialiteArrayList.add(new Specialite(R.drawable.infomatike,"Informatique"));
         specialiteArrayList.add(new Specialite(R.drawable.autre,"Autres"));
