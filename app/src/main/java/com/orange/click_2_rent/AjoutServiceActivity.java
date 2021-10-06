@@ -31,6 +31,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnPausedListener;
@@ -92,7 +94,7 @@ public class AjoutServiceActivity
     private static final int REQUEST_SELECT_DOC_SERVICE = 10005;
     private static final String COLLECTION_SERVICE = "services";
 
-    private UUID Uuid;
+    private String Uuid;
 
 
     @Override
@@ -152,6 +154,7 @@ public class AjoutServiceActivity
         mImgPhotoService.setMaxHeight(R.dimen.size_img_upload);
 
         mImgPhotoDoc = findViewById(R.id.image_add_service_document_item);
+        mImgPhotoDoc = findViewById(R.id.image_add_service_document_item);
         mImgPhotoDoc.setMaxHeight(R.dimen.size_img_upload);
         mImgPhotoDoc.setMaxWidth(R.dimen.size_img_upload);
         mtxtphoto = findViewById(R.id.textphoto_add_service);
@@ -206,8 +209,10 @@ public class AjoutServiceActivity
                     // Child references can also take paths
                     // spaceRef now points to "images/space.jpg
                     // imagesRef still points to "images"
+                    FirebaseAuth mAuth = FirebaseAuth.getInstance();
+                    FirebaseUser user = mAuth.getCurrentUser();
 
-                    Uuid = UUID.randomUUID();
+                    Uuid = user.getUid();
                     StorageReference photoserviceRef = mStorageRef.child("services/photo" + title + Uuid);
                     StorageReference documentserviceRef = mStorageRef.child("services/doc" + title + Uuid);
 
@@ -217,7 +222,7 @@ public class AjoutServiceActivity
                     service.setClients(null);
                     service.setCommentaire(null);
                     service.setDescription(description);
-                    service.setName_provider("Gambee");
+                    service.setName_provider(user.getEmail());
                     service.setNote(null);
                     service.setTitle(title);
 

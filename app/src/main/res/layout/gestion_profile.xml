@@ -39,47 +39,64 @@
             android:textColor="#FFFFFF" />
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/profile_edit"
-        style="@style/style_profil"
-        android:shadowColor="@color/black"
-        android:shadowRadius="1"
-        android:text="@string/profil_edit"
-        app:drawableStartCompat="@drawable/outline_edit_black_24" />
 
-    <TextView
-        android:id="@+id/prodile_service_list"
-        style="@style/style_profil"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableStart="@drawable/outline_construction_black_24"
-        android:drawableLeft="@drawable/outline_construction_black_24"
-        android:paddingTop="8dp"
-        android:text="@string/profile_service_list" />
+        android:layout_height="match_parent"
+        android:layout_weight="1">
 
-    <TextView
-        android:id="@+id/profile_comment"
-        style="@style/style_profil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableStart="@drawable/outline_comment_black_24"
-        android:drawableLeft="@drawable/outline_comment_black_24"
-        android:paddingTop="8dp"
-        android:text="@string/profile_comment" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/profile_edit"
+                style="@style/style_profil"
+                android:shadowColor="@color/black"
+                android:shadowRadius="1"
+                android:text="@string/profil_edit"
+                app:drawableStartCompat="@drawable/outline_edit_black_24"
+                android:onClick="editProfile"/>
 
-    <TextView
-        android:id="@+id/profile_history"
-        style="@style/style_profil"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:drawableStart="@drawable/outline_history_black_24"
-        android:drawableLeft="@drawable/outline_history_black_24"
-        android:fontFamily="@font/roboto_slab_bold"
-        android:paddingTop="8dp"
-        android:text="@string/profile_history" />
+            <TextView
+                android:id="@+id/prodile_service_list"
+                style="@style/style_profil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/outline_construction_black_24"
+                android:drawableLeft="@drawable/outline_construction_black_24"
+                android:paddingTop="8dp"
+                android:text="@string/profile_service_list"
+                android:onClick="showServiceList"/>
+
+            <TextView
+                android:id="@+id/profile_comment"
+                style="@style/style_profil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/outline_comment_black_24"
+                android:drawableLeft="@drawable/outline_comment_black_24"
+                android:paddingTop="8dp"
+                android:text="@string/profile_comment"
+                android:onClick="viewCommentList"/>
+
+            <TextView
+                android:id="@+id/profile_history"
+                style="@style/style_profil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/outline_history_black_24"
+                android:drawableLeft="@drawable/outline_history_black_24"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:paddingTop="8dp"
+                android:text="@string/profile_history"
+                android:onClick="showHistoriqueClient"/>
+
+        </LinearLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/deconnexion_button"

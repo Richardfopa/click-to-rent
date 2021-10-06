@@ -35,6 +35,7 @@ public class ProfileMainActivity extends AppCompatActivity {
 
 
     public void showServiceList(View view) {
+        startActivity(new Intent(this, ListeServicesActity.class));
 
     }
 

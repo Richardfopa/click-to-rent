@@ -15,13 +15,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Click2rent">
         <activity
+            android:name=".ListeServicesActity"
+            android:exported="true" />
+        <activity
             android:name=".AddUserActivity"
             android:exported="true"
-            android:label="@string/confirm_user_info"/>
+            android:label="@string/confirm_user_info" />
         <activity
             android:name=".ContactezNousActivity"
             android:exported="true"
-            android:label="Contactez moi"/>
+            android:label="Contactez moi" />
         <activity android:name=".ResultSearchActivity">
             <meta-data
                 android:name="android.app.default_searchable"
@@ -47,7 +50,7 @@
         <activity
             android:name=".AjoutServiceActivity"
             android:exported="true"
-            android:label="Ajouter votre service"/>
+            android:label="Ajouter votre service" />
         <activity
             android:name=".CompteActivity"
             android:exported="true"
@@ -60,8 +63,8 @@
         <activity
             android:name=".PrestationsActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"
-            android:label="Service disponible"/>
+            android:label="Service disponible"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PremiereConnectionActivity"
             android:exported="true" />
@@ -83,7 +86,7 @@
         <activity
             android:name=".ProfileMainActivity"
             android:exported="true"
-            android:parentActivityName=".MainActivity"/>
+            android:parentActivityName=".MainActivity" />
 
         <meta-data
             android:name="preloaded_fonts"

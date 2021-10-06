@@ -99,4 +99,5 @@
     <string name="note">Notez-ici:</string>
     <string name="Annuler">Annuler</string>
     <string name="Validation">Valider</string>
+    <string name="liste_des_services">Liste des Services</string>
 </resources>

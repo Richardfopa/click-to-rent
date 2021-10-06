@@ -28,6 +28,10 @@ public class Service implements Parcelable {
     public Service() {
     }
 
+    public Service(String title) {
+        this.title = title;
+    }
+
     public Service(String id, String title, Boolean status, String description, String photo_service, String categorie, Timestamp addDate, String name_provider, ArrayList<Photo> photos, ArrayList<Users> clients, ArrayList<Commentaire> commentaire, ArrayList<Integer> note) {
         this.id = id;
         this.title = title;
