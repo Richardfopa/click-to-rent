@@ -51,10 +51,22 @@
     <string name="ville">Ville</string>
     <string name="item_historique_description">Service Rendu</string>
     <string name="item_historique_note">Note</string>
+
+    <string name="telephone">telephone</string>
+
+
     <string name="description_prestation">Designer 3D</string>
     <string name="intitule">Faites vos montages graphiques</string>
     <string name="date_du_jour">19/11/2021</string>
     <string name="ajoutez_une_photo">Ajoutez une photo</string>
+
+    <string name="photo_service">Photo Service</string>
+    <string name="search_hint">service name, or prestataire</string>
+    <string name="app_label">search</string>
+
+    <string name="valider">Valider</string>
+
+
     <string name="password_hint">password</string>
     <string name="textview_passe_oublier">Mot de passe oublié</string>
     <string name="create_up_con">Create a new account</string>
@@ -78,6 +90,8 @@
     <string name="Vnom">Votre nom</string>
     <string name="appel">Appels</string>
     <string name="sms">SMS</string>
+    <string name="choisir_votre_photo">Choisir votre photo de profil (optionnel)</string>
+
     <string name="txtDescription">Description</string>
     <string name="plombier">Plombier</string>
     <string name="DESCRIPTION">Description</string>

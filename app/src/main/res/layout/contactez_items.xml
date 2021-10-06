@@ -5,7 +5,6 @@
     android:id="@+id/idContactez"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
     android:clickable="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -23,7 +22,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingClass,MissingConstraints" />
+            tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/nomDesc"

@@ -16,7 +16,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 
 class ContactezNousAdapter extends RecyclerView.Adapter<ContactezNousAdapter.ContactezNousViewHolder> {
 
-     List<ContactProfil> myList;
+    List<ContactProfil> myList;
 
     public ContactezNousAdapter(List<ContactProfil> myList) {
 
@@ -24,10 +24,10 @@ class ContactezNousAdapter extends RecyclerView.Adapter<ContactezNousAdapter.Con
     }
 
     @NonNull
-     @Override
-     public ContactezNousViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    @Override
+    public ContactezNousViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-         View vues = LayoutInflater.from(parent.getContext()).inflate(R.layout.contactez_items,parent,false);
+        View vues = LayoutInflater.from(parent.getContext()).inflate(R.layout.contactez_items,parent,false);
 
         ContactezNousViewHolder viewHlder = new ContactezNousViewHolder(vues);
 
@@ -40,41 +40,38 @@ class ContactezNousAdapter extends RecyclerView.Adapter<ContactezNousAdapter.Con
             }
         });
         return viewHlder;
-     }
+    }
 
-     @Override
-     public void onBindViewHolder(@NonNull ContactezNousViewHolder holder, int position) {
+    @Override
+    public void onBindViewHolder(@NonNull ContactezNousViewHolder holder, int position) {
 
-          final ContactProfil contactez = this.myList.get(position);
+        final ContactProfil contactez = this.myList.get(position);
 
-          holder.descProfil.setText(contactez.getDescriptionProfil());
-          holder.nomProfil.setText(contactez.getMomProfil());
-          holder.imgProfil.setImageResource(contactez.getImgProfil());
+        holder.descProfil.setText(contactez.getDescriptionProfil());
+        holder.nomProfil.setText(contactez.getMomProfil());
+        holder.imgProfil.setImageResource(contactez.getImgProfil());
 
-     }
-     @Override
-     public int getItemCount() {
+    }
+    @Override
+    public int getItemCount() {
 
-         if(myList !=null){
+        return myList.size();
+    }
 
-             return myList.size();
-         }
-         return 0;
-     }
 
-     public class ContactezNousViewHolder extends RecyclerView.ViewHolder{
+    public class ContactezNousViewHolder extends RecyclerView.ViewHolder{
 
         public final CircleImageView imgProfil;
         public final TextView nomProfil, descProfil;
         public final CardView contact;
 
-         public ContactezNousViewHolder(@NonNull View itemView) {
-             super(itemView);
+        public ContactezNousViewHolder(@NonNull View itemView) {
+            super(itemView);
 
-             imgProfil = itemView.findViewById(R.id.imgProfile);
-             nomProfil = itemView.findViewById(R.id.nomDesc);
-             descProfil = itemView.findViewById(R.id.detailsDesc);
-             contact = itemView.findViewById(R.id.idContactez);
-         }
-     }
- }
+            imgProfil = itemView.findViewById(R.id.imgProfile);
+            nomProfil = itemView.findViewById(R.id.nomDesc);
+            descProfil = itemView.findViewById(R.id.detailsDesc);
+            contact = itemView.findViewById(R.id.idContactez);
+        }
+    }
+}

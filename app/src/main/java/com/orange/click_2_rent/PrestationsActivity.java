@@ -55,42 +55,43 @@ public class PrestationsActivity extends AppCompatActivity {
                             model.setDescription(doc.getString("description"));
                             model.setAddDate(doc.getTimestamp("add_date"));
                             model.setPhoto_service(doc.getString("photo_service"));
+
                             maListe.add(model);
                         }
                         maPresentationAdapteur = new PresentationPrestationAdapter(maListe,getApplicationContext());
                         mRecycler.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         mRecycler.setHasFixedSize(true);
-                       mRecycler.setAdapter(maPresentationAdapteur);
+                        mRecycler.setAdapter(maPresentationAdapteur);
                     }
                 });
     }
 
-        @Override
-        public boolean onCreateOptionsMenu(Menu menu) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
 
-            getMenuInflater().inflate(R.menu.searchmenu, menu);
-            MenuItem menuItem = menu.findItem(R.id.Rechercher);
-            SearchView searchView = (SearchView) menuItem.getActionView();
-            searchView.setMaxWidth(Integer.MAX_VALUE);
-            searchView.setQueryHint("rechercher un prestataire");
-            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-                @Override
-                public boolean onQueryTextSubmit(String s) {
+        getMenuInflater().inflate(R.menu.searchmenu, menu);
+        MenuItem menuItem = menu.findItem(R.id.Rechercher);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setQueryHint("rechercher un prestataire");
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String s) {
 
-                    return false;
-                }
+                return false;
+            }
 
-                @Override
-                public boolean onQueryTextChange(String nouveauText) {
+            @Override
+            public boolean onQueryTextChange(String nouveauText) {
 
-                    maPresentationAdapteur.getFilter().filter(nouveauText);
+                maPresentationAdapteur.getFilter().filter(nouveauText);
 
-                    return false;
-                }
-            });
+                return false;
+            }
+        });
 
-            return super.onCreateOptionsMenu(menu);
-        }
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -105,8 +106,7 @@ public class PrestationsActivity extends AppCompatActivity {
     }
 
     public void AjoutService(View view) {
-        Intent intent = new Intent(getApplicationContext(),AjoutServiceActivity.class);
+        Intent intent = new Intent(getApplicationContext(),AddUserActivity.class);
         startActivity(intent);
     }
 }
-

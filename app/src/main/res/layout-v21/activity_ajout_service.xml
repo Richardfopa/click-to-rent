@@ -8,7 +8,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,17 +34,13 @@
                 app:errorIconDrawable="@drawable/ic_baseline_error_24"
                 app:expandedHintEnabled="false"
                 app:shapeAppearanceOverlay="@style/roundedImageView">
-                android:textStyle="normal"
-                app:errorContentDescription="Entrer un titre valide"
-                app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                app:expandedHintEnabled="false"
-                app:shapeAppearanceOverlay="@style/roundedTextAndInput">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/plombier"
                     android:singleLine="true"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -64,11 +59,6 @@
                 app:expandedHintEnabled="false"
                 app:hintTextColor="@color/theme_color"
                 app:shapeAppearanceOverlay="@style/roundedImageView">
-                android:textStyle="normal"
-                app:errorIconDrawable="@drawable/ic_baseline_error_24"
-                app:expandedHintEnabled="false"
-                app:hintTextColor="@color/color_blue"
-                app:shapeAppearanceOverlay="@style/roundedTextAndInput">
 
                 <AutoCompleteTextView
                     android:id="@+id/category"
@@ -78,9 +68,6 @@
                     android:hint="@string/plombier"
                     android:inputType="none"
                     android:textStyle="bold" />
-                    android:hint="@string/plombier"
-                    android:inputType="none"
-                    android:textStyle="normal" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,8 +79,6 @@
                 android:layout_height="wrap_content"
                 app:shapeAppearanceOverlay="@style/roundedImageView"
                 android:paddingBottom="10dp">
-                android:paddingBottom="10dp"
-                app:shapeAppearanceOverlay="@style/roundedImageView">
 
                 <LinearLayout
                     android:id="@+id/linear_layout_horizontal_add_service"
@@ -119,7 +104,7 @@
                             android:padding="8dp"
                             android:text="@string/choisir_votre_photo_de_profil"
                             android:textSize="12sp"
-                            android:textStyle="normal"
+                            android:textStyle="bold"
                             app:shapeAppearanceOverlay="@style/roundedImageView"
                             tools:ignore="HardcodedText" />
 
@@ -153,7 +138,7 @@
                             android:padding="8dp"
                             android:text="@string/textdoc"
                             android:textSize="12sp"
-                            android:textStyle="normal"
+                            android:textStyle="bold"
                             app:shapeAppearanceOverlay="@style/roundedImageView"
                             tools:ignore="HardcodedText" />
 
@@ -183,7 +168,7 @@
                 android:layout_marginTop="18dp"
                 android:hint="@string/txtDescription"
                 android:paddingTop="4dp"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 app:counterMaxLength="100"
                 app:errorEnabled="true"
                 app:expandedHintEnabled="false"
@@ -192,11 +177,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/roboto_slab_bold"
                     android:hint="@string/description"
                     android:inputType="textMultiLine"
                     android:lines="3"
                     android:maxLines="4"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -206,7 +192,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textStyle="normal"
+                android:textStyle="bold"
                 app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             <LinearLayout
@@ -221,14 +207,14 @@
                     android:id="@+id/cancel_add_service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5sp"
                     android:layout_marginEnd="8dp"
+                    android:layout_marginLeft="5sp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:text="@string/fui_cancel"
                     android:textAllCaps="true"
                     android:textColor="@color/theme_color"
-                    android:textStyle="normal"
+                    android:textStyle="bold"
                     app:backgroundTint="@color/white"
                     app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                     app:strokeColor="@color/white"
@@ -247,8 +233,8 @@
                     android:text="@string/bt_conn_valider"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textStyle="normal"
-                    app:backgroundTint="@color/color_blue"
+                    android:textStyle="bold"
+                    app:backgroundTint="@color/theme_color"
                     app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                     app:strokeColor="@color/background_grise"
                     app:strokeWidth="@dimen/border_button"

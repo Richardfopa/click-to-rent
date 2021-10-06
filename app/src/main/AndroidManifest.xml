@@ -29,6 +29,24 @@
             android:exported="true"
             android:screenOrientation="locked"
             android:parentActivityName=".PrestationsActivity" />
+
+        <activity android:name=".AddUserActivity"
+            android:exported="true"
+            android:label="@string/confirm_user_info"/>
+
+        <activity android:name=".ResultSearchActivity">
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".SearchableActivity" />
+        </activity>
+        <activity
+            android:name=".SearchActivity"
+            android:exported="true"
+            android:label="Chercher un Service">
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable" />
+        </activity>
         <activity
             android:name=".DemarrageApp"
             android:screenOrientation="locked"
@@ -39,20 +57,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".CompteActivity"
+            android:exported="true"
+            android:label="@string/create_up_con"
+            android:parentActivityName=".ConnexionActivity"
+            tools:ignore="DuplicateActivity" />
         <activity
             android:name=".Activity2"
             android:exported="true"
             android:screenOrientation="locked"
-            android:parentActivityName=".ConnexionActivity" />
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".PrestationsActivity"
             android:exported="true"
-            android:screenOrientation="locked"
-            android:parentActivityName=".MainActivity" />
-        <activity
-            android:name=".ajout_service"
-            android:exported="true"
-            android:parentActivityName=".ajout_service" />
+            android:parentActivityName=".MainActivity"
+            android:label="Service disponible"/>
         <activity
             android:name=".PremiereConnectionActivity"
             android:exported="true" />
@@ -60,14 +81,11 @@
             android:name=".ConnexionActivity"
             android:exported="true"
             android:screenOrientation="locked"
+            android:label="Welcome"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+        <activity
+            android:name=".MainActivity"
+            android:exported="true" />
         <activity
             android:name=".HistoryListActivity"
             android:screenOrientation="locked"
@@ -80,10 +98,12 @@
         <activity
             android:name=".ProfileMainActivity"
             android:screenOrientation="locked"
-            android:exported="true" />
+            android:exported="true"
+            android:parentActivityName=".MainActivity"/>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
     </application>
+
 </manifest>

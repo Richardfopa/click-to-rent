@@ -1,11 +1,14 @@
 package com.orange.click_2_rent.Models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.firebase.Timestamp;
 
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Service {
+public class Service implements Parcelable {
 
     private String id;
     private String title;
@@ -40,7 +43,40 @@ public class Service {
         this.note = note;
     }
 
+    public Service( Boolean status, String description, String photo_service,
+                    String categorie, String name_provider){
+        this.status = status;
+        this.description = description;
+        this.photo_service = photo_service;
+        this.categorie = categorie;
+        this.add_date =new Timestamp(new Date());
+        this.name_provider = name_provider;
+    }
+    protected Service(Parcel in) {
+        id = in.readString();
+        title = in.readString();
+        byte tmpStatus = in.readByte();
+        status = tmpStatus == 0 ? null : tmpStatus == 1;
+        description = in.readString();
+        photo_service = in.readString();
+        doc_service = in.readString();
+        categorie = in.readString();
+        add_date = in.readParcelable(Timestamp.class.getClassLoader());
+        name_provider = in.readString();
+        clients = in.createTypedArrayList(Users.CREATOR);
+    }
 
+    public static final Creator<Service> CREATOR = new Creator<Service>() {
+        @Override
+        public Service createFromParcel(Parcel in) {
+            return new Service(in);
+        }
+
+        @Override
+        public Service[] newArray(int size) {
+            return new Service[size];
+        }
+    };
 
     public String getDoc_service() {
         return doc_service;
@@ -200,5 +236,24 @@ public class Service {
                 ", photoService=" + photo_service +
                 ", contient=" + photos +
                 '}';
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
+        parcel.writeString(title);
+        parcel.writeByte((byte) (status == null ? 0 : status ? 1 : 2));
+        parcel.writeString(description);
+        parcel.writeString(photo_service);
+        parcel.writeString(doc_service);
+        parcel.writeString(categorie);
+        parcel.writeParcelable(add_date, i);
+        parcel.writeString(name_provider);
+        parcel.writeTypedList(clients);
     }
 }

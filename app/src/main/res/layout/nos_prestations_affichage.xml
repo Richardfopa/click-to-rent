@@ -18,9 +18,7 @@
         android:elevation="4sp"
         app:cardElevation="4sp"
         app:cardPreventCornerOverlap="true"
-        android:layout_marginRight="4sp"
-    >
-
+        android:layout_marginRight="4sp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">

@@ -54,6 +54,12 @@ public class MainActivity extends AppCompatActivity {
         Tablelayout = findViewById(R.id.maTabLayout);
         Viewpage = findViewById(R.id.nom_de_page);
 
+        //Recuperation et Affichage des icones
+
+        // Tablelayout.getTabAt(0).setIcon(R.drawable.home_repair_service_24);
+        //Tablelayout.getTabAt(1).setIcon(R.drawable.restaurant_24);
+        // Tablelayout.getTabAt(2).setIcon(R.drawable.local_taxi_24);
+
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_menu);
@@ -107,8 +113,8 @@ public class MainActivity extends AppCompatActivity {
 
             case R.id.home:
 
-                 Toast.makeText(this, "vous avez selectionnez Home", Toast.LENGTH_SHORT).show();
-                 return true;
+                Toast.makeText(this, "vous avez selectionnez Home", Toast.LENGTH_SHORT).show();
+                return true;
 
             case R.id.Parametres:
 

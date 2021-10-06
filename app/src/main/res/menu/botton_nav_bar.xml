@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-
     <item
         android:id="@+id/home"
         android:icon="@drawable/home_24"
@@ -12,6 +11,12 @@
         android:title="Parametres"
         app:showAsAction="never"
         android:icon="@drawable/settings_24"/>
+    <item
+        android:id="@+id/Rechercher"
+        android:title="Search"
+        android:icon="@drawable/search_24"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.widget.SearchView"/>
 
     <item
         android:id="@+id/profil"

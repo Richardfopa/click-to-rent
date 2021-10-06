@@ -20,13 +20,13 @@ public class ProfileMainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.gestion_profile);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
         tv_email = findViewById(R.id.profile_image_title);
 
         tv_email.setText(currentUser.getEmail());
+            setContentView(R.layout.gestion_profile);
 
     }
 

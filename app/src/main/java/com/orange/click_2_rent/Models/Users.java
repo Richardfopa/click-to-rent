@@ -4,23 +4,72 @@ package com.orange.click_2_rent.Models;
  * Purpose: Defines the Class Users
  ***********************************************************************/
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.*;
 
-public class Users {
+public class Users implements Parcelable {
     private String nom;
-    private Number telphone;
+    private String telphone;
     private String email;
     private Photo photoClient;
     private String adresse;
-    private String ville;
+    private String motDePasse;
     private ArrayList<Service> mesServices;
     private ArrayList<Service> servicesDemande;
     private ArrayList<Commentaire> mesCommentaires;
-    private String motDePasse;
-    private int photoProfil;
     private String id;
 
-    public Users(String nom, Number telphone, String email, String motDePasse) {
+    public Users(String nom, String telphone, String email, Photo photoClient, String adresse, ArrayList<Service> mesServices, ArrayList<Service> servicesDemande, ArrayList<Commentaire> mesCommentaires, String motDePasse, String id) {
+        this.nom = nom;
+        this.telphone = telphone;
+        this.email = email;
+        this.photoClient = photoClient;
+        this.adresse = adresse;
+        this.mesServices = mesServices;
+        this.servicesDemande = servicesDemande;
+        this.mesCommentaires = mesCommentaires;
+        this.motDePasse = motDePasse;
+        this.id = id;
+    }
+
+    protected Users(Parcel in) {
+        nom = in.readString();
+        telphone = in.readString();
+        email = in.readString();
+        adresse = in.readString();
+        motDePasse = in.readString();
+        id = in.readString();
+    }
+
+    public static final Creator<Users> CREATOR = new Creator<Users>() {
+        @Override
+        public Users createFromParcel(Parcel in) {
+            return new Users(in);
+        }
+
+        @Override
+        public Users[] newArray(int size) {
+            return new Users[size];
+        }
+    };
+
+    public void setMesServices(ArrayList<Service> mesServices) {
+        this.mesServices = mesServices;
+    }
+
+    public void setServicesDemande(ArrayList<Service> servicesDemande) {
+        this.servicesDemande = servicesDemande;
+    }
+
+    public void setMesCommentaires(ArrayList<Commentaire> mesCommentaires) {
+        this.mesCommentaires = mesCommentaires;
+    }
+
+
+
+    public Users(String nom, String telphone, String email, String motDePasse) {
         this.nom = nom;
         this.telphone = telphone;
         this.email = email;
@@ -36,6 +85,7 @@ public class Users {
     }
 
 
+
     public String getId() {
         return id;
     }
@@ -46,7 +96,7 @@ public class Users {
 
     public ArrayList<Service> getMesServices() {
         if (mesServices == null);
-            mesServices = new ArrayList<Service>();
+        mesServices = new ArrayList<Service>();
         return mesServices;
     }
 
@@ -56,7 +106,7 @@ public class Users {
 
     public ArrayList<Service> getServicesDemande() {
         if (servicesDemande == null);
-            servicesDemande=new ArrayList<Service>();
+        servicesDemande=new ArrayList<Service>();
         return servicesDemande;
     }
 
@@ -66,7 +116,7 @@ public class Users {
 
     public ArrayList<Commentaire> getMesCommentaires() {
         if (mesCommentaires == null);
-            mesCommentaires=new ArrayList<Commentaire>();
+        mesCommentaires=new ArrayList<Commentaire>();
         return mesCommentaires;
     }
 
@@ -87,11 +137,11 @@ public class Users {
         this.nom = nom;
     }
 
-    public Number getTelphone() {
+    public String getTelphone() {
         return telphone;
     }
 
-    public void setTelphone(Number telphone) {
+    public void setTelphone(String telphone) {
         this.telphone = telphone;
     }
 
@@ -111,14 +161,6 @@ public class Users {
         this.motDePasse = motDePasse;
     }
 
-    public int getPhotoProfil() {
-        return photoProfil;
-    }
-
-    public void setPhotoProfil(int photoProfil) {
-        this.photoProfil = photoProfil;
-    }
-
     public Photo getPhotoClient() {
         return photoClient;
     }
@@ -134,14 +176,6 @@ public class Users {
 
     public void setAdresse(String adresse) {
         this.adresse = adresse;
-    }
-
-    public String getVille() {
-        return ville;
-    }
-
-    public void setVille(String ville) {
-        this.ville = ville;
     }
 
 
@@ -167,9 +201,22 @@ public class Users {
                 ", telphone=" + telphone +
                 ", email='" + email + '\'' +
                 ", motDePasse='" + motDePasse + '\'' +
-                ", photoProfil=" + photoProfil +
                 ", photoClient=" + photoClient +
                 '}';
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(nom);
+        parcel.writeString(telphone);
+        parcel.writeString(email);
+        parcel.writeString(adresse);
+        parcel.writeString(motDePasse);
+        parcel.writeString(id);
+    }
 }

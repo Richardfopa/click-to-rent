@@ -23,14 +23,14 @@ import java.util.Collection;
 import java.util.List;
 
 
-public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable  {
+public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable {
 
     private List<Service> maListe;
     private List<Service> listeALL;
     private Context context;
 
 
-    public PresentationPrestationAdapter(List<Service> MaListe,Context context) {
+    public PresentationPrestationAdapter(List<Service> MaListe, Context context) {
 
         this.maListe = MaListe;
         this.listeALL = new ArrayList<>(MaListe);
@@ -42,7 +42,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     @Override
     public PresentationPrestationAdapter.PresentationPrestationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View maVue = LayoutInflater.from(parent.getContext()).inflate(R.layout.nos_prestations_affichage,parent,false);
+        View maVue = LayoutInflater.from(parent.getContext()).inflate(R.layout.nos_prestations_affichage, parent, false);
 
         return new PresentationPrestationViewHolder(maVue);
     }
@@ -64,7 +64,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
     @Override
     public int getItemCount() {
 
-        if (maListe != null){
+        if (maListe != null) {
             return maListe.size();
         }
         return 0;
@@ -76,47 +76,55 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
         return filter;
     }
 
-        Filter filter = new Filter() {
+    Filter filter = new Filter() {
 
         //Lancer le thread au niveau en arriere plan.
 
-            @Override
-            protected FilterResults performFiltering(CharSequence constraint) {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
 
-                List<Service> filteredList = new ArrayList<>();
 
-                try {
-                     if(constraint.toString().isEmpty()) {
+            List<Service> filteredList = new ArrayList<>();
 
-                        filteredList.addAll(listeALL);
-                     }else{
-                        for (Service presence :listeALL)
 
-                            if (presence.getName_provider().toLowerCase().contains(constraint.toString().toLowerCase()) || (presence.getDescription().toLowerCase().contains(constraint.toString().toLowerCase())))
-                                filteredList.add(presence);
+            try {
+                if (constraint.toString().isEmpty()) {
 
-                    }
-                }catch (Exception ex){
+                    filteredList.addAll(listeALL);
+                } else {
+                    for (Service presence : listeALL)
 
-                    ex.getMessage();
-                    ex.printStackTrace();
+                        if (presence.getName_provider().toLowerCase().contains(constraint.toString().toLowerCase()) || (presence.getDescription().toLowerCase().contains(constraint.toString().toLowerCase())))
+                            filteredList.add(presence);
+                    filteredList.addAll(listeALL);
+
                 }
+            } catch (Exception ex) {
 
-                FilterResults filterResults  = new FilterResults();
-
-                filterResults.values = filteredList;
-                filterResults.count = filteredList.size();
-                return filterResults;
+                ex.getMessage();
+                ex.printStackTrace();
             }
-            //Executer le thread sur l'affichage
-            @Override
-            protected void publishResults(CharSequence constraint, FilterResults filterResults) {
 
-                maListe.clear();
-                maListe.addAll((Collection <? extends Service>) filterResults.values);
-                notifyDataSetChanged();
-            }
-        };
+            FilterResults filterResults  = new FilterResults();
+            maListe.clear();
+            maListe.addAll((Collection<? extends Service>) filterResults.values);
+            notifyDataSetChanged();
+
+
+            filterResults.values = filteredList;
+            filterResults.count = filteredList.size();
+            return filterResults;
+        }
+
+        //Executer le thread sur l'affichage
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults filterResults) {
+
+            maListe.clear();
+            maListe.addAll((Collection<? extends Service>) filterResults.values);
+            notifyDataSetChanged();
+        }
+    };
 
     public class PresentationPrestationViewHolder extends RecyclerView.ViewHolder {
 
@@ -144,7 +152,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     }
                     context.startActivity(intent);
-              }
+                }
             });
 
         }
