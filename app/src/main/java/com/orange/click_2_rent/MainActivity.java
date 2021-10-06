@@ -41,10 +41,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         mAuth = FirebaseAuth.getInstance();
         FirebaseUser currentUser = mAuth.getCurrentUser();
-
 
         if(savedInstanceState!=null){
             positionCourante = savedInstanceState.getInt(CLE_POSITION_CoURANTE,0);

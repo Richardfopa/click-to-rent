@@ -17,17 +17,21 @@
         android:theme="@style/Theme.Click2rent">
         <activity
             android:name=".AjoutServiceActivity"
-            android:exported="true" />
+            android:exported="true"
+            android:screenOrientation="locked"/>
         <activity
             android:name=".CompteActivity"
             android:exported="true"
+            android:screenOrientation="locked"
             android:parentActivityName=".ConnexionActivity" />
         <activity
             android:name=".ContactezNousActivity"
             android:exported="true"
+            android:screenOrientation="locked"
             android:parentActivityName=".PrestationsActivity" />
         <activity
             android:name=".DemarrageApp"
+            android:screenOrientation="locked"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -38,10 +42,12 @@
         <activity
             android:name=".Activity2"
             android:exported="true"
+            android:screenOrientation="locked"
             android:parentActivityName=".ConnexionActivity" />
         <activity
             android:name=".PrestationsActivity"
             android:exported="true"
+            android:screenOrientation="locked"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".ajout_service"
@@ -53,6 +59,7 @@
         <activity
             android:name=".ConnexionActivity"
             android:exported="true"
+            android:screenOrientation="locked"
             android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -63,13 +70,16 @@
         </activity>
         <activity
             android:name=".HistoryListActivity"
+            android:screenOrientation="locked"
             android:exported="true" />
         <activity
             android:name=".EditProfileActivity"
+            android:screenOrientation="locked"
             android:exported="true"
             android:parentActivityName=".ProfileMainActivity" />
         <activity
             android:name=".ProfileMainActivity"
+            android:screenOrientation="locked"
             android:exported="true" />
 
         <meta-data

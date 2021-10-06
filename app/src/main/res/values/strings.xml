@@ -15,7 +15,7 @@
 
     <string name="email_con">Email :</string>
     <string name="email_hint">email:</string>
-    <string name="bt_conn_valider">Valider</string>
+    <string name="bt_conn_valider">Send</string>
     <string name="textview_creer_compte">Create your account here </string>
     <string name="facebook">Facebook</string>
     <string name="google">google</string>
