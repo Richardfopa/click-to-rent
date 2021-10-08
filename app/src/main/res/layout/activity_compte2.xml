@@ -27,17 +27,6 @@
             android:orientation="vertical"
             android:paddingBottom="16dp">
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10sp"
-                android:gravity="center"
-                android:text="@string/create_up_con"
-                android:textColor="@color/color_blue"
-                android:textSize="30sp"
-                android:textStyle="normal" />
-
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/edittextnom_con"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -129,9 +118,39 @@
                     android:textSize="@dimen/text_input_size"
                     android:textStyle="normal"
                     app:shapeAppearanceOverlay="@style/roundedTextAndInput"
-                    app:startIconDrawable="@drawable/ic_baseline_lock_24"
-                    tools:ignore="EditableContentDescCheck" />
+                    app:startIconDrawable="@drawable/ic_baseline_lock_24" />
             </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edittext_telephone_con"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:hint="@string/Vnumero"
+                app:boxStrokeColor="@color/color_blue"
+                app:boxStrokeErrorColor="@color/black"
+                app:hintTextColor="@color/color_blue"
+                app:shapeAppearanceOverlay="@style/roundedTextAndInput"
+                app:startIconDrawable="@drawable/call_24"
+                app:startIconTint="@color/color_blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:contentDescription="@string/input_connexion"
+                    android:inputType="phone"
+                    android:shadowRadius="20"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/color_blue"
+                    android:textSize="@dimen/text_input_size"
+                    android:textStyle="normal"
+                    app:shapeAppearanceOverlay="@style/roundedTextAndInput"
+                    app:startIconDrawable="@drawable/ic_baseline_lock_24" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+
 
 
             <androidx.cardview.widget.CardView
@@ -171,10 +190,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textStyle="normal"
                 android:shadowRadius="1"
                 android:text="@string/bt_conn_valider"
                 android:textColor="@color/white"
+                android:textStyle="normal"
                 app:backgroundTint="@color/color_blue"
                 app:cornerRadius="20dp"
                 app:strokeColor="@color/background_grise"
