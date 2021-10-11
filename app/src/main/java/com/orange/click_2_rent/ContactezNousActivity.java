@@ -170,12 +170,14 @@ public class ContactezNousActivity extends AppCompatActivity {
         String description = intent.getStringExtra(EXTRA_DESCRIPTION);
         ImageView image1 = findViewById(R.id.image1);
         ImageView image2 = findViewById(R.id.image2);
+        ImageView profil = findViewById(R.id.profilPrest);
         ImageView image3 = findViewById(R.id.image3);
         TextView tilte = findViewById(R.id.monTitre);
         TextView descption = findViewById(R.id.DescPrestation);
         Picasso.with(this).load(image).into(image1);
         Picasso.with(this).load(image).into(image2);
         Picasso.with(this).load(image).into(image3);
+        Picasso.with(this).load(image).into(profil);
         tilte.setText(nom);
         descption.setText(description);
 
