@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -45,110 +46,71 @@ public class FirebasesUtil {
 
     public  static  void addService(Service service){
 
-        /*FirebasesUtil.getReferenceFirestore(COL_SERVICES)
+        FirebasesUtil.getReferenceFirestore(COL_SERVICES)
                 .add(service)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-                        Log.d("message", "DocumentSnapshot written with ID: " + documentReference.getId());
+                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG_FAILURE", "Error writing document", e);
-                    }
-                });*/
-        getReferenceFirestore(COL_SERVICES).document("service"+service.getId())
-                .set(service)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void unused) {
-
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-
+                        Log.w(TAG, "Error writing document", e);
                     }
                 });
+        //getReferenceFirestore(COL_SERVICES).add(service);
+
 
     }
     public  static  void addUsers(Users users){
-        FirebasesUtil.getReferenceFirestore(COL_USERS)
-                .add(users)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("message", "DocumentSnapshot written with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG_FAILURE", "Error writing document", e);
-                    }
-                });
+        FirebasesUtil.getReferenceFirestore(COL_USERS).document(users.getId())
+                .set(users);
 
     }
 
     public  static  void addCategory(Categorie cat){
         FirebasesUtil.getReferenceFirestore(COL_CATEGORY)
-                .add(cat)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("message", "DocumentSnapshot written with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG_FAILURE", "Error writing document", e);
-                    }
-                });
+                .add(cat);
 
     }
 
     public  static  void addComment(Commentaire comment){
         FirebasesUtil.getReferenceFirestore(COL_OPINION)
-                .add(comment)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d("message", "DocumentSnapshot written with ID: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w("TAG_FAILURE", "Error writing document", e);
-                    }
-                });
+                .add(comment);
 
     }
 
-    public static void setService(@NonNull Service service) {
+    public static void  setService(@NonNull Service service) {
 
         String Uuid = service.getId();
 
         FirebasesUtil.getReferenceFirestore(COL_SERVICES)
                 .document(Uuid)
-                .update("photos", service.getPhotos())
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "DocumentSnapshot successfully updated!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error updating document", e);
-                    }
-                });
+                .update("photos", FieldValue.arrayUnion(service.getPhotos().get(0)));
         // [END update_document]
+
+    }
+    public static void setUsersidService(@NonNull String serviceid) {
+
+
+        FirebasesUtil.getReferenceFirestore(COL_USERS)
+                .document(serviceid)
+                .update("mesServices", FieldValue.arrayUnion(serviceid));
+        // [END update_document]
+
+    }
+    @NonNull
+    public static DocumentReference getUsers(String firebaseUsersId) {
+
+        return FirebasesUtil.getReferenceFirestore(COL_USERS).document(firebaseUsersId);
+
+    }
+    @NonNull
+    public static DocumentReference getService(String serviceId) {
+
+        return FirebasesUtil.getReferenceFirestore(COL_SERVICES).document(serviceId);
 
     }
 }

@@ -3,7 +3,7 @@
     <style name="style_card">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_margin">8dp</item>
+        <item name="android:layout_margin">0.5dp</item>q
         <item name="android:padding">4dp</item>
         <item name="android:radius">4sp</item>
         <item name="android:shadowColor">@color/cardview_shadow_start_color</item>
@@ -37,7 +37,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
         <item name="android:drawableEnd">@drawable/outline_chevron_right_black_24</item>
-        <item name="android:gravity">center_horizontal|center_vertical</item>
+        <item name="android:gravity">center_vertical</item>
         <item name="android:paddingLeft">16dp</item>
         <item name="android:paddingRight">16dp</item>
         <item name="android:paddingTop">8dp</item>

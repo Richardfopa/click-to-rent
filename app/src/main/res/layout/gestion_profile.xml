@@ -3,162 +3,138 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="20dp"
         android:layout_weight="1"
+        android:background="@color/color_blue"
         android:orientation="vertical"
-        android:background="@color/color_blue">
+        android:padding="4dp">
 
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="120sp"
-            android:layout_height="120sp"
-            android:layout_gravity="center"
-            android:paddingTop="20sp"
-            android:src="@drawable/techniciens" />
-
-        <TextView
-            android:id="@+id/profile_image_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:paddingTop="16dp"
-            android:text="@string/profile_title"
-            android:textAlignment="center"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="#FFFFFF" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:layout_marginTop="20sp"
-        android:orientation="vertical"
-        android:showDividers="middle">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10sp"
-            android:layout_weight="1"
-            android:onClick="editProfile"
-            android:orientation="horizontal"
-            tools:ignore="TouchTargetSizeCheck">
-
-            <TextView
-                android:id="@+id/profile_edit"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/edit_solid"
-                android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-                android:gravity="left"
-                android:paddingLeft="5sp"
-                android:paddingTop="8sp"
-                android:text="@string/profil_edit"
-                android:textSize="20sp" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10sp"
-            android:layout_weight="1"
-            android:onClick="showServiceList"
-            android:orientation="horizontal"
-            tools:ignore="TouchTargetSizeCheck">
-
-            <TextView
-                android:id="@+id/prodile_service_list"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_baseline_construction_24"
-                android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-                android:gravity="left"
-                android:paddingLeft="5sp"
-                android:paddingTop="8dp"
-                android:text="@string/profile_service_list"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10sp"
-            android:layout_weight="1"
-            android:onClick="viewCommentList"
-            android:orientation="horizontal"
-            tools:ignore="TouchTargetSizeCheck">
-
-            <TextView
-                android:id="@+id/profile_comment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_baseline_message_24"
-                android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-                android:gravity="left"
-                android:paddingLeft="5sp"
-                android:paddingTop="8dp"
-                android:text="@string/profile_comment"
-                android:textSize="20sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginBottom="10sp"
-            android:layout_weight="1"
-            android:onClick="showHistoriqueClient"
-            android:orientation="horizontal"
-            tools:ignore="TouchTargetSizeCheck">
-
-            <TextView
-                android:id="@+id/profile_history"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:drawableLeft="@drawable/ic_baseline_history_24"
-                android:drawableRight="@drawable/ic_baseline_chevron_right_24"
-                android:gravity="left"
-                android:paddingLeft="5sp"
-                android:paddingTop="8dp"
-                android:text="@string/profile_history"
-                android:textSize="20sp" />
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:showDividers="beginning">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-            <Button
-                android:id="@+id/deconnexion_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/outline_logout_black_24"
-                android:text="@string/profile_deconnexion"
-                app:shapeAppearanceOverlay="@style/roundedImageView"
-                app:layout_constraintBottom_toBottomOf="parent"
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_gravity="center"
+                android:padding="16dp"
+                android:src="@drawable/image_3"
+                app:civ_border_color="#FFffff"
+                app:civ_border_width="6dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.235" />
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/profile_image_nom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_horizontal"
+                android:padding="4dp"
+                android:text="@string/profile_title"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/profile_image"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+            <TextView
+                android:id="@+id/profile_image_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:gravity="center_horizontal"
+                android:padding="4dp"
+                android:text="@string/profile_title"
+                android:textAlignment="center"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textColor="#FFFFFF"
+                app:layout_constraintEnd_toEndOf="@+id/profile_image_nom"
+                app:layout_constraintStart_toStartOf="@+id/profile_image_nom"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image_nom" />
         </androidx.constraintlayout.widget.ConstraintLayout>
+
     </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:id="@+id/profile_edit"
+                style="@style/style_profil"
+                android:shadowColor="@color/black"
+                android:shadowRadius="1"
+                android:text="@string/profil_edit"
+                app:drawableStartCompat="@drawable/outline_edit_black_24"
+                android:onClick="editProfile"/>
+
+            <TextView
+                android:id="@+id/prodile_service_list"
+                style="@style/style_profil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/outline_construction_black_24"
+                android:drawableLeft="@drawable/outline_construction_black_24"
+                android:paddingTop="8dp"
+                android:text="@string/profile_service_list"
+                android:onClick="showServiceList"/>
+
+            <TextView
+                android:id="@+id/profile_comment"
+                style="@style/style_profil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/outline_comment_black_24"
+                android:drawableLeft="@drawable/outline_comment_black_24"
+                android:paddingTop="8dp"
+                android:text="@string/profile_comment"
+                android:onClick="viewCommentList"/>
+
+            <TextView
+                android:id="@+id/profile_history"
+                style="@style/style_profil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawableStart="@drawable/outline_history_black_24"
+                android:drawableLeft="@drawable/outline_history_black_24"
+                android:fontFamily="@font/roboto_slab_bold"
+                android:paddingTop="8dp"
+                android:text="@string/profile_history"
+                android:onClick="showHistoriqueClient"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/deconnexion_button"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="30sp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
+        android:background="@color/color_blue"
+        android:text="@string/profile_deconnexion"
+        app:icon="@drawable/ic_deconnection" />
 </LinearLayout>

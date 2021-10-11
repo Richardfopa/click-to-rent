@@ -8,6 +8,7 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,18 +30,19 @@
                 android:layout_margin="8dp"
                 android:layout_marginTop="16dp"
                 android:hint="@string/label_title_service"
-                android:textStyle="bold"
                 app:errorContentDescription="Entrer un titre valide"
                 app:errorIconDrawable="@drawable/ic_baseline_error_24"
                 app:expandedHintEnabled="false"
-                app:shapeAppearanceOverlay="@style/roundedImageView">
+                app:shapeAppearance="@style/roundedImageView"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
+                android:textStyle="normal">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/plombier"
                     android:singleLine="true"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -54,11 +56,11 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginBottom="8dp"
                 android:hint="@string/select_category"
-                android:textStyle="bold"
-                app:errorIconDrawable="@drawable/ic_baseline_error_24"
                 app:expandedHintEnabled="false"
-                app:hintTextColor="@color/theme_color"
-                app:shapeAppearanceOverlay="@style/roundedImageView">
+                android:textStyle="normal"
+                app:errorIconDrawable="@drawable/ic_baseline_error_24"
+                app:hintTextColor="@color/color_blue"
+                app:shapeAppearanceOverlay="@style/roundedTextAndInput">
 
                 <AutoCompleteTextView
                     android:id="@+id/category"
@@ -67,23 +69,53 @@
                     android:fontFamily="@font/roboto_slab_bold"
                     android:hint="@string/plombier"
                     android:inputType="none"
-                    android:textStyle="bold" />
+                    android:textStyle="normal" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/edit_numero_service"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="8dp"
+                app:boxStrokeColor="@color/color_blue"
+                app:boxStrokeErrorColor="@color/black"
+                app:hintEnabled="false"
+                app:hintTextColor="@color/color_blue"
+                app:shapeAppearanceOverlay="@style/roundedTextAndInput"
+                app:startIconDrawable="@drawable/call_24"
+                app:startIconTint="@color/color_blue">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:hint="@string/Vnumero"
+                    android:inputType="phone"
+                    android:shadowRadius="20"
+                    android:singleLine="true"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/text_input_size"
+                    android:textStyle="normal"
+                    app:shapeAppearanceOverlay="@style/roundedTextAndInput"
+                    app:startIconDrawable="@drawable/ic_baseline_lock_24" />
+            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_ref"
                 style="@style/style_card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:shapeAppearanceOverlay="@style/roundedImageView"
-                android:paddingBottom="10dp">
+                android:layout_gravity="center"
+                android:paddingBottom="10dp"
+                app:shapeAppearanceOverlay="@style/roundedImageView">
 
                 <LinearLayout
                     android:id="@+id/linear_layout_horizontal_add_service"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:baselineAligned="false"
                     android:gravity="center|center_vertical"
                     android:orientation="horizontal">
@@ -104,18 +136,18 @@
                             android:padding="8dp"
                             android:text="@string/choisir_votre_photo_de_profil"
                             android:textSize="12sp"
-                            android:textStyle="bold"
+                            android:textStyle="normal"
                             app:shapeAppearanceOverlay="@style/roundedImageView"
                             tools:ignore="HardcodedText" />
 
                         <ImageView
                             android:id="@+id/image_add_service_photo_item"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
+                            android:layout_width="200dp"
+                            android:layout_height="200dp"
                             android:contentDescription="@string/choisir_votre_photo_de_profil"
                             android:padding="10dp"
                             app:shapeAppearanceOverlay="@style/roundedImageView"
-                            app:srcCompat="@drawable/ic_baseline_image_24"
+                            app:srcCompat="@drawable/ajouter_une_image"
                             tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
                     </LinearLayout>
@@ -138,18 +170,18 @@
                             android:padding="8dp"
                             android:text="@string/textdoc"
                             android:textSize="12sp"
-                            android:textStyle="bold"
+                            android:textStyle="normal"
                             app:shapeAppearanceOverlay="@style/roundedImageView"
                             tools:ignore="HardcodedText" />
 
                         <ImageView
                             android:id="@+id/image_add_service_document_item"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
+                            android:layout_width="@dimen/size_img_upload"
+                            android:layout_height="@dimen/size_img_upload"
                             android:contentDescription="@string/textdoc"
                             android:padding="10dp"
                             app:shapeAppearanceOverlay="@style/roundedImageView"
-                            app:srcCompat="@drawable/ic_baseline_image_24"
+                            app:srcCompat="@drawable/ajouter_une_image"
                             tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
                     </LinearLayout>
@@ -168,7 +200,7 @@
                 android:layout_marginTop="18dp"
                 android:hint="@string/txtDescription"
                 android:paddingTop="4dp"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 app:counterMaxLength="100"
                 app:errorEnabled="true"
                 app:expandedHintEnabled="false"
@@ -177,12 +209,11 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/roboto_slab_bold"
                     android:hint="@string/description"
                     android:inputType="textMultiLine"
                     android:lines="3"
                     android:maxLines="4"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -192,7 +223,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:textStyle="bold"
+                android:textStyle="normal"
                 app:shapeAppearanceOverlay="@style/roundedImageView" />
 
             <LinearLayout
@@ -207,14 +238,14 @@
                     android:id="@+id/cancel_add_service"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
                     android:layout_marginLeft="5sp"
+                    android:layout_marginEnd="8dp"
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:text="@string/fui_cancel"
                     android:textAllCaps="true"
                     android:textColor="@color/theme_color"
-                    android:textStyle="bold"
+                    android:textStyle="normal"
                     app:backgroundTint="@color/white"
                     app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                     app:strokeColor="@color/white"
@@ -233,8 +264,8 @@
                     android:text="@string/bt_conn_valider"
                     android:textAllCaps="true"
                     android:textColor="@color/white"
-                    android:textStyle="bold"
-                    app:backgroundTint="@color/theme_color"
+                    android:textStyle="normal"
+                    app:backgroundTint="@color/color_blue"
                     app:shapeAppearanceOverlay="@style/roundedTextAndInput"
                     app:strokeColor="@color/background_grise"
                     app:strokeWidth="@dimen/border_button"

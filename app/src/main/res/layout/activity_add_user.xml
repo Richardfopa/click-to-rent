@@ -120,7 +120,7 @@
                     android:layout_marginTop="30dp"
                     android:contentDescription="@string/input_connexion"
                     android:fontFamily="@font/roboto_slab_bold"
-                    android:hint="Douala logpom"
+                    android:hint="@string/adressehint"
                     android:inputType="textWebEmailAddress"
                     android:maxLength="50"
                     android:shadowRadius="20"

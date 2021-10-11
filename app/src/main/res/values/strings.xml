@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Click 2 rent</string>
+    <string name="app_name">Click to rent </string>
     <string name="service">Prestation serv.</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="prestation">prestat.</string>
@@ -100,6 +100,22 @@
     <string name="Annuler">Annuler</string>
     <string name="Validation">Valider</string>
     <string name="txtCommentaire">Saisissez un commentaire pour qui nous permettra d\'améliorer votre l\'application:</string>
-    <string name="ReserverTitle">Réservez en quelques cliques</string>
+    <string name="ReserverTitle">Votre satisfaction en quelques cliques</string>
     <string name="hint_commentaire">Saisissez votre commentaire ici.</string>
+    <string name="plomberie">Plomberie</string>
+
+    <string name="autres">Autres</string>
+    <string name="services">services</string>
+    <string name="categorie">categorie</string>
+    <string name="Plombrie">Plomberie</string>
+    <string name="menuiserie">Menuiserie</string>
+    <string name="maconnerie">Maconnerie</string>
+    <string name="informatique">Informatique</string>
+    <string name="electricite">Electricite</string>
+    <string name="votreadresse">Votre adresse</string>
+    <string name="adressehint">Douala logpom</string>
+    <string name="revenez">Revenez quand vous voullez</string>
+
+
+    <string name="liste_des_services">Liste des Services</string>
 </resources>

@@ -3,6 +3,7 @@ package com.orange.click_2_rent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,19 +16,34 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.Timestamp;
 import com.orange.click_2_rent.Models.Service;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 
 public class PresentationPrestationAdapter extends RecyclerView.Adapter<PresentationPrestationAdapter.PresentationPrestationViewHolder> implements Filterable {
 
-    private List<Service> maListe;
-    private List<Service> listeALL;
-    private Context context;
+    private final List<Service> maListe;
+    private final List<Service> listeALL;
+    private final Context context;
+
+    private OnItemClickListener mListener;
+
+    public interface OnItemClickListener
+    {
+        void onIntemClick(int position);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener)
+    {
+        mListener = listener;
+    }
 
 
     public PresentationPrestationAdapter(List<Service> MaListe, Context context) {
@@ -52,22 +68,24 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
 
         final Service service = this.maListe.get(position);
 
-        holder.mTitredescription.setText(service.getName_provider());
+        holder.mTitredescription.setText(service.getTitle());
         holder.mMinidescription.setText(service.getDescription());
 
-        holder.mDateDescription.setText(String.valueOf(service.getAdd_date()));
+        Timestamp timestamp = service.getAdd_date();
 
-        Picasso.with(holder.mImgProfil.getContext()).load(service.getPhotoService()).into(holder.mImgProfil);
+        if (timestamp != null){
+            Date date = timestamp.toDate();
+            holder.mDateDescription.setText(date.toString());
+        }else{
+            holder.mDateDescription.setText("");
+        }
 
+            Picasso.with(holder.mImgProfil.getContext()).load(service.getPhotoService()).into(holder.mImgProfil);
     }
 
     @Override
     public int getItemCount() {
-
-        if (maListe != null) {
             return maListe.size();
-        }
-        return 0;
     }
 
     @Override
@@ -88,14 +106,19 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
 
 
             try {
+
                 if (constraint.toString().isEmpty()) {
 
                     filteredList.addAll(listeALL);
                 } else {
                     for (Service presence : listeALL)
 
-                        if (presence.getName_provider().toLowerCase().contains(constraint.toString().toLowerCase()) || (presence.getDescription().toLowerCase().contains(constraint.toString().toLowerCase())))
-                            filteredList.add(presence);
+                        if(presence.getName_provider()!= null){
+
+                            if (presence.getName_provider().toLowerCase().contains(constraint.toString().toLowerCase()) || (presence.getDescription().toLowerCase().contains(constraint.toString().toLowerCase())) || (presence.getTitle().toLowerCase().contains(constraint.toString().toLowerCase())))
+                                filteredList.add(presence);
+                        }
+
                     filteredList.addAll(listeALL);
 
                 }
@@ -106,10 +129,6 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
             }
 
             FilterResults filterResults  = new FilterResults();
-            maListe.clear();
-            maListe.addAll((Collection<? extends Service>) filterResults.values);
-            notifyDataSetChanged();
-
 
             filterResults.values = filteredList;
             filterResults.count = filteredList.size();
@@ -143,6 +162,7 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
             mDateDescription = itemView.findViewById(R.id.mDate);
             mRelativeLayout = itemView.findViewById(R.id.mCardVue);
 
+            /*
             mRelativeLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -150,8 +170,22 @@ public class PresentationPrestationAdapter extends RecyclerView.Adapter<Presenta
                     Intent intent = new Intent(context, ContactezNousActivity.class);
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        context.startActivity(intent);
                     }
-                    context.startActivity(intent);
+
+                }
+            });*/
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(mListener != null)
+                    {
+                        int position = getAdapterPosition();
+                        if(position != RecyclerView.NO_POSITION)
+                        {
+                            mListener.onIntemClick(position);
+                        }
+                    }
                 }
             });
 

@@ -1,5 +1,7 @@
 package com.orange.click_2_rent;
 
+import static com.orange.click_2_rent.DemarrageApp.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,7 +10,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Patterns;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,14 +19,16 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
-import com.google.common.net.InternetDomainName;
+import com.google.firebase.Timestamp;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.orange.click_2_rent.Firebase.Storage;
 import com.orange.click_2_rent.Models.Users;
 import com.squareup.picasso.Picasso;
 
@@ -38,6 +42,8 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
     private TextInputLayout password;
     private TextInputLayout email;
     private ImageView mImgPhoto;
+    private static final String USERS_OBJECT = "users_object" ;
+    public static final String REQUEST_SELECT = "select";
     private Button valider;
     private FirebaseAuth auth;
     private FirebaseFirestore db;
@@ -74,12 +80,7 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
             "[a-zA-Z0-9]"
 
             );
-
-    private static final Pattern NO_WHITE_SPACE = Pattern.compile(
-
-            "(?=\\S+$ )"
-
-            );
+    private AuthCredential credential;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,21 +98,7 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
         valider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*String txt_user = username.getEditText().getText().toString();
-                String txt_pass = password.getEditText().getText().toString();
-                String txt_email = email.getEditText().getText().toString();
-                if(TextUtils.isEmpty(txt_user) || TextUtils.isEmpty(txt_email) || TextUtils.isEmpty(txt_pass))
-                {
-                    Toast.makeText(getApplicationContext(),"Veuillez remplir tout les champs",Toast.LENGTH_LONG).show();
-                }
-                else if(txt_pass.length() < 6 )
-                {
-                    Toast.makeText(getApplicationContext(), "Mot passe doit etre au moins 6 caracteres", Toast.LENGTH_SHORT).show();
-                }
-                else
-                {
-                    register(txt_user,txt_pass,txt_email);
-                }*/
+
             }
         });
         // Configuration de firebasestorage
@@ -137,41 +124,77 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
     }
 
     private void register(String username, String password, String email) {
+
+        credential = EmailAuthProvider.getCredential(email, password);
+
         auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-
-                            FirebaseUser firebaseUser = auth.getCurrentUser();
-
-                            Users users = new Users();
-                            users.setAdresse("");
-                            users.setTelphone("");
-                            users.setEmail(email);
-                            users.setMotDePasse(password);
-                            users.setId(firebaseUser.getUid());
-                            users.setNom(username);
-                            users.setPhotoClient(null);
-                            users.setServicesDemande(null);
-                            users.setMesServices(null);
-                            users.setId(firebaseUser.getUid());
-
-                            Storage.uploadImageViewToStorage(mImgPhoto,photoserviceRef,users);
-
-                            String userid = firebaseUser.getUid();
-                            HashMap<String, String> hashMap = new HashMap<>();
-                            hashMap.put("name", username);
-                            hashMap.put("email", email);
-                            hashMap.put("password", password);
-
-                            Intent intent = new Intent(getApplicationContext(), ConnexionActivity.class);
-                            intent.addFlags(intent.FLAG_ACTIVITY_CLEAR_TASK | intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
+                            //
+                            Log.d(TAG, "onComplete: Creation de comte reussi Mr " + email );
+                        }else{
+                            Toast.makeText(CompteActivity.this, "Verifier votre connexion internet " , Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
-        UserRepository.addUser(password);
+
+        // Convertir le compte anonyme en compte email
+
+        auth.getCurrentUser().linkWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            FirebaseUser user = task.getResult().getUser();
+                            Log.d(TAG, "linkWithCredential:success"+user);
+                            Toast.makeText(CompteActivity.this,"Creation de compte reussi ",Toast.LENGTH_LONG).show();
+                            createAccount(user,username,password,email);
+                        } else {
+                            Log.w(TAG, "linkWithCredential:failure", task.getException());
+                            Toast.makeText(CompteActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                            createAccount(null,username,password,email);
+                        }
+                    }
+                });
+    }
+
+    private void createAccount(FirebaseUser user, String username, String password, String email) {
+
+        Users users = new Users();
+
+        if (user != null){
+            //On cree son compte dans la collection user
+
+            String userid = user.getUid();
+            // Create new users with firebase
+            users.setAdresse("");
+            users.setTelphone("");
+            users.setEmail(email);
+            users.setMotDePasse(password);
+            users.setId(userid);
+            users.setNom(username);
+            users.setPhotoClient(null);
+            users.setServicesDemande(null);
+            users.setMesServices(null);
+            users.setId(user.getUid());
+            users.setDate_darriver(Timestamp.now());
+            //Upload users datatofirestore
+
+            Log.d(TAG, "onComplete: "+users.toString());
+            Storage.uploadImageUserToStorage(CompteActivity.this,mImgPhoto,photoserviceRef,users);
+            //  Change activity to ConnectionActivity
+            Intent intent = new Intent(getApplicationContext(), ConnexionActivity.class);
+            intent.putExtra(USERS_OBJECT,users);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            finish();
+
+        }
+        else{
+            Toast.makeText(this,"Verifier vos donnees saisis ",Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -209,6 +232,7 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
     public boolean validationMotDePasse() {
 
         String txt_pass = password.getEditText().getText().toString().trim();
+        String noWhiteSpace = "(?=\\S+$ )";
 
         if (txt_pass.isEmpty()) {
 
@@ -216,16 +240,23 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
             return false;
 
         }
-        else if(!MOT_DE_PASSE_VALIDATION.matcher(txt_pass).matches()){
+        else if(!MOT_DE_PASSE_VALIDATION.matcher(txt_pass).matches()) {
 
             password.setError("votre mot de passe ne correspond pas au format");
             return false;
 
-        }else{
+        }else if(!txt_pass.matches(noWhiteSpace)){
+
+            password.setError("Le mot de passe ne peu pas contenir les espaces");
+
+            return false;
+
+        }else
 
             password.setError(null);
+
             return true;
-        }
+
     }
     public boolean validationEmail() {
 
@@ -238,6 +269,7 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
     public boolean validationName() {
 
         String nom = username.getEditText().getText().toString().trim();
+        String exceptWhiteSpace = "(?=\\S+$ )";
 
         if(nom.isEmpty()){
 
@@ -248,12 +280,16 @@ public class CompteActivity extends AppCompatActivity implements View.OnClickLis
 
             username.setError("Votre mot de passe ne respecte pas le formalisme");
         }
-        else{
+        else if (!nom.matches(exceptWhiteSpace)) {
+
+            username.setError("Votre nom ne doit pas contenir d'espaces");
+
+            return false;
+
+        }else
 
             username.setError(null);
-        }
-
-        return true;
+            return true;
     }
 
 

@@ -46,26 +46,6 @@
 
             </com.google.android.material.textfield.TextInputLayout>
 
-            <com.google.android.material.textfield.TextInputLayout
-
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginLeft="24dp"
-                android:layout_marginTop="24dp"
-                app:shapeAppearanceOverlay="@style/roundedTextAndInput"
-                android:layout_marginEnd="24dp"
-                android:layout_marginRight="24dp"
-                android:hint="@string/email_label">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/email_address"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress"
-                    android:textColorLink="#20A6FE" />
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
 

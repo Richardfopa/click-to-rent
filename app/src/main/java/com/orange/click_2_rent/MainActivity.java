@@ -1,5 +1,9 @@
 package com.orange.click_2_rent;
 
+import static com.orange.click_2_rent.DemarrageApp.SENT_USERS;
+import static com.orange.click_2_rent.DemarrageApp.TAG;
+
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
@@ -7,8 +11,10 @@ import androidx.fragment.app.FragmentManager;
 
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -21,12 +27,20 @@ import com.google.android.material.tabs.TabLayout;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.orange.click_2_rent.Models.FirebasesUtil;
+import com.orange.click_2_rent.Models.Users;
 
 public class MainActivity extends AppCompatActivity {
 
 
     private FirebaseAuth mAuth;
-
+    public static final String SENT_USERS_IT = "connection_ockay";
+    private FirebaseUser mUser;
+    private Users users ;
     TabLayout Tablelayout;
     ViewPager2  Viewpage;
     MaPageAdapter pagerAdapter;
@@ -42,11 +56,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mAuth = FirebaseAuth.getInstance();
-        FirebaseUser currentUser = mAuth.getCurrentUser();
+        mUser = mAuth.getCurrentUser();
+        Log.d(TAG, "onCreate: " + mUser.toString());
+        Toast.makeText(this,"votre Id " + mUser.getUid(),Toast.LENGTH_LONG).show();
 
         if(savedInstanceState!=null){
             positionCourante = savedInstanceState.getInt(CLE_POSITION_CoURANTE,0);
-
             return;
         }
 
@@ -55,11 +70,6 @@ public class MainActivity extends AppCompatActivity {
         Viewpage = findViewById(R.id.nom_de_page);
 
         //Recuperation et Affichage des icones
-
-        // Tablelayout.getTabAt(0).setIcon(R.drawable.home_repair_service_24);
-        //Tablelayout.getTabAt(1).setIcon(R.drawable.restaurant_24);
-        // Tablelayout.getTabAt(2).setIcon(R.drawable.local_taxi_24);
-
 
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setCustomView(R.layout.action_bar_menu);
@@ -107,6 +117,7 @@ public class MainActivity extends AppCompatActivity {
         menuInflater.inflate(R.menu.botton_nav_bar,menu);
         return true;
     }
+    @SuppressLint("NonConstantResourceId")
     public boolean onOptionsItemSelected(MenuItem menuItem) {
 
         switch (menuItem.getItemId()) {
@@ -122,9 +133,44 @@ public class MainActivity extends AppCompatActivity {
                 return true;
 
             case R.id.profil:
+                if(mUser != null){
+                    Users user = new Users();
 
-                Intent intent = new Intent(getApplicationContext(),ConnexionActivity.class);
-                startActivity(intent);
+                    FirebaseUser fuser = mAuth.getCurrentUser();
+                    if (fuser.getUid() != null) {
+                        Toast.makeText(this, "User id" + fuser.getUid(), Toast.LENGTH_LONG).show();
+                        Log.d(TAG, "updateUI: " + fuser.getUid());
+                        user.setId(fuser.getUid());
+                        Log.d(TAG, "updateUI: " + user.getId());
+
+                        final DocumentReference docUser = FirebasesUtil.getUsers(fuser.getUid());
+
+                        docUser.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                            @Override
+                            public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+
+                                if (snapshot != null && snapshot.exists()) {
+
+                                    user.setTelphone(snapshot.getString("telphone"));
+                                    user.setEmail(snapshot.getString("email"));
+                                    user.setNom(snapshot.getString("nom"));
+                                    user.setPhoto_user(snapshot.getString("photo_user"));
+                                    user.setDate_darriver(snapshot.getTimestamp("date_darriver"));
+                                    user.setAdresse(snapshot.getString("adresse"));
+                                    Log.d(TAG, "onEvent: " + snapshot.getData().toString());
+                                    Intent iput = new Intent(MainActivity.this, ProfileMainActivity.class);
+                                    iput.putExtra("nom",user.getNom());
+                                    iput.putExtra("email",user.getEmail());
+                                    iput.putExtra("photo_user",user.getPhoto_user());
+                                    startActivity(iput);
+                                }else{
+                                    startActivity(new Intent(MainActivity.this,ConnexionActivity.class));
+                                }
+                            }
+                        });
+                    }
+                }
+                return true;
 
             default:
                 return super.onOptionsItemSelected(menuItem);
@@ -132,4 +178,38 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //Verifier si un utilisateur a un document dans la collection user
+
+    public Users getUsers(String firebaseuserid) {
+
+        Users user = new Users();
+        if (firebaseuserid != null) {
+            Toast.makeText(this, "User id" + firebaseuserid, Toast.LENGTH_LONG).show();
+            Log.d(TAG, "updateUI: " + firebaseuserid);
+            user.setId(firebaseuserid);
+            Log.d(TAG, "updateUI: " + user.getId());
+
+            final DocumentReference docUser = FirebasesUtil.getUsers(firebaseuserid);
+
+            docUser.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+
+                    if (snapshot != null && snapshot.exists()) {
+
+                        user.setTelphone(snapshot.getString("telphone"));
+                        user.setEmail(snapshot.getString("email"));
+                        user.setNom(snapshot.getString("nom"));
+                        user.setPhoto_user(snapshot.getString("photo_user"));
+                        user.setDate_darriver(snapshot.getTimestamp("date_darriver"));
+                        user.setAdresse(snapshot.getString("adresse"));
+                        Log.d(TAG, "onEvent: " + snapshot.getData().toString());
+                        Log.d(TAG, "onEvent: " + users.toString());
+                        Toast.makeText(MainActivity.this, users.toString(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+        return user;
+    }
 }

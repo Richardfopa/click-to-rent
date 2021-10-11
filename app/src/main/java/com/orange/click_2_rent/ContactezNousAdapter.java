@@ -1,5 +1,7 @@
 package com.orange.click_2_rent;
 
+import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -17,10 +21,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 class ContactezNousAdapter extends RecyclerView.Adapter<ContactezNousAdapter.ContactezNousViewHolder> {
 
     List<ContactProfil> myList;
+    Context context;
 
-    public ContactezNousAdapter(List<ContactProfil> myList) {
+    public ContactezNousAdapter(List<ContactProfil> myList, Context context) {
 
         this.myList = myList;
+        this.context= context;
     }
 
     @NonNull
@@ -49,7 +55,8 @@ class ContactezNousAdapter extends RecyclerView.Adapter<ContactezNousAdapter.Con
 
         holder.descProfil.setText(contactez.getDescriptionProfil());
         holder.nomProfil.setText(contactez.getMomProfil());
-        holder.imgProfil.setImageResource(contactez.getImgProfil());
+      //  Log.d("rich",contactez.getImagePhoto());
+        Picasso.with(holder.imgProfil.getContext()).load(contactez.getImagePhoto()).into(holder.imgProfil);
 
     }
     @Override
@@ -57,7 +64,6 @@ class ContactezNousAdapter extends RecyclerView.Adapter<ContactezNousAdapter.Con
 
         return myList.size();
     }
-
 
     public class ContactezNousViewHolder extends RecyclerView.ViewHolder{
 

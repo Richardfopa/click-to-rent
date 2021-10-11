@@ -15,7 +15,7 @@ public class Service implements Parcelable {
     private Boolean status;
     private String description;
     private String photo_service;
-
+    private String telephone;
     private String doc_service;
     private String categorie;
     private Timestamp add_date;
@@ -28,16 +28,18 @@ public class Service implements Parcelable {
     public Service() {
     }
 
-    public Service(String id, String title, Boolean status, String description, String photo_service, String categorie, Timestamp addDate, String name_provider, ArrayList<Photo> photos, ArrayList<Users> clients, ArrayList<Commentaire> commentaire, ArrayList<Integer> note) {
+    public Service(String id, String title, Boolean status, String description, String photo_service, String doc_service, String categorie, Timestamp addDate, String name_provider,String telephone, ArrayList<Photo> photos, ArrayList<Users> clients, ArrayList<Commentaire> commentaire, ArrayList<Integer> note) {
         this.id = id;
         this.title = title;
         this.status = status;
         this.description = description;
         this.photo_service = photo_service;
+        this.doc_service = doc_service;
         this.categorie = categorie;
         this.add_date = addDate;
         this.name_provider = name_provider;
         this.photos = photos;
+        this.telephone = telephone;
         this.clients = clients;
         this.commentaire = commentaire;
         this.note = note;
@@ -63,6 +65,7 @@ public class Service implements Parcelable {
         categorie = in.readString();
         add_date = in.readParcelable(Timestamp.class.getClassLoader());
         name_provider = in.readString();
+        telephone = in.readString();
         clients = in.createTypedArrayList(Users.CREATOR);
     }
 
@@ -127,8 +130,8 @@ public class Service implements Parcelable {
         return photo_service;
     }
 
-    public void setPhotoService(String photoService) {
-        this.photo_service = photoService;
+    public void setPhotoService(String photo_service) {
+        this.photo_service = photo_service;
     }
 
     public String getCategorie() {
@@ -163,8 +166,8 @@ public class Service implements Parcelable {
         this.photo_service = photo_service;
     }
 
-    public void setAddDate(Timestamp addDate) {
-        add_date = addDate;
+    public void setAddDate(Timestamp add_date) {
+        this.add_date = add_date;
     }
 
     public void setPhotos(ArrayList<Photo> photos) {
@@ -255,5 +258,14 @@ public class Service implements Parcelable {
         parcel.writeParcelable(add_date, i);
         parcel.writeString(name_provider);
         parcel.writeTypedList(clients);
+        parcel.writeString(telephone);
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 }

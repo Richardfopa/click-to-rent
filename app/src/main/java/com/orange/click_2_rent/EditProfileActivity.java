@@ -16,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.orange.click_2_rent.Models.FirebasesUtil;
+import com.orange.click_2_rent.Models.Users;
 
 public class EditProfileActivity extends AppCompatActivity {
 
@@ -25,16 +26,17 @@ public class EditProfileActivity extends AppCompatActivity {
     private TextInputEditText ville;
     private TextInputEditText adresse;
     private Button btn_modif;
-
+    private Users muser;
+    public static final String SENTUSERS = "donneesusers";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_profile);
-
+        muser = new Users();
         name = findViewById(R.id.name);
-        email_address= findViewById(R.id.email_address);
+        //email_address= findViewById(R.id.email_address);
         phone_number=findViewById(R.id.phone_number);
         ville=findViewById(R.id.ville);
         adresse=findViewById(R.id.adresse);
@@ -44,7 +46,6 @@ public class EditProfileActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
 
         name.setText(currentUser.getDisplayName());
-        email_address.setText(currentUser.getEmail());
 
         FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
                 .document(currentUser.getUid())
@@ -54,9 +55,13 @@ public class EditProfileActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                         if (task.isSuccessful()){
                             DocumentSnapshot document = task.getResult();
-                            phone_number.setText(String.valueOf(document.getLong("telephone")));
+                            phone_number.setText(String.valueOf(document.getString("telephone")));
                             ville.setText(document.getString("ville"));
                             adresse.setText(document.getString("adresse"));
+                            muser.setPhoto_user(document.getString("photo_user"));
+                            muser.setAdresse(document.getString("adresse"));
+                            muser.setTelphone(document.getString("telphone"));
+                            name.setText(document.getString("nom"));
                         }
                     }
                 });
@@ -82,6 +87,13 @@ public class EditProfileActivity extends AppCompatActivity {
 
                 Toast.makeText(getApplicationContext(), "Modifications effectués avec succès", Toast.LENGTH_SHORT).show();
                 Intent i = new Intent(getApplicationContext(), ProfileMainActivity.class);
+
+                muser.setNom(name.getText().toString());
+                muser.setEmail(email_address.getText().toString());
+                muser.setTelphone(phone_number.getText().toString());
+                muser.setAdresse(adresse.getText().toString()+ville.getText().toString());
+
+                i.putExtra(SENTUSERS,muser);
                 startActivity(i);
             }
         });

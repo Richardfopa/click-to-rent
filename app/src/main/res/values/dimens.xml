@@ -3,5 +3,5 @@
     <dimen name="border_button">4dp</dimen>
     <dimen name="text_input_size">16sp</dimen>
     <dimen name="box_input_radius">6dp</dimen>
-    <dimen name="size_img_upload">100dp</dimen>
+    <dimen name="size_img_upload">200dp</dimen>
 </resources>

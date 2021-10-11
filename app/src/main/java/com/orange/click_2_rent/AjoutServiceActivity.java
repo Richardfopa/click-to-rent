@@ -1,18 +1,19 @@
 package com.orange.click_2_rent;
 
+import static com.orange.click_2_rent.DemarrageApp.TAG;
+import static com.orange.click_2_rent.Models.FirebasesUtil.COL_SERVICES;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -31,30 +32,38 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
 
 import com.google.firebase.Timestamp;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnPausedListener;
-import com.google.firebase.storage.OnProgressListener;
-import com.google.firebase.storage.StorageMetadata;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
 import com.google.firebase.storage.UploadTask;
+import com.orange.click_2_rent.Firebase.Storage;
 import com.orange.click_2_rent.Models.FirebasesUtil;
 import com.orange.click_2_rent.Models.Photo;
 import com.orange.click_2_rent.Models.Service;
+import com.orange.click_2_rent.Models.Users;
 import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.UUID;
 
 public class AjoutServiceActivity
         extends AppCompatActivity
-        implements View.OnClickListener, View.OnFocusChangeListener {
+        implements View.OnClickListener {
 
+    public static final String SENTFIREBASEAUTHDATA = "sentfirebaseauthdata";
     private FirebaseStorage storage;
-    private StorageMetadata metadata;
     private StorageReference mStorageRef;
     private StorageReference mStorageRefImage;
     private DatabaseReference mDatabaseRef;
@@ -62,6 +71,7 @@ public class AjoutServiceActivity
 
     private TextInputLayout mTxtTitleService;
     private TextInputLayout mTxtCategorieService;
+    private TextInputLayout mtelephone;
     private ImageView mImgPhotoService;
     private Button mbtChoosePict;
     private ImageView mImgPhotoDoc;
@@ -70,25 +80,35 @@ public class AjoutServiceActivity
     private TextView mtxtdoc;
     private Button mbtcancel;
     private Button mbtConfirm;
+
     private AutoCompleteTextView mautoComplete;
     private TextView error;
     private String title;
     private String categorie;
+    private String telephon;
     private String mnomphoto;
     private Uri uriphotoservice;
     private String mnomdocument;
     private Uri uridocservice;
     private String description;
     private ProgressBar mProgressBar;
-
+    Users users = new Users();
     Service service = new Service();
+    private ArrayList<Users> listClient ;
+
+    private FirebaseAuth firebaseauth;
+    private FirebaseUser currentuser ;
+
+
 
     //    private FirebaseStorage storage;
-    private ArrayList<Photo> listphoto = new ArrayList<>();
+    private final ArrayList<Photo> listphoto = new ArrayList<>();
     private TextInputLayout mTxtDescription;
     private static final int REQUEST_SELECT_IMAGE_SERVICE = 10004;
     private static final int REQUEST_SELECT_DOC_SERVICE = 10005;
     private static final String COLLECTION_SERVICE = "services";
+    private TextInputLayout telephone;
+    FirebaseFirestore db;
 
     private UUID Uuid;
 
@@ -98,7 +118,11 @@ public class AjoutServiceActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ajout_service);
 
+        firebaseauth = FirebaseAuth.getInstance();
+        currentuser = firebaseauth.getCurrentUser();
+
         // Initialisation des variable de la vue
+
         setVariablefromLayout();
         // Gestion des click sur la vue
         //Bouton confirmer
@@ -114,8 +138,6 @@ public class AjoutServiceActivity
 
         mImgPhotoDoc.setOnClickListener(this);
 
-        mTxtTitleService.setOnFocusChangeListener(this);
-
         // Configuration de firebasestorage
 
         storage = FirebaseStorage.getInstance();
@@ -126,7 +148,34 @@ public class AjoutServiceActivity
 
         mStorageRefImage = mStorageRef.child("services");
 
+    }
 
+    private void updateUi(FirebaseUser currentuser) {
+
+        if (currentuser != null){
+            users.setId(currentuser.getUid());
+            final DocumentReference docUser = FirebasesUtil.getUsers(users.getId());
+
+            docUser.addSnapshotListener(new EventListener<DocumentSnapshot>() {
+                @Override
+                public void onEvent(@Nullable DocumentSnapshot snapshot, @Nullable FirebaseFirestoreException e) {
+
+                    if (snapshot != null && snapshot.exists()) {
+
+                        Log.d(TAG, " data: " + snapshot.getData());
+                        users.setTelphone(snapshot.getString("telphone"));
+                        users.setEmail(snapshot.getString("email"));
+                        users.setNom(snapshot.getString("nom"));
+                        users.setDate_darriver(snapshot.getTimestamp("date_darriver"));
+                        users.setAdresse(snapshot.getString("adresse"));
+                        Log.d(TAG, "onEvent: "+snapshot.getData().toString());
+
+                    } else {
+                        Log.d(TAG, " data: null");
+                    }
+                }
+            });
+        }
     }
 
     private void setVariablefromLayout() {
@@ -147,6 +196,7 @@ public class AjoutServiceActivity
         mImgPhotoService = findViewById(R.id.image_add_service_photo_item);
         mImgPhotoService.setMaxWidth(R.dimen.size_img_upload);
         mImgPhotoService.setMaxHeight(R.dimen.size_img_upload);
+        telephone = findViewById(R.id.edit_numero_service);
 
         mImgPhotoDoc = findViewById(R.id.image_add_service_document_item);
         mImgPhotoDoc.setMaxHeight(R.dimen.size_img_upload);
@@ -160,44 +210,25 @@ public class AjoutServiceActivity
         uriphotoservice = null;
     }
 
-    @SuppressLint("ResourceAsColor")
+    @SuppressLint({"ResourceAsColor", "NonConstantResourceId"})
     @Override
     public void onClick(View view) {
 
         switch (view.getId()){
             case R.id.confirm_add_service:
-                // Clic pour confirmer les donnees saisir et envoyer
+
+                Users user = new Users();
+
                 // Clic pour confirmer les donnees saisir et envoyer
                 title = mTxtTitleService.getEditText().getText().toString();
                 categorie = mTxtCategorieService.getEditText().getText().toString();
                 description = mTxtDescription.getEditText().getText().toString();
-                error.setText("Donnees Valider ");
-                error.setTextColor(R.color.theme_color);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    error.setCompoundDrawablesRelative(null,null,getDrawable(R.drawable.ic_baseline_check_24),null);
-                }
-
-                Log.d("NOERROR","pas erreur");
-
-                // Create a storage reference from our app
-
-                StorageReference storageRef = storage.getReference("services");
-
-                Uuid =  UUID.randomUUID();
-                StorageReference photoserviceRef = mStorageRef.child("services/photo"+title+Uuid);
-                StorageReference documentserviceRef = mStorageRef.child("services/doc"+title+Uuid);
-
-                // Get the data from an ImageView as bytes
-
-                uploadImageViewToStorage(mImgPhotoDoc,photoserviceRef);
-                // uploadDocToStorage(mImgPhotoService,documentserviceRef);
-                Toast.makeText(this, "Insertion reussi avec success ", Toast.LENGTH_SHORT).show();;
-                startActivity(new Intent(this,PrestationsActivity.class));
+                telephon = telephone.getEditText().getText().toString();
 
                 if (title.isEmpty() || categorie.isEmpty() || description.isEmpty()){
                     error.setText("Verifier que vous avez rempli tous les champs !");
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        error.setCompoundDrawables(null,null,getDrawable(R.drawable.ic_baseline_error_24),null);
+                        error.setCompoundDrawables(null,null,getResources().getDrawable(R.drawable.ic_baseline_error_24),null);
                     }
                 }
                 if (description.length() < 50){
@@ -212,40 +243,75 @@ public class AjoutServiceActivity
                 }
                 if (title.length() > 5 && !categorie.isEmpty() && description.length() >100) {
                     error.setText("Donnees Valider ");
-                    error.setTextColor(R.color.theme_color);
+                    error.setTextColor(getResources().getColor(R.color.theme_color));
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                        error.setCompoundDrawablesRelative(null, null, getDrawable(R.drawable.ic_baseline_check_24), null);
+                        error.setCompoundDrawablesRelative(null, null, getResources().getDrawable(R.drawable.ic_baseline_check_24), null);
                     }
                     Log.d("NOERROR", "pas erreur");
 
                     // Creer une reference
 
-                    // Create a storage reference from our ap
+                    // Create a storage reference from our app
+                    StorageReference storageRef = storage.getReference("services");
 
                     // Child references can also take paths
                     // spaceRef now points to "images/space.jpg
                     // imagesRef still points to "images"
 
                     Uuid = UUID.randomUUID();
+                    StorageReference photoserviceRef = mStorageRef.child("services/photo" + title + Uuid);
+                    StorageReference documentserviceRef = mStorageRef.child("services/doc" + title + Uuid);
 
-                    service.setAddDate(new Timestamp(new Date()));
-                    service.setId(""+Uuid);
+                    service.setAddDate(Timestamp.now());
+                    service.setId(Uuid.toString());
+                    service.setTelephone(telephon);
                     service.setCategorie(categorie);
-                    service.setClients(null);
+                    //listClient.add(users);
+                    //service.setClients(listClient);
                     service.setCommentaire(null);
                     service.setDescription(description);
-                    service.setName_provider("Gambee");
+                    service.setStatus(false);
+                    service.setName_provider(currentuser.getUid());
                     service.setNote(null);
                     service.setTitle(title);
 
+                    //    FirebasesUtil.addService(service);
+                    db =  FirebaseFirestore.getInstance();
+                    //db.collection("services").document(Uuid.toString()).set(service);
+
                     // Get the data from an ImageView as bytes
-                    uploadImageViewToStorage(mImgPhotoDoc, photoserviceRef);
-                    uploadDocToStorage(mImgPhotoService,documentserviceRef);
+                    //uploadImageViewToStorage(mImgPhotoDoc, photoserviceRef);
+                    //uploadDocToStorage(mImgPhotoService,documentserviceRef);
+
+                    Storage.uploadImageServiceToStorage(this,mImgPhotoService,photoserviceRef,service);
+
+                    //On creer une reference vers user-service
+
+                    Map<String , Object> user_service =new HashMap<>();
+                    user_service.put("user_id", firebaseauth.getCurrentUser().getUid());
+                    user_service.put("service_id", service.getId());
+
+                    db.collection("users").document(firebaseauth.getCurrentUser().getUid())
+                            .update("mesServices", FieldValue.arrayUnion(service.getId()));
+
+                    db.collection("user_service").add(user_service);
+
+
 
                     Toast.makeText(this, "Insertion reussi avec success ", Toast.LENGTH_SHORT).show();
 //                    Intent prestation = new Intent(this, PrestationsActivity.class);
                     startActivity(new Intent(this, MainActivity.class));
+                    finish();
                 }
+
+                Toast.makeText(this, "User id" + currentuser.getUid(), Toast.LENGTH_LONG).show();
+                Log.d(TAG, "updateUI: " + currentuser.getUid());
+                user.setId(currentuser.getUid());
+                Log.d(TAG, "updateUI: " + user.getId());
+
+                //FirebasesUtil.setUsersidService(currentuser.getUid());
+
+
                 break;
 
             case R.id.image_add_service_photo_item:
@@ -258,12 +324,18 @@ public class AjoutServiceActivity
 
             case R.id.cancel_add_service:
                 // Clic sur le bouton annuler
-
-                startActivity(new Intent(this, MainActivity.class));
+                Intent cancel = new Intent(this, MainActivity.class);
+                cancel.putExtra(SENTFIREBASEAUTHDATA,currentuser);
+                startActivity(cancel);
                 break;
             default:
                 throw new IllegalStateException("Unexpected value: " + view.getId());
         }
+    }
+
+    @SuppressLint({"SetTextI18n", "UseCompatLoadingForDrawables"})
+    private void addservice() {
+
     }
 
     private void ChooseDoc(int requestSelectImageService) {
@@ -275,7 +347,9 @@ public class AjoutServiceActivity
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
             intent.putExtra(Intent.EXTRA_MIME_TYPES, type);
         }
-        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
+            intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        }
         intent.setType("image/*");
         startActivityForResult(Intent.createChooser(intent,"Select your profile"), requestSelectImageService);
 
@@ -302,28 +376,8 @@ public class AjoutServiceActivity
                     .centerCrop()
                     .into(mImgPhotoDoc)
             ;
+            //setImage(mtxtdoc,mImgPhotoDoc,data);
         }
-
-    }
-
-
-    private String getPath(Uri uri) {
-
-        if( uri == null ) {
-            return null;
-        }
-        String[] projection = { MediaStore.Images.Media.DATA };
-        Cursor cursor = getContentResolver().query(uri, projection, null, null, null);
-        if( cursor != null ){
-            int column_index = cursor
-                    .getColumnIndexOrThrow(MediaStore.Images.Media.DATA);
-            cursor.moveToFirst();
-            return cursor.getString(column_index);
-        }
-        return uri.getPath();
-    }
-
-    private void uploadFile() {
 
     }
 
@@ -370,40 +424,44 @@ public class AjoutServiceActivity
                     @Override
                     public void onComplete(@NonNull Task<Uri> task) {
                         if (task.isSuccessful()) {
-                            Uri photoservice = task.getResult();
-                            TextView txt = findViewById(R.id.textphoto_add_service);
-                            txt.setText(photoservice.toString());
-                            Log.d("FILEURL", "onComplete: "+ photoservice.toString());
-                            listphoto.add(new Photo(Uuid.toString(),photoservice.toString(),photoservice.toString()));
-                            service.setAddDate(new Timestamp(new Date()));
-                            service.setId(""+Uuid);
-                            service.setCategorie(categorie);
-                            service.setPhotoService(photoservice.toString());
-                            service.setClients(null);
-                            service.setPhotos(listphoto);
-                            service.setCommentaire(null);
-                            service.setDescription(description);
-                            service.setName_provider("Gambee");
-                            service.setNote(null);
-                            service.setTitle(title);
-
-                            FirebasesUtil.addService(service);
-
-                        } else {
 
                             Uri photoservice = task.getResult();
 
                             Log.d("FILEURL", "onComplete: "+ photoservice.toString());
                             listphoto.add(new Photo(Uuid.toString(),photoservice.toString(),photoservice.toString()));
                             service.setPhotoService(photoservice.toString());
+                            service.setPhoto_service(photoservice.toString());
                             service.setPhotos(listphoto);
-
 
                             Log.d("STORAGE","RECUPERATION DU SERVICE");
                             FirebasesUtil.addService(service);
                             Log.d("STORAGE","AJOUT EFFECTUER AVEC SUCCESS");
+
+                            Log.d("STORAGE","RECUPERATION DU SERVICE");
+
+
+                            service.setId(currentuser.getUid());
+                            //users.setId(fuser.getUid());
+
+                            //users.addService(service);
+
+                           // FirebasesUtil.getReferenceFirestore(COL_SERVICES).document(Uuid.toString()).update("photos", FieldValue.arrayUnion(photoservice.toString()));
+
+                            db.collection("services")
+                                    .document(Uuid.toString())
+                                    .update("photos_service",photoservice.toString());
+
+                            Toast.makeText(AjoutServiceActivity.this, "addService succees ", Toast.LENGTH_SHORT).show();
+                            FirebasesUtil.setUsersidService(currentuser.getUid());
+                            Toast.makeText(AjoutServiceActivity.this, "setUsersidservicesuccees ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Modification des url photoeffectuer avec success", Toast.LENGTH_SHORT).show();
+
+                            Log.d("STORAGE","AJOUT EFFECTUER AVEC SUCCESS");
                             //startActivity(new Intent(view.getContext(), MainActivity.class));
 
+                        } else {
+                            // Handle failures
+                            // ...
                         }
                     }
                 });
@@ -452,13 +510,16 @@ public class AjoutServiceActivity
             public void onComplete(@NonNull Task<Uri> task) {
                 if (task.isSuccessful()) {
                     uridocservice = task.getResult();
-                    TextView txt = findViewById(R.id.textdoc_add_service);
-                    txt.setText(uridocservice.toString());
-                    Log.d("FILEURL", "onComplete: "+ uridocservice.toString());
                     Log.d("FILEURL", "onComplete: "+ uridocservice.toString());
                     listphoto.add(new Photo(Uuid.toString(), uridocservice.toString(),uridocservice.getPath()));
                     service.setPhotos(listphoto);
+
+                    //db.collection("services").document(Uuid.toString()).update("doc_service", uridocservice.toString());
+                    listphoto.add(new Photo(Uuid.toString(), uridocservice.toString(),uridocservice.getPath()));
+                    service.addPhotos(new Photo(Uuid.toString(), uridocservice.toString(),uridocservice.getPath()));
                     FirebasesUtil.setService(service);
+                    Toast.makeText(getApplicationContext(), "Modification des url photoeffectuer avec success", Toast.LENGTH_SHORT).show();
+
                 } else {
                     // Handle failures
                     // ...
@@ -468,56 +529,4 @@ public class AjoutServiceActivity
 
     }
 
-
-    public void uploadtoStorage(Uri filephotoservice){
-
-        UploadTask uploadTask = mStorageRef.child("services/" + filephotoservice.getLastPathSegment()).putFile(filephotoservice, metadata);
-
-        // Listen for state changes, errors, and completion of the upload.
-        uploadTask.addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
-                double progress = (100.0 * taskSnapshot.getBytesTransferred()) / taskSnapshot.getTotalByteCount();
-                Log.d("STORAGE", "Upload is " + progress + "% done");
-            }
-        }).addOnPausedListener(new OnPausedListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onPaused(UploadTask.TaskSnapshot taskSnapshot) {
-                Log.d("STORAGE", "Upload is paused");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                // Handle unsuccessful uploads
-                Log.w("STORAGE", "Upload is cancel",exception);
-            }
-        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                // Handle successful uploads on complete
-                // ...
-                Log.d("STORAGE", "Upload is Success");
-            }
-        });
-
-    }
-
-    @Override
-    public void onFocusChange(View view, boolean hasfocus) {
-        switch(view.getId()){
-            case R.id.txt_title_service:
-                if(hasfocus){
-
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                        if (mTxtTitleService.getEditText().toString().length() < 4){
-                            mTxtTitleService.setBoxStrokeColor(getColor(R.color.rouge));
-                        }else {
-                            mTxtTitleService.setBoxStrokeColor(getColor(R.color.theme_color));
-                            mTxtTitleService.setEndIconDrawable(getDrawable(R.drawable.ic_baseline_check_24));
-                        }
-                    }
-                }
-                break;
-        }
-    }
 }

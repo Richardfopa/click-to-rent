@@ -155,13 +155,14 @@
 
                 <ImageView
                     android:id="@+id/image_add_create_account"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_width="@dimen/size_img_upload"
+                    android:layout_height="@dimen/size_img_upload"
+                    android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:contentDescription="@string/choisir_votre_photo_de_profil"
                     android:padding="20dp"
                     app:shapeAppearanceOverlay="@style/roundedImageView"
-                    app:srcCompat="@drawable/ic_baseline_image_24"
+                    app:srcCompat="@drawable/ajouter_img"
                     tools:ignore="ImageContrastCheck,ImageContrastCheck" />
 
             </androidx.cardview.widget.CardView>

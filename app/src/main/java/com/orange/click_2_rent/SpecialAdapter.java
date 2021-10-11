@@ -43,12 +43,39 @@ public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.SpecialV
         holder.myImagePP.setImageResource(sp.getImageDesc());
         holder.myDescription.setText(sp.getNomDesc());
 
-        holder.myImagePP.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+
+        holder.myImagePP.setOnClickListener(view -> {
+            if(sp.getNomDesc().equals(context.getResources().getString(R.string.plomberie)))
+            {
+                Intent intent = new Intent(context,PresentationPlomberie.class);
+                context.startActivity(intent);
+            }
+            if(sp.getNomDesc().equals(context.getResources().getString(R.string.menuiserie)))
+            {
+                Intent intent = new Intent(context,PresentationMenuiserie.class);
+                context.startActivity(intent);
+            }
+            if(sp.getNomDesc().equals(context.getResources().getString(R.string.maconnerie)))
+            {
+                Intent intent = new Intent(context,PresentationMaconnerie.class);
+                context.startActivity(intent);
+            }
+            if(sp.getNomDesc().equals(context.getResources().getString(R.string.electricite)))
+            {
+                Intent intent = new Intent(context,PresentationElectricite.class);
+                context.startActivity(intent);
+            }
+            if(sp.getNomDesc().equals(context.getResources().getString(R.string.informatique)))
+            {
+                Intent intent = new Intent(context,PresentationInformatique.class);
+                context.startActivity(intent);
+            }
+            if(sp.getNomDesc().equals(context.getResources().getString(R.string.autres)))
+            {
                 Intent intent = new Intent(context,PrestationsActivity.class);
                 context.startActivity(intent);
             }
+
         });
 
     }
@@ -56,14 +83,10 @@ public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.SpecialV
     @Override
     public int getItemCount() {
 
-        if(mesSpecialites != null){
-
-            return mesSpecialites.size();
-        }
-            return 0;
+        return mesSpecialites.size();
     }
 
-    public class SpecialViewHolder extends RecyclerView.ViewHolder{
+    public static class SpecialViewHolder extends RecyclerView.ViewHolder{
 
         public final CardView myCard;
         public final TextView myDescription;
@@ -75,6 +98,7 @@ public class SpecialAdapter extends RecyclerView.Adapter<SpecialAdapter.SpecialV
             myCard = itemView.findViewById(R.id.monCadre);
             myDescription = itemView.findViewById(R.id.monTitre);
             myImagePP = itemView.findViewById(R.id.monImageProfil);
+
         }
     }
 }

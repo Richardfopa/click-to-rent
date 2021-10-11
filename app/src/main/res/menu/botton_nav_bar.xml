@@ -11,12 +11,6 @@
         android:title="Parametres"
         app:showAsAction="never"
         android:icon="@drawable/settings_24"/>
-    <item
-        android:id="@+id/Rechercher"
-        android:title="Search"
-        android:icon="@drawable/search_24"
-        app:showAsAction="collapseActionView|ifRoom"
-        app:actionViewClass="android.widget.SearchView"/>
 
     <item
         android:id="@+id/profil"

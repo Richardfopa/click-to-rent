@@ -2,45 +2,46 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mCardVue"
+    style="@style/style_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/mCardVue"
     android:clickable="true"
     android:clipChildren="false"
     app:cardPreventCornerOverlap="true"
-    app:cardUseCompatPadding="true"
-    >
+    app:cardUseCompatPadding="true">
 
     <com.google.android.material.card.MaterialCardView
+        style="@style/style_card"
         android:layout_width="match_parent"
-        android:layout_height="130sp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="4sp"
+        android:layout_marginRight="4sp"
         android:elevation="4sp"
+        android:padding="8dp"
         app:cardElevation="4sp"
-        app:cardPreventCornerOverlap="true"
-        android:layout_marginRight="4sp">
+        app:cardPreventCornerOverlap="true">
+
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:padding="4dp">
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/mProfil"
                 android:layout_width="150sp"
                 android:layout_height="125sp"
-                android:layout_marginStart="10dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="16dp"
+                android:layout_gravity="center"
                 android:adjustViewBounds="true"
-                app:shapeAppearanceOverlay="@style/roundedImageView"
-                app:civ_circle_background_color="@color/white"
-                android:padding="10sp"
+                android:padding="4dp"
+                android:scaleType="centerCrop"
                 app:civ_border_color="@color/menu_tab"
                 app:civ_border_width="1dp"
-                android:scaleType="centerCrop"
+                app:civ_circle_background_color="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/roundedImageView"
                 tools:ignore="MissingConstraints" />
 
             <LinearLayout
@@ -48,18 +49,17 @@
                 android:layout_height="match_parent"
                 android:layout_marginLeft="2sp"
                 android:orientation="vertical"
-                android:paddingLeft="0sp">
+                android:padding="4dp">
 
                 <TextView
                     android:id="@+id/mDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="8dp"
                     android:layout_weight="1"
                     android:maxLength="25"
-                    android:paddingTop="10sp"
                     android:text="@string/description_prestation"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -72,12 +72,11 @@
                 <TextView
                     android:id="@+id/miniDescription"
                     android:layout_width="match_parent"
-                    android:layout_height="0sp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="0dp"
                     android:layout_marginBottom="0sp"
-                    android:paddingBottom="0sp"
                     android:layout_weight="1"
                     android:maxLength="100"
                     android:text="@string/intitule"
@@ -90,11 +89,10 @@
                 <TextView
                     android:id="@+id/mDate"
                     android:layout_width="match_parent"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_marginLeft="5sp"
                     android:layout_marginTop="0sp"
-                    android:paddingTop="15sp"
                     android:layout_marginBottom="10dp"
                     android:layout_weight="1"
                     android:maxLength="20"

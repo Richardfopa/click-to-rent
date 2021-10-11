@@ -16,24 +16,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="300px"
-            android:layout_height="300px"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            app:srcCompat="@drawable/logo" />
-
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="80sp"
             android:gravity="center"
             android:text="@string/ReserverTitle"
             android:textColor="@color/white"
             android:textSize="20sp">
-
         </TextView>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="200sp"
+            android:layout_height="200sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="50sp"
+            android:src="@drawable/clicktorent" />
 
     </LinearLayout>
 

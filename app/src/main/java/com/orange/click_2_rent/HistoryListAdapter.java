@@ -1,7 +1,6 @@
 package com.orange.click_2_rent;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,10 +10,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import androidx.recyclerview.widget.RecyclerView;
-
-import org.w3c.dom.Text;
-
-import java.util.ArrayList;
 import java.util.LinkedList;
 
 
@@ -35,14 +30,12 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull HistoryListViewHolder holder, int position) {
+
         ClientUtil clientUtil = client.get(position);
         holder.image.setImageResource(clientUtil.getmImage());
         holder.service_text.setText(clientUtil.getmService());
         holder.note_text.setText(Integer.toString(clientUtil.getmNote()));
-
     }
-
-
     @Override
     public int getItemCount() {
 
@@ -61,6 +54,7 @@ public class HistoryListAdapter extends RecyclerView.Adapter<HistoryListAdapter.
 
         public HistoryListViewHolder(@NonNull View itemView, HistoryListAdapter adapter) {
             super(itemView);
+
             this.mAdapter = adapter;
             image = itemView.findViewById(R.id.history_item_image);
             service_text = itemView.findViewById(R.id.history_item_service);

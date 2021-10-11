@@ -4,8 +4,17 @@ package com.orange.click_2_rent.Models;
  * Purpose: Defines the Class Users
  ***********************************************************************/
 
+import static com.orange.click_2_rent.Models.FirebasesUtil.TAG;
+
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.util.Log;
+
+import com.google.firebase.Timestamp;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FieldValue;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.orange.click_2_rent.Models.FirebasesUtil;
 
 import java.util.*;
 
@@ -16,12 +25,17 @@ public class Users implements Parcelable {
     private Photo photoClient;
     private String adresse;
     private String motDePasse;
+    private String photo_user;
+    private Timestamp date_darriver;
     private ArrayList<Service> mesServices;
+    private ArrayList<String> iddemesServices;
     private ArrayList<Service> servicesDemande;
     private ArrayList<Commentaire> mesCommentaires;
     private String id;
+    private FirebaseFirestore db;
 
-    public Users(String nom, String telphone, String email, Photo photoClient, String adresse, ArrayList<Service> mesServices, ArrayList<Service> servicesDemande, ArrayList<Commentaire> mesCommentaires, String motDePasse, String id) {
+    public Users(String nom, String telphone, String email, Photo photoClient, String adresse, ArrayList<Service> mesServices, ArrayList<Service> servicesDemande, ArrayList<Commentaire> mesCommentaires,ArrayList<String> iddemesservice, String motDePasse,String photo_user, String id,Timestamp date_darriver) {
+        this.date_darriver = date_darriver;
         this.nom = nom;
         this.telphone = telphone;
         this.email = email;
@@ -32,7 +46,11 @@ public class Users implements Parcelable {
         this.mesCommentaires = mesCommentaires;
         this.motDePasse = motDePasse;
         this.id = id;
+        this.photo_user = photo_user;
+        this.iddemesServices = iddemesservice;
+        db = FirebaseFirestore.getInstance();
     }
+
 
     protected Users(Parcel in) {
         nom = in.readString();
@@ -40,6 +58,7 @@ public class Users implements Parcelable {
         email = in.readString();
         adresse = in.readString();
         motDePasse = in.readString();
+        photo_user = in.readString();
         id = in.readString();
     }
 
@@ -57,6 +76,18 @@ public class Users implements Parcelable {
 
     public void setMesServices(ArrayList<Service> mesServices) {
         this.mesServices = mesServices;
+    }
+
+    public String getTelphone() {
+        return telphone;
+    }
+
+    public ArrayList<String> getIddemesServices() {
+        return iddemesServices;
+    }
+
+    public void setIddemesServices(ArrayList<String> iddemesServices) {
+        this.iddemesServices = iddemesServices;
     }
 
     public void setServicesDemande(ArrayList<Service> servicesDemande) {
@@ -80,10 +111,21 @@ public class Users implements Parcelable {
 
     }
 
+    public void addIdservice(String idservice){
+        this.iddemesServices.add(idservice);
+    }
+
 
     public Users() {
     }
 
+    public Timestamp getDate_darriver() {
+        return date_darriver;
+    }
+
+    public void setDate_darriver(Timestamp date_darriver) {
+        this.date_darriver = date_darriver;
+    }
 
 
     public String getId() {
@@ -137,7 +179,19 @@ public class Users implements Parcelable {
         this.nom = nom;
     }
 
-    public String getTelphone() {
+    public String getPhoto_user() {
+        return photo_user;
+    }
+
+    public void setPhoto_user(String photo_user) {
+        this.photo_user = photo_user;
+    }
+
+    public static Creator<Users> getCREATOR() {
+        return CREATOR;
+    }
+
+    public String getTelphone(String phoneNumber) {
         return telphone;
     }
 
@@ -193,15 +247,22 @@ public class Users implements Parcelable {
     }
 
 
-
     @Override
     public String toString() {
         return "Users{" +
-                ", nom='" + nom + '\'' +
-                ", telphone=" + telphone +
+                "id ='" + id + '\'' +
+                "nom='" + nom + '\'' +
+                ", telphone='" + telphone + '\'' +
                 ", email='" + email + '\'' +
-                ", motDePasse='" + motDePasse + '\'' +
                 ", photoClient=" + photoClient +
+                ", adresse='" + adresse + '\'' +
+                ", motDePasse='" + motDePasse + '\'' +
+                ", photo_user='" + photo_user + '\'' +
+                ", date_darriver=" + date_darriver +
+                ", mesServices=" + mesServices +
+                ", servicesDemande=" + servicesDemande +
+                ", mesCommentaires=" + mesCommentaires +
+                ", id='" + id + '\'' +
                 '}';
     }
 
@@ -218,5 +279,33 @@ public class Users implements Parcelable {
         parcel.writeString(adresse);
         parcel.writeString(motDePasse);
         parcel.writeString(id);
+        parcel.writeString(photo_user);
     }
+
+    public void addService(Service service){
+        if(service != null){
+            db.collection(FirebasesUtil.COL_USERS).document(getId())
+                    .update("mesServices", FieldValue.arrayUnion(service.getId()));
+        }else{
+            Log.d(TAG, "addService for users : on faillure");
+        }
+
+        //FirebasesUtil.getReferenceFirestore(FirebasesUtil.COL_USERS)
+        //FirebasesUtil.addService(service);
+
+    }
+
+    public void addOpinion(Service service, Commentaire opinion){
+
+        DocumentReference serref = db.document(FirebasesUtil.COL_USERS+"/service/"+getId());
+        DocumentReference opinionref = db.document(FirebasesUtil.COL_USERS+"/opinion/"+getId());
+
+        serref.set(service);
+        opinionref.set(opinionref);
+
+        //FirebasesUtil.addService();
+
+
+    }
+
 }
